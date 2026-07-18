@@ -95,7 +95,12 @@
   form input::placeholder{color:rgba(255,255,255,.72)}
   form input:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.22)}
   form .btn{background:#fff;color:var(--ink);flex:0 0 auto}
-  .form-note{color:rgba(255,255,255,.72);font-size:13px;margin-top:12px}
+  .form-note{color:rgba(255,255,255,.72);font-size:13px;margin-top:14px}
+  /* CTA principal del contacto: destacado + brillo periódico */
+  .contact .btn{background:var(--paper);color:var(--ink);font-size:16px;font-weight:600;padding:17px 36px;position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+  .contact .btn::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-18deg);animation:shine 5.5s ease-in-out infinite}
+  @keyframes shine{0%{left:-50%}13%{left:140%}100%{left:140%}}
+  @media (prefers-reduced-motion: reduce){ .contact .btn::before{animation:none} }
 
   /* TEAM */
   .team-cards{margin-top:34px}
@@ -249,7 +254,7 @@
       <p>Contanos qué le pasa a tu equipo. Te respondemos con un diagnóstico y un presupuesto claro, sin compromiso.</p>
     </div>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSerg1ThWSK4UBGkaMQ-vphvrLzU4AE-JqvDr3nvRJwSBGqfwQ/viewform" target="_blank" rel="noopener" class="btn">Dejar mi contacto →</a>
-    <p class="form-note">Te lleva a un formulario corto de un par de campos. Sin spam, sin listas cruzadas.</p>
+    <p class="form-note">Sin spam, sin compromiso.</p>
   </div>
 </section>
 
@@ -336,6 +341,17 @@
   window.addEventListener('scroll', updateFab, {passive:true});
   window.addEventListener('resize', updateFab);
   updateFab();
+
+  /* CTAs hacia #contacto: en desktop hacen scroll a una vista centrada del asset;
+     en mobile abren el formulario directo (sin paso intermedio) */
+  const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSerg1ThWSK4UBGkaMQ-vphvrLzU4AE-JqvDr3nvRJwSBGqfwQ/viewform";
+  document.querySelectorAll('a[href="#contacto"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      if(isMobile()){ window.open(FORM_URL, '_blank', 'noopener'); }
+      else { document.getElementById('contacto').scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+  });
 </script>
 </body>
 </html>
