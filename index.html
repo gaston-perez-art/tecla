@@ -237,13 +237,8 @@
       <h2>Dejá tu contacto y te llamamos.</h2>
       <p>Contanos qué le pasa a tu equipo. Te respondemos con un diagnóstico y un presupuesto claro, sin compromiso.</p>
     </div>
-    <form id="leadForm">
-      <input type="hidden" name="unidad" id="unidadField" value="Soporte">
-      <input type="text" name="nombre" placeholder="Tu nombre" required aria-label="Nombre">
-      <input type="text" name="contacto" placeholder="Mail o WhatsApp" required aria-label="Mail o WhatsApp">
-      <button type="submit" class="btn">Enviar</button>
-    </form>
-    <p class="form-note">Un solo mensaje cuando te respondamos. Sin spam, sin listas cruzadas.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSerg1ThWSK4UBGkaMQ-vphvrLzU4AE-JqvDr3nvRJwSBGqfwQ/viewform" target="_blank" rel="noopener" class="btn">Dejar mi contacto →</a>
+    <p class="form-note">Te lleva a un formulario corto de un par de campos. Sin spam, sin listas cruzadas.</p>
   </div>
 </section>
 
@@ -292,35 +287,12 @@
 <!-- FLOATING CTA -->
 <a href="#contacto" class="btn fab" id="fab">Contactar →</a>
 
-<div class="toast" id="toast"></div>
-
 <script>
-  /* ====== CONFIG: pegá tu endpoint de Formspree (ver SETUP-formulario.md) ====== */
-  const FORM_ENDPOINT = "";
-
   function setUnit(u){
     document.documentElement.setAttribute('data-unit', u);
-    document.getElementById('unidadField').value = (u === 'soporte') ? 'Soporte' : 'Docentes';
     document.title = (u === 'soporte') ? 'Tecla Soporte — Servicio técnico' : 'Tecla — Recuperá tu tiempo';
     window.scrollTo({top:0, behavior:'smooth'});
   }
-
-  const toast = document.getElementById('toast');
-  let toastT;
-  function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>toast.classList.remove('show'), 3600); }
-
-  const form = document.getElementById('leadForm');
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const okMsg = document.documentElement.getAttribute('data-unit') === 'soporte'
-      ? '¡Listo! Te llamamos a la brevedad.'
-      : '¡Listo! Te escribimos para ayudarte.';
-    if(!FORM_ENDPOINT){ form.reset(); showToast(okMsg + ' (modo demo)'); return; }
-    try{
-      const res = await fetch(FORM_ENDPOINT, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-      if(res.ok){ form.reset(); showToast(okMsg); } else showToast('Ups, no se pudo enviar. Probá de nuevo.');
-    }catch(err){ showToast('Ups, no se pudo enviar. Probá de nuevo.'); }
-  });
 
   /* reveal on scroll */
   const io = new IntersectionObserver(es=>es.forEach(el=>{ if(el.isIntersecting){ el.target.classList.add('in'); io.unobserve(el.target);} }), {threshold:.12});
