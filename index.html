@@ -106,6 +106,9 @@
   .avatar span{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:28px;color:#fff}
   .person .role{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:3px}
   .person h3{font-size:22px}
+  .li{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:500;color:#0A66C2;text-decoration:none;transition:opacity .2s var(--ease)}
+  .li:hover{opacity:.65}
+  .li svg{width:18px;height:18px}
   .person p{color:var(--ink-soft);font-size:15px;margin-top:14px}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .chip{font-size:12.5px;font-weight:500;background:var(--paper-3);border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px;color:var(--ink-soft)}
@@ -262,7 +265,13 @@
       <div class="person reveal">
         <div class="person-head">
           <div class="avatar"><img src="fotos/andres.jpg" alt="Andrés Pérez" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span style="display:none">A</span></div>
-          <div><div class="role">Soporte y tecnología</div><h3>Andrés Pérez</h3></div>
+          <div>
+            <div class="role">Soporte y tecnología</div><h3>Andrés Pérez</h3>
+            <a class="li" href="https://www.linkedin.com/in/andrés-pérez-180b5520a" target="_blank" rel="noopener" aria-label="LinkedIn de Andrés Pérez">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              Ver perfil
+            </a>
+          </div>
         </div>
         <p>Técnico informático con <strong>+5 años</strong> de experiencia. Hoy es <strong>Técnico de TI en el Poder Judicial de la Provincia de Buenos Aires</strong>, resolviendo problemas de hardware y sistemas reales todos los días.</p>
         <div class="chips"><span class="chip">Poder Judicial PBA</span><span class="chip">+5 años</span><span class="chip">Hardware</span><span class="chip">Redes y sistemas</span></div>
@@ -270,7 +279,13 @@
       <div class="person reveal">
         <div class="person-head">
           <div class="avatar"><img src="fotos/gaston.jpg" alt="Gastón Pérez" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span style="display:none">G</span></div>
-          <div><div class="role">Producto y educación</div><h3>Gastón Pérez</h3></div>
+          <div>
+            <div class="role">Producto y educación</div><h3>Gastón Pérez</h3>
+            <a class="li" href="https://www.linkedin.com/in/gastonmartinperez" target="_blank" rel="noopener" aria-label="LinkedIn de Gastón Pérez">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              Ver perfil
+            </a>
+          </div>
         </div>
         <p>Product Manager y <strong>Magíster en Administración de Empresas (MBA)</strong>. Construyó productos digitales en <strong>Mercado Libre</strong>, <strong>Rappi</strong> y en <strong>EdTech</strong>, siempre pensando en cómo mejorar la vida de las personas.</p>
         <div class="chips"><span class="chip">Mercado Libre</span><span class="chip">Rappi</span><span class="chip">EdTech</span><span class="chip">MBA · UP</span></div>
