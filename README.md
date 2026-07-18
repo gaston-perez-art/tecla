@@ -20,7 +20,7 @@ Es un sitio **estático** apoyado en servicios gestionados gratuitos. No hay ser
 | Hosting | Sirve el sitio | GitHub Pages |
 | Dominio | Dirección pública | `www.somostecla.com` (DNS → GitHub Pages) |
 | Captación de contactos | Guarda los leads | Google Form → Google Sheet |
-| Analítica | Mide visitas | Google Analytics *(pendiente de conectar)* |
+| Analítica | Mide visitas | Google Analytics 4 (`G-HF3KE27QBG`) |
 
 Esto es una arquitectura **serverless**: el sitio no procesa ni almacena datos por sí mismo; delega en Google Forms/Sheets. Es la decisión adecuada para la etapa de validación (cero costo, cero mantenimiento). Cuando el producto docente pase a guardar el trabajo del usuario, recién ahí se justificará un backend real (base de datos + cuentas).
 
