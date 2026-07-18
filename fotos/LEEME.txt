@@ -1,0 +1,4 @@
+Poné acá las fotos con estos nombres exactos y aparecen solas en la web:
+  gaston.jpg  (Gastón — chomba)
+  andres.jpg  (Andrés — bigote)
+Recomendado: cuadradas (ej. 400x400 px). Si no están, se muestra la inicial.

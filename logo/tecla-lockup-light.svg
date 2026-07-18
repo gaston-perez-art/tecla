@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="120" viewBox="0 0 430 120">
+  <rect width="430" height="120" fill="#FAF7F2"></rect>
+  <g transform="translate(8 16)">
+  <rect x="0" y="0" width="88" height="88" rx="23.76" fill="#1E3A5F"></rect>
+  
+  <text x="44" y="44" font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="500" font-size="54.56" fill="#ffffff" text-anchor="middle" dominant-baseline="central">T</text></g>
+  <text x="122" y="60" font-family="Inter, system-ui, sans-serif" font-weight="500" font-size="70" letter-spacing="-2.5" fill="#0f1216" dominant-baseline="central">Tecla</text>
+  </svg>
