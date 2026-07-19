@@ -426,6 +426,62 @@
   window.addEventListener('resize', updateFab);
   updateFab();
 
+  /* marquee swipe en mobile */
+  (function(){
+    const marquee = document.querySelector('.marquee');
+    const track   = document.querySelector('.marquee-track');
+    if (!marquee || !track) return;
+    const DURATION = 30;
+    let dragStartX = 0, dragBaseX = 0, velX = 0, prevX = 0, prevT = 0, rafId = null;
+
+    function liveX(){ return new DOMMatrix(getComputedStyle(track).transform).m41; }
+
+    function applyX(x){
+      const W = track.scrollWidth / 2;
+      x = x % W;
+      if (x > 0) x -= W;
+      track.style.transform = `translateX(${x}px)`;
+      return x;
+    }
+
+    function restart(fromX){
+      const W = track.scrollWidth / 2;
+      track.style.removeProperty('transform');
+      track.style.animationDelay = `${-(Math.abs(fromX) / W) * DURATION}s`;
+      track.style.animationPlayState = 'running';
+    }
+
+    marquee.addEventListener('touchstart', e => {
+      if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
+      track.style.animationPlayState = 'paused';
+      dragBaseX  = liveX();
+      track.style.transform = `translateX(${dragBaseX}px)`;
+      track.style.animationDelay = '';
+      dragStartX = e.touches[0].clientX;
+      prevX = dragStartX; prevT = Date.now(); velX = 0;
+    }, {passive:true});
+
+    marquee.addEventListener('touchmove', e => {
+      const cx = e.touches[0].clientX, now = Date.now();
+      velX = (cx - prevX) / Math.max(now - prevT, 1) * 16;
+      prevX = cx; prevT = now;
+      applyX(dragBaseX + (cx - dragStartX));
+    }, {passive:true});
+
+    function onEnd(){
+      let x = liveX();
+      function decay(){
+        velX *= 0.93;
+        x = applyX(x + velX);
+        if (Math.abs(velX) > 0.3){ rafId = requestAnimationFrame(decay); }
+        else { rafId = null; restart(x); }
+      }
+      decay();
+    }
+    marquee.addEventListener('touchend',    onEnd, {passive:true});
+    marquee.addEventListener('touchcancel', onEnd, {passive:true});
+  })();
+
   /* CTAs hacia #contacto: en desktop hacen scroll a una vista centrada del asset;
      en mobile abren el formulario directo (sin paso intermedio) */
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSerg1ThWSK4UBGkaMQ-vphvrLzU4AE-JqvDr3nvRJwSBGqfwQ/viewform";
