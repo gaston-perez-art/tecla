@@ -171,8 +171,9 @@
   .logo-ml{height:26px}
   .logo-rappi{height:30px}
   .logo-pj{height:42px}
-  .logo-coder{height:25px}
+  .logo-coder{height:38px}
   .logo-henry{height:17px}
+  .logo-bb{height:60px}
   @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none} }
 
@@ -208,6 +209,9 @@
     .team-cards{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:34px -18px 0;padding:4px 18px 14px;scrollbar-width:none}
     .team-cards::-webkit-scrollbar{display:none}
     .person{flex:0 0 88%;scroll-snap-align:center;padding:24px}
+    /* orden por unidad (solo mobile): Soporte→Andrés primero; Docentes→Gastón primero */
+    html[data-unit="docentes"] .team-cards .person:first-child{order:2}
+    html[data-unit="docentes"] .team-cards .person:last-child{order:1}
     .person-head{flex-direction:column;text-align:center;gap:12px}
     .avatar{width:72px;height:72px}
     .chips{justify-content:center}
@@ -363,11 +367,13 @@
           <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-label="Poder Judicial"><img class="logo-img logo-pj" src="logos/poderjudicial.svg" alt="Poder Judicial" /></a>
           <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-label="Coderhouse"><img class="logo-img logo-coder" src="logos/coderhouse.svg" alt="Coderhouse" /></a>
           <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-label="Henry"><img class="logo-img logo-henry" src="logos/henry.svg" alt="Henry" /></a>
+          <a class="logo-link" href="https://www.bigbox.com.ar/" target="_blank" rel="noopener" aria-label="Bigbox"><img class="logo-img logo-bb" src="logos/bigbox.svg" alt="Bigbox" /></a>
           <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-ml" src="logos/mercadolibre.svg" alt="" /></a>
           <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-rappi" src="logos/rappi.svg" alt="" /></a>
           <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-pj" src="logos/poderjudicial.svg" alt="" /></a>
           <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-coder" src="logos/coderhouse.svg" alt="" /></a>
           <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-henry" src="logos/henry.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.bigbox.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-bb" src="logos/bigbox.svg" alt="" /></a>
         </div>
       </div>
     </div>
