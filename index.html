@@ -120,8 +120,9 @@
 
   /* TEAM */
   .team-cards{margin-top:34px}
-  .person{background:var(--paper);border:1px solid var(--line-strong);border-radius:18px;padding:26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background-color .55s var(--ease)}
-  .person:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(30,58,95,.14)}
+  .person{background:var(--paper);border:1px solid var(--line-strong);border-radius:18px;padding:26px}
+  .team-cards .person{transition:transform .3s var(--ease),box-shadow .3s var(--ease),opacity .6s var(--ease),background-color .55s var(--ease)}
+  .team-cards .person:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(30,58,95,.14)}
   .person-head{display:flex;align-items:center;gap:16px}
   .avatar{width:64px;height:64px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--accent);display:flex;align-items:center;justify-content:center;position:relative}
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
