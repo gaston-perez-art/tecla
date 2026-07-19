@@ -136,6 +136,7 @@
   .chip-free .check{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#4ade80;border-radius:50%;color:#fff;font-size:10px;font-weight:800;flex-shrink:0}
   html[data-unit="soporte"] .chip-free.unit-sop,html[data-unit="docentes"] .chip-free.unit-doc{display:inline-flex}
   .chip-free-light{display:inline-flex;align-items:center;gap:7px;background:var(--paper-3);border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ink-soft);margin-top:18px}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:15px;margin-bottom:12px}
   /* CTA principal del contacto: destacado + brillo periódico */
   .contact .btn{background:var(--paper);color:var(--ink);font-size:16px;font-weight:600;padding:17px 36px;position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.22)}
   .contact .btn::before,.fab::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-18deg);animation:shine 3.5s ease-in-out infinite}
@@ -263,10 +264,10 @@
     </div>
     <!-- SOPORTE -->
     <div class="unit unit-sop">
-      <span class="eyebrow">Tecla Soporte · servicio técnico informático</span>
+      <span class="eyebrow">Tecla Soporte · servicio técnico · Florencio Varela y alrededores</span>
       <h1>Se rompió.<br>Lo arreglamos.</h1>
-      <p class="lead">Reparación y puesta a punto de notebooks y PCs, hecha por alguien que trabaja en tecnología todos los días. Diagnóstico claro, sin vueltas. Dejás tu contacto y te llamamos.</p>
-      <p style="margin-top:26px"><a href="#contacto" class="btn">Dejá tu contacto →</a></p>
+      <p class="lead">Reparación y puesta a punto de notebooks y PCs por un técnico con experiencia en el Poder Judicial. Diagnóstico claro, sin vueltas. Dejás tu contacto y te llamamos.</p>
+      <p style="margin-top:26px"><a href="#contacto" class="btn">Quiero mi presupuesto →</a></p>
       <span class="chip-free-light"><span class="check">✓</span> Presupuesto gratis</span>
     </div>
   </div>
@@ -294,7 +295,7 @@
       <div class="section-head reveal">
         <span class="eyebrow">Qué hacemos</span>
         <h2>Todo lo que tu equipo necesita.</h2>
-        <p>Servicio técnico completo, presencial en la zona y también a distancia.</p>
+        <p>Servicio técnico completo, presencial en Florencio Varela y alrededores, y también a distancia.</p>
       </div>
       <div class="grid g3">
         <div class="card reveal"><h3>Reparación y diagnóstico</h3><p>Notebooks y PCs. Te decimos qué tiene, cuánto sale y si vale la pena, antes de tocar nada.</p></div>
@@ -308,12 +309,27 @@
   </div>
 </section>
 
+<!-- ============ CÓMO FUNCIONA ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Tres pasos, cero vueltas.</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><span class="step-num">1</span><h3>Dejás tu contacto</h3><p>Un minuto, sin registrarte en nada.</p></div>
+      <div class="card reveal"><span class="step-num">2</span><h3>Te contactamos en el día</h3><p>Te escribimos para entender qué necesitás.</p></div>
+      <div class="card reveal"><span class="step-num">3</span><h3>Coordinamos y lo resolvemos</h3><p>Acordamos cómo y cuándo, y manos a la obra.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACTO ============ -->
 <section class="contact" id="contacto">
   <div class="wrap">
     <div class="unit unit-doc">
       <h2>Contanos qué te está costando.</h2>
-      <p>Dejá tu contacto y te escribimos para ayudarte a recuperar tu tiempo. Estamos en etapa de arranque: la asesoría inicial es sin cargo.</p>
+      <p>Dejá tu contacto y te escribimos para ayudarte a recuperar tu tiempo.</p>
     </div>
     <div class="unit unit-sop">
       <h2>Dejá tu contacto y te llamamos.</h2>
@@ -359,14 +375,14 @@
             </a>
           </div>
         </div>
-        <p>Product Manager y <strong>Magíster en Administración de Empresas (MBA)</strong>. Construyó productos digitales en <strong>Mercado Libre</strong>, <strong>Rappi</strong> y en <strong>EdTech</strong>, siempre pensando en cómo mejorar la vida de las personas.</p>
+        <p>Product Manager y <strong>Magíster en Administración de Empresas (MBA)</strong>. Construyó productos digitales en <strong>Mercado Libre</strong>, <strong>Rappi</strong> y en <strong>EdTech</strong>, resolviendo problemas reales para millones de usuarios.</p>
         <div class="chips"><span class="chip">Mercado Libre</span><span class="chip">Rappi</span><span class="chip">EdTech</span><span class="chip">MBA · UP</span></div>
       </div>
     </div>
     <p class="swipe-hint">← deslizá para ver a los dos →</p>
 
     <div class="trust reveal">
-      <p class="trust-label">Empresas donde ya trabajaron nuestros fundadores</p>
+      <p class="trust-label">Empresas donde trabajaron nuestros fundadores</p>
       <div class="marquee">
         <div class="marquee-track">
           <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-label="Mercado Libre"><img class="logo-img logo-ml" src="logos/mercadolibre.svg" alt="Mercado Libre" /></a>
