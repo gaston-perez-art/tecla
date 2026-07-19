@@ -35,8 +35,15 @@ Una sola entidad: **Contacto**, con los campos `nombre`, `mail/teléfono`, `unid
 ```
 index.html          → el sitio completo (HTML + CSS + JS en un archivo)
 CNAME               → dominio custom (lo gestiona GitHub, no tocar a mano)
-logo/               → variantes del logo en SVG
+favicon.svg         → ícono de la pestaña (con favicon-512.png de respaldo)
+favicon-512.png     → favicon PNG / apple-touch-icon
+og-image.png        → miniatura de vista previa al compartir (Open Graph)
+robots.txt          → indexación para buscadores
+sitemap.xml         → mapa del sitio para buscadores
 fotos/              → fotos del equipo (gaston.jpg, andres.jpg)
+logos/              → logos de empresas del marquee (mercadolibre, rappi,
+                      poderjudicial, coderhouse, henry, bigbox)
+logo/               → variantes del logo de Tecla en SVG (no lo usa el sitio)
 design-system.md    → colores, tipografías y guía de marca
 README.md           → este archivo
 ```
@@ -51,9 +58,10 @@ README.md           → este archivo
 ## Funcionalidad del sitio
 
 - Switch **Soporte técnico ⇄ Para docentes** con transición y coloreado por unidad (azul soporte, naranja docentes).
-- Botón de contacto fijo (sticky) que abre el Google Form.
-- Sección "Quiénes somos" con el equipo (Andrés y Gastón).
-- Diseño **mobile-first**, responsive.
+- Botón de contacto fijo (sticky) que abre el Google Form (en mobile va directo al form; en desktop centra el asset de contacto).
+- Sección "Quiénes somos" con el equipo (Andrés y Gastón, con foto y link a LinkedIn) y **marquee infinito** de logos de empresas donde trabajaron.
+- **SEO**: canonical, datos estructurados JSON-LD, `robots.txt`, `sitemap.xml`, Open Graph/Twitter y favicon.
+- Diseño **mobile-first**, responsive. En mobile el orden de las cards del equipo cambia según la unidad (Soporte→Andrés primero; Docentes→Gastón primero).
 
 ---
 
