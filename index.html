@@ -160,7 +160,9 @@
   .person p{color:var(--ink-soft);font-size:15px;margin-top:14px}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .chip{font-size:12.5px;font-weight:500;background:var(--paper-3);border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px;color:var(--ink-soft)}
-  .swipe-hint{display:none}
+  .team-nav{display:none}
+  .team-arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);font-size:17px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center}
+  .team-arrow:disabled{opacity:.35}
   .creed{margin-top:34px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,3vw,27px);line-height:1.35;max-width:760px}
 
   /* TRUST · marquee de logos */
@@ -220,7 +222,7 @@
     .person-head{flex-direction:column;text-align:center;gap:12px}
     .avatar{width:72px;height:72px}
     .chips{justify-content:center}
-    .swipe-hint{display:block;text-align:center;font-size:12.5px;color:var(--ink-muted);margin-top:12px}
+    .team-nav{display:flex;justify-content:center;gap:14px;margin-top:16px}
     .creed{text-align:center}
     /* form apilado */
     form{flex-direction:column}
@@ -379,7 +381,10 @@
         <div class="chips"><span class="chip">Mercado Libre</span><span class="chip">Rappi</span><span class="chip">EdTech</span><span class="chip">MBA · UP</span></div>
       </div>
     </div>
-    <p class="swipe-hint">← deslizá para ver a los dos →</p>
+    <div class="team-nav">
+      <button class="team-arrow" id="teamPrev" aria-label="Ver tarjeta anterior">←</button>
+      <button class="team-arrow" id="teamNext" aria-label="Ver tarjeta siguiente">→</button>
+    </div>
 
     <div class="trust reveal">
       <p class="trust-label">Empresas donde trabajaron nuestros fundadores</p>
@@ -510,17 +515,35 @@
     marquee.addEventListener('touchcancel', onEnd, {passive:true});
   })();
 
+  /* flechas del carrusel de equipo (mobile) */
+  (function(){
+    const cont = document.querySelector('.team-cards');
+    const prev = document.getElementById('teamPrev');
+    const next = document.getElementById('teamNext');
+    if (!cont || !prev || !next) return;
+    const step = () => cont.clientWidth * 0.88;
+    prev.addEventListener('click', ()=> cont.scrollBy({left:-step(), behavior:'smooth'}));
+    next.addEventListener('click', ()=> cont.scrollBy({left: step(), behavior:'smooth'}));
+    function upd(){
+      prev.disabled = cont.scrollLeft < 10;
+      next.disabled = cont.scrollLeft > cont.scrollWidth - cont.clientWidth - 10;
+    }
+    cont.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
   /* swipe horizontal para cambiar de unidad */
   (function(){
-    const marqueeEl = document.querySelector('.marquee');
-    let sx = 0, sy = 0, onMarquee = false;
+    const excluded = [document.querySelector('.marquee'), document.querySelector('.team-cards')];
+    let sx = 0, sy = 0, onExcluded = false;
     document.addEventListener('touchstart', e => {
       sx = e.touches[0].clientX;
       sy = e.touches[0].clientY;
-      onMarquee = marqueeEl && marqueeEl.contains(e.target);
+      onExcluded = excluded.some(el => el && el.contains(e.target));
     }, {passive:true});
     document.addEventListener('touchend', e => {
-      if (onMarquee) return;
+      if (onExcluded) return;
       const dx = e.changedTouches[0].clientX - sx;
       const dy = e.changedTouches[0].clientY - sy;
       if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
