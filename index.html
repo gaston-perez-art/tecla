@@ -3,8 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tecla Soporte — Servicio técnico</title>
-<meta name="description" content="Tecla: ayuda a medida para docentes del sistema bonaerense y soporte técnico informático. Dejá tu contacto." />
+<title>Tecla — Soporte técnico y ayuda para docentes | Florencio Varela</title>
+<meta name="description" content="Servicio técnico informático —reparación de PC y notebooks— y ayuda a medida para docentes del sistema educativo bonaerense. Florencio Varela y alrededores. Dejá tu contacto." />
+<link rel="canonical" href="https://www.somostecla.com/" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Tecla — Gastón y Andrés Pérez" />
+<!-- Datos estructurados (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Tecla",
+  "url": "https://www.somostecla.com/",
+  "logo": "https://www.somostecla.com/favicon-512.png",
+  "image": "https://www.somostecla.com/og-image.png",
+  "description": "Soporte técnico informático y ayuda a medida para docentes del sistema educativo bonaerense.",
+  "areaServed": "Florencio Varela, Buenos Aires, Argentina",
+  "founder": [
+    {"@type": "Person", "name": "Gastón Pérez", "sameAs": "https://www.linkedin.com/in/gastonmartinperez"},
+    {"@type": "Person", "name": "Andrés Pérez"}
+  ]
+}
+</script>
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="icon" type="image/png" href="favicon-512.png" />
@@ -137,6 +157,18 @@
   .chip{font-size:12.5px;font-weight:500;background:var(--paper-3);border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px;color:var(--ink-soft)}
   .swipe-hint{display:none}
   .creed{margin-top:34px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,3vw,27px);line-height:1.35;max-width:760px}
+
+  /* TRUST · marquee de logos */
+  .trust{margin-top:52px}
+  .trust-label{text-align:center;font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:24px}
+  .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 30s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .logo-link{flex:0 0 auto;margin-right:60px;display:inline-flex;align-items:center}
+  .logo-img{height:30px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:opacity .2s var(--ease),filter .3s var(--ease)}
+  .logo-link:hover .logo-img{filter:grayscale(0);opacity:1}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none} }
 
   /* FOOTER */
   footer{border-top:1px solid var(--line);padding:36px 0;color:var(--ink-muted);font-size:14px}
@@ -315,6 +347,25 @@
       </div>
     </div>
     <p class="swipe-hint">← deslizá para ver a los dos →</p>
+
+    <div class="trust reveal">
+      <p class="trust-label">Empresas donde ya trabajaron nuestros fundadores</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-label="Mercado Libre"><img class="logo-img" src="logos/mercadolibre.svg" alt="Mercado Libre" /></a>
+          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-label="Rappi"><img class="logo-img" src="logos/rappi.svg" alt="Rappi" /></a>
+          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-label="Poder Judicial"><img class="logo-img" src="logos/poderjudicial.svg" alt="Poder Judicial" /></a>
+          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-label="Coderhouse"><img class="logo-img" src="logos/coderhouse.svg" alt="Coderhouse" /></a>
+          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-label="Henry"><img class="logo-img" src="logos/henry.svg" alt="Henry" /></a>
+          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/mercadolibre.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/rappi.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/poderjudicial.svg" alt="" /></a>
+          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/coderhouse.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/henry.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+
     <p class="creed reveal">A los dos nos mueve lo mismo: mejorar la vida de las personas y la educación. Por eso Tecla existe.</p>
   </div>
 </section>
