@@ -165,8 +165,14 @@
   .marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 30s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
   .logo-link{flex:0 0 auto;margin-right:60px;display:inline-flex;align-items:center}
-  .logo-img{height:30px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:opacity .2s var(--ease),filter .3s var(--ease)}
+  .logo-img{width:auto;object-fit:contain;filter:grayscale(1);opacity:.6;transition:opacity .2s var(--ease),filter .3s var(--ease)}
   .logo-link:hover .logo-img{filter:grayscale(0);opacity:1}
+  /* altura óptica por logo (equilibra el peso visual) */
+  .logo-ml{height:26px}
+  .logo-rappi{height:30px}
+  .logo-pj{height:42px}
+  .logo-coder{height:25px}
+  .logo-henry{height:17px}
   @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none} }
 
@@ -352,16 +358,16 @@
       <p class="trust-label">Empresas donde ya trabajaron nuestros fundadores</p>
       <div class="marquee">
         <div class="marquee-track">
-          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-label="Mercado Libre"><img class="logo-img" src="logos/mercadolibre.svg" alt="Mercado Libre" /></a>
-          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-label="Rappi"><img class="logo-img" src="logos/rappi.svg" alt="Rappi" /></a>
-          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-label="Poder Judicial"><img class="logo-img" src="logos/poderjudicial.svg" alt="Poder Judicial" /></a>
-          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-label="Coderhouse"><img class="logo-img" src="logos/coderhouse.svg" alt="Coderhouse" /></a>
-          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-label="Henry"><img class="logo-img" src="logos/henry.svg" alt="Henry" /></a>
-          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/mercadolibre.svg" alt="" /></a>
-          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/rappi.svg" alt="" /></a>
-          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/poderjudicial.svg" alt="" /></a>
-          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/coderhouse.svg" alt="" /></a>
-          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img" src="logos/henry.svg" alt="" /></a>
+          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-label="Mercado Libre"><img class="logo-img logo-ml" src="logos/mercadolibre.svg" alt="Mercado Libre" /></a>
+          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-label="Rappi"><img class="logo-img logo-rappi" src="logos/rappi.svg" alt="Rappi" /></a>
+          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-label="Poder Judicial"><img class="logo-img logo-pj" src="logos/poderjudicial.svg" alt="Poder Judicial" /></a>
+          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-label="Coderhouse"><img class="logo-img logo-coder" src="logos/coderhouse.svg" alt="Coderhouse" /></a>
+          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-label="Henry"><img class="logo-img logo-henry" src="logos/henry.svg" alt="Henry" /></a>
+          <a class="logo-link" href="https://mercadolibre.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-ml" src="logos/mercadolibre.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.rappi.com.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-rappi" src="logos/rappi.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.pjn.gov.ar/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-pj" src="logos/poderjudicial.svg" alt="" /></a>
+          <a class="logo-link" href="https://coderhouse.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-coder" src="logos/coderhouse.svg" alt="" /></a>
+          <a class="logo-link" href="https://www.soyhenry.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img class="logo-img logo-henry" src="logos/henry.svg" alt="" /></a>
         </div>
       </div>
     </div>
