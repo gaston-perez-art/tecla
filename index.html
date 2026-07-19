@@ -135,7 +135,7 @@
   .chip-free{display:none;align-items:center;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:#fff;margin-top:18px}
   .chip-free .check{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#4ade80;border-radius:50%;color:#fff;font-size:10px;font-weight:800;flex-shrink:0}
   html[data-unit="soporte"] .chip-free.unit-sop,html[data-unit="docentes"] .chip-free.unit-doc{display:inline-flex}
-  .cta-note{font-size:13px;color:var(--ink-muted);margin-top:12px}
+  .chip-free-light{display:inline-flex;align-items:center;gap:7px;background:var(--paper-3);border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ink-soft);margin-top:18px}
   /* CTA principal del contacto: destacado + brillo periódico */
   .contact .btn{background:var(--paper);color:var(--ink);font-size:16px;font-weight:600;padding:17px 36px;position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.22)}
   .contact .btn::before,.fab::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-18deg);animation:shine 3.5s ease-in-out infinite}
@@ -259,7 +259,7 @@
       <h1>Enseñar.<br>No cargar planillas.</h1>
       <p class="lead">La digitalización del sistema bonaerense te robó horas fuera del aula. Te damos ayuda a medida para recuperar ese tiempo. Sin apps raras: una persona que conoce Portal ABC, RITE y boletines, ayudándote a resolver lo que más te cuesta.</p>
       <p style="margin-top:26px"><a href="#contacto" class="btn">Quiero que me ayuden →</a></p>
-      <p class="cta-note">✓ Primera consulta gratis, sin compromiso.</p>
+      <span class="chip-free-light"><span class="check">✓</span> Primera consulta gratis</span>
     </div>
     <!-- SOPORTE -->
     <div class="unit unit-sop">
@@ -267,7 +267,7 @@
       <h1>Se rompió.<br>Lo arreglamos.</h1>
       <p class="lead">Reparación y puesta a punto de notebooks y PCs, hecha por alguien que trabaja en tecnología todos los días. Diagnóstico claro, sin vueltas. Dejás tu contacto y te llamamos.</p>
       <p style="margin-top:26px"><a href="#contacto" class="btn">Dejá tu contacto →</a></p>
-      <p class="cta-note">✓ Presupuesto gratis, sin compromiso.</p>
+      <span class="chip-free-light"><span class="check">✓</span> Presupuesto gratis</span>
     </div>
   </div>
 </section>
@@ -438,10 +438,14 @@
     const DURATION = 30;
     let dragStartX = 0, dragBaseX = 0, velX = 0, prevX = 0, prevT = 0, rafId = null;
 
-    function liveX(){ return new DOMMatrix(getComputedStyle(track).transform).m41; }
+    function liveX(){
+      const t = getComputedStyle(track).transform;
+      return (t === 'none') ? 0 : new DOMMatrix(t).m41;
+    }
 
     function applyX(x){
       const W = track.scrollWidth / 2;
+      if (!W) return x;
       x = x % W;
       if (x > 0) x -= W;
       track.style.transform = `translateX(${x}px)`;
@@ -450,17 +454,21 @@
 
     function restart(fromX){
       const W = track.scrollWidth / 2;
+      if (!W) return;
+      const delay = -(Math.abs(fromX) % W / W) * DURATION;
       track.style.removeProperty('transform');
-      track.style.animationDelay = `${-(Math.abs(fromX) / W) * DURATION}s`;
-      track.style.animationPlayState = 'running';
+      track.style.removeProperty('animation');
+      track.style.animationName = 'none';
+      track.style.animationDelay = `${delay}s`;
+      void track.offsetWidth;
+      track.style.removeProperty('animationName');
     }
 
     marquee.addEventListener('touchstart', e => {
       if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
-      track.style.animationPlayState = 'paused';
-      dragBaseX  = liveX();
+      dragBaseX = liveX();
+      track.style.animation = 'none';
       track.style.transform = `translateX(${dragBaseX}px)`;
-      track.style.animationDelay = '';
       dragStartX = e.touches[0].clientX;
       prevX = dragStartX; prevT = Date.now(); velX = 0;
     }, {passive:true});
@@ -484,6 +492,26 @@
     }
     marquee.addEventListener('touchend',    onEnd, {passive:true});
     marquee.addEventListener('touchcancel', onEnd, {passive:true});
+  })();
+
+  /* swipe horizontal para cambiar de unidad */
+  (function(){
+    const marqueeEl = document.querySelector('.marquee');
+    let sx = 0, sy = 0, onMarquee = false;
+    document.addEventListener('touchstart', e => {
+      sx = e.touches[0].clientX;
+      sy = e.touches[0].clientY;
+      onMarquee = marqueeEl && marqueeEl.contains(e.target);
+    }, {passive:true});
+    document.addEventListener('touchend', e => {
+      if (onMarquee) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      const cur = document.documentElement.getAttribute('data-unit') || 'soporte';
+      if (dx < 0 && cur === 'soporte')  setUnit('docentes');
+      if (dx > 0 && cur === 'docentes') setUnit('soporte');
+    }, {passive:true});
   })();
 
   /* CTAs hacia #contacto: en desktop hacen scroll a una vista centrada del asset;
