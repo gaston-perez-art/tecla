@@ -168,7 +168,8 @@
   /* TRUST · marquee de logos */
   .trust{margin-top:52px}
   .trust-label{text-align:center;font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:24px}
-  .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee{overflow:hidden;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee:active{cursor:grabbing}
   .marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 30s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
   .logo-link{flex:0 0 auto;margin-right:60px;display:inline-flex;align-items:center}
@@ -484,23 +485,23 @@
       track.style.removeProperty('animationName');
     }
 
-    marquee.addEventListener('touchstart', e => {
+    function dragStart(cx){
       if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
       dragBaseX = liveX();
       track.style.animation = 'none';
       track.style.transform = `translateX(${dragBaseX}px)`;
-      dragStartX = e.touches[0].clientX;
-      prevX = dragStartX; prevT = Date.now(); velX = 0;
-    }, {passive:true});
+      dragStartX = cx;
+      prevX = cx; prevT = Date.now(); velX = 0;
+    }
 
-    marquee.addEventListener('touchmove', e => {
-      const cx = e.touches[0].clientX, now = Date.now();
+    function dragMove(cx){
+      const now = Date.now();
       velX = (cx - prevX) / Math.max(now - prevT, 1) * 16;
       prevX = cx; prevT = now;
       applyX(dragBaseX + (cx - dragStartX));
-    }, {passive:true});
+    }
 
-    function onEnd(){
+    function dragEnd(){
       let x = liveX();
       function decay(){
         velX *= 0.93;
@@ -510,8 +511,32 @@
       }
       decay();
     }
-    marquee.addEventListener('touchend',    onEnd, {passive:true});
-    marquee.addEventListener('touchcancel', onEnd, {passive:true});
+
+    marquee.addEventListener('touchstart',  e => dragStart(e.touches[0].clientX), {passive:true});
+    marquee.addEventListener('touchmove',   e => dragMove(e.touches[0].clientX),  {passive:true});
+    marquee.addEventListener('touchend',    dragEnd, {passive:true});
+    marquee.addEventListener('touchcancel', dragEnd, {passive:true});
+
+    /* drag con mouse en desktop */
+    let mouseDown = false, moved = 0;
+    marquee.addEventListener('mousedown', e => {
+      e.preventDefault();
+      mouseDown = true; moved = 0;
+      dragStart(e.clientX);
+    });
+    window.addEventListener('mousemove', e => {
+      if (!mouseDown) return;
+      moved += Math.abs(e.movementX);
+      dragMove(e.clientX);
+    });
+    window.addEventListener('mouseup', () => {
+      if (!mouseDown) return;
+      mouseDown = false;
+      dragEnd();
+    });
+    marquee.addEventListener('click', e => {
+      if (moved > 6){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
   })();
 
   /* flechas del carrusel de equipo (mobile) */
