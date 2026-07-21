@@ -100,7 +100,17 @@
   .btn:hover{filter:brightness(.94)}
 
   /* HERO */
-  .hero{padding-top:84px;text-align:center}
+  .hero{padding-top:84px;text-align:center;position:relative;overflow:hidden}
+  .hero .wrap{position:relative;z-index:1}
+  .aurora{position:absolute;inset:0;pointer-events:none}
+  .aurora span{position:absolute;border-radius:50%;filter:blur(80px);will-change:transform;transition:background-color .55s var(--ease)}
+  .aurora span:nth-child(1){width:420px;height:420px;background:var(--accent);opacity:.14;top:-120px;left:-80px;animation:drift1 26s ease-in-out infinite alternate}
+  .aurora span:nth-child(2){width:360px;height:360px;background:var(--accent-soft);opacity:.5;top:40px;right:-100px;animation:drift2 32s ease-in-out infinite alternate}
+  .aurora span:nth-child(3){width:300px;height:300px;background:var(--accent);opacity:.09;bottom:-140px;left:35%;animation:drift3 38s ease-in-out infinite alternate}
+  @keyframes drift1{to{transform:translate(70px,45px)}}
+  @keyframes drift2{to{transform:translate(-80px,35px)}}
+  @keyframes drift3{to{transform:translate(60px,-45px)}}
+  @media (prefers-reduced-motion: reduce){ .aurora span{animation:none} }
   .hero h1{font-size:clamp(38px,6vw,64px);margin:14px 0 22px}
   .hero p.lead{font-size:clamp(16px,2.1vw,21px);color:var(--ink-soft);max-width:640px;margin:0 auto}
 
@@ -252,6 +262,7 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap">
     <!-- DOCENTES -->
     <div class="unit unit-doc">
