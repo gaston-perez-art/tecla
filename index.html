@@ -451,7 +451,11 @@
       const map = { soporte:'soporte', sop:'soporte', support:'soporte', s:'soporte',
                     docentes:'docentes', doc:'docentes', docente:'docentes', teachers:'docentes', d:'docentes' };
       const unit = map[raw];
-      if(unit) setUnit(unit, {noScroll:true});
+      if(unit){
+        setUnit(unit, {noScroll:true});
+        // dejar la barra de direcciones limpia: /soporte o /docentes
+        try { history.replaceState({}, '', '/' + unit); } catch(e){}
+      }
     } catch(e){}
   })();
 
