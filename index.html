@@ -435,11 +435,25 @@
 <a href="#contacto" class="btn fab" id="fab">Contactar →</a>
 
 <script>
-  function setUnit(u){
+  function setUnit(u, opts){
     document.documentElement.setAttribute('data-unit', u);
     document.title = (u === 'soporte') ? 'Tecla Soporte — Servicio técnico' : 'Tecla — Recuperá tu tiempo';
-    window.scrollTo({top:0, behavior:'smooth'});
+    if(!(opts && opts.noScroll)) window.scrollTo({top:0, behavior:'smooth'});
   }
+
+  /* Ruteo por URL: ?u=soporte (o sop/support) / ?u=docentes (o doc/teachers).
+     Sin parámetro, se respeta el default del <html>. Pensado para compartir
+     el link ya apuntando a la unidad correcta según el público. */
+  (function routeUnitFromURL(){
+    try {
+      const raw = (new URLSearchParams(location.search).get('u') || '').trim().toLowerCase();
+      if(!raw) return;
+      const map = { soporte:'soporte', sop:'soporte', support:'soporte', s:'soporte',
+                    docentes:'docentes', doc:'docentes', docente:'docentes', teachers:'docentes', d:'docentes' };
+      const unit = map[raw];
+      if(unit) setUnit(unit, {noScroll:true});
+    } catch(e){}
+  })();
 
   /* reveal on scroll */
   const io = new IntersectionObserver(es=>es.forEach(el=>{ if(el.isIntersecting){ el.target.classList.add('in'); io.unobserve(el.target);} }), {threshold:.12});
