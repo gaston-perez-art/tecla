@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tecla Cursos — Aprendé IA en 4 clases en vivo</title>
-<meta name="description" content="Cursos cortos de inteligencia artificial, online y en vivo. 4 clases, grupos chicos y salís con algo hecho: tu kit de IA, la web de tu negocio o tu tienda online. Desde $30.000." />
+<title>Tecla Cursos — Resolvé algo de tu vida con IA, en 4 clases en vivo</title>
+<meta name="description" content="Cursos cortos de IA, online y en vivo. Traés algo que te cuesta en tu trabajo, tu negocio o tu casa, y en 4 clases te vas con la IA resolviéndolo. Grupos chicos, desde $30.000." />
 <link rel="canonical" href="https://www.somostecla.com/" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Tecla — Gastón y Andrés Pérez" />
@@ -22,8 +22,8 @@
 <link rel="apple-touch-icon" href="/favicon-512.png" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Tecla" />
-<meta property="og:title" content="Tecla Cursos — Aprendé IA en 4 clases en vivo" />
-<meta property="og:description" content="La IA no se aprende mirando videos. Cursos cortos, en vivo, y salís con algo hecho. Arrancamos el 1 de diciembre." />
+<meta property="og:title" content="Tecla Cursos — No hacés ejercicios. Resolvés algo de tu vida con IA." />
+<meta property="og:description" content="Traé algo que te cuesta y llevate la IA resolviéndolo. 4 clases en vivo, grupos chicos. Arrancamos el 1 de diciembre." />
 <meta property="og:image" content="https://www.somostecla.com/og-image.png" />
 <meta property="og:url" content="https://www.somostecla.com/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -350,6 +350,24 @@
     .cert{padding:28px 20px}
   }
 
+
+  /* CASOS */
+  .casos-head{max-width:720px;margin-bottom:38px}
+  .casos-head h2{font-size:clamp(32px,4.4vw,52px);margin:14px 0 14px}
+  .casos-head p{color:var(--ink-soft);font-size:17px}
+  .casos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .caso{background:#fff;border:1px solid var(--line-strong);border-radius:18px;padding:22px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .caso:hover{transform:translateY(-5px);box-shadow:0 18px 36px -14px rgba(30,58,95,.2)}
+  .caso .quien{font-size:12.5px;font-weight:600;color:var(--ink-muted)}
+  .caso .antes{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:500;line-height:1.25;letter-spacing:-.01em;margin:8px 0 16px}
+  .caso .despues{color:var(--ink-soft);font-size:15px;padding-top:14px;border-top:1px dashed var(--line-strong);position:relative;padding-left:26px}
+  .caso .despues::before{content:"→";position:absolute;left:0;top:13px;color:var(--accent-ink);font-weight:700}
+  .caso .cual{margin-top:auto;padding-top:16px;font-size:12px;font-weight:600;color:var(--accent-ink)}
+  .casos-foot{margin-top:28px;font-size:16px;color:var(--ink-soft)}
+  .casos-foot a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--accent)}
+  @media(max-width:900px){ .casos{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .casos{grid-template-columns:1fr} }
+
   /* MOBILE */
   @media(max-width:900px){
     .hero-grid,.manifesto,.join,.faq-grid{grid-template-columns:1fr;gap:40px}
@@ -409,8 +427,8 @@
   <div class="wrap hero-grid">
     <div>
       <span class="kicker">Cursos de IA en vivo · arrancamos el 1/12</span>
-      <h1>La IA no se aprende mirando videos. <em>Se aprende haciendo.</em></h1>
-      <p class="lead">Cuatro clases en vivo, en grupos chicos, con nosotros del otro lado. Preguntás, te respondemos, y terminás el curso con algo tuyo funcionando.</p>
+      <h1>No hacés ejercicios. <em>Resolvés algo de tu vida con IA.</em></h1>
+      <p class="lead">Traé algo que te cuesta, de tu trabajo, tu negocio o tu casa. En 4 clases en vivo lo trabajamos sobre tu caso real, no sobre ejemplos de manual, y te vas con la IA resolviéndolo.</p>
       <div class="hero-ctas">
         <a href="#cursos" class="btn">Ver los cursos →</a>
         <a href="#" class="link js-wa" data-curso="">o escribinos por WhatsApp</a>
@@ -473,13 +491,33 @@
     <div class="points">
       <div class="point reveal"><span class="n">1</span><div><h3>Es en vivo, de verdad</h3><p>No hay videos grabados que nunca terminás. Cada clase la damos nosotros, con tus preguntas y tu caso, no con un ejemplo de manual.</p></div></div>
       <div class="point reveal"><span class="n">2</span><div><h3>No te quedás trabado</h3><p>Durante el curso tenés un grupo de WhatsApp con los profes. Si algo no te sale un martes a la noche, escribís y te respondemos.</p></div></div>
-      <div class="point reveal"><span class="n">3</span><div><h3>Salís con algo hecho</h3><p>No te llevás un certificado para la pared. Te llevás tu kit de IA, la web de tu negocio o tu tienda, funcionando.</p></div></div>
+      <div class="point reveal"><span class="n">3</span><div><h3>Trabajás sobre tu caso real</h3><p>Nada de ejercicios inventados. Al inscribirte nos contás qué querés resolver y las prácticas las hacés sobre eso. Te vas con algo que te sirve de verdad.</p></div></div>
     </div>
   </div>
 </section>
 
+<!-- CASOS REALES -->
+<section class="casos-sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="casos-head reveal">
+      <span class="kicker">Traé tu caso</span>
+      <h2>¿Qué te cuesta hoy? <em>Eso es lo que resolvemos.</em></h2>
+      <p>Cada alumno llega con algo real. Estos son algunos de los casos que se pueden trabajar en el curso.</p>
+    </div>
+    <div class="casos">
+      <article class="caso reveal"><span class="quien">Docente</span><p class="antes">“Planificar y armar evaluaciones me come el fin de semana.”</p><p class="despues">Armás planificaciones, consignas y rúbricas en minutos, y vos solo revisás.</p><span class="cual">Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Comerciante</span><p class="antes">“Me escriben por WhatsApp y respondo lo mismo treinta veces.”</p><p class="despues">Tenés respuestas listas para cada consulta y una lista de precios clara para mandar.</p><span class="cual">Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Emprendedora</span><p class="antes">“No sé qué publicar en Instagram y nunca tengo tiempo.”</p><p class="despues">Sacás un mes de posteos, con imágenes y textos, en una tarde.</p><span class="cual">Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Estudiante</span><p class="antes">“Tengo que estudiar 200 páginas para el final.”</p><p class="despues">Tu cuaderno en NotebookLM te resume, te toma preguntas y te lo explica en audio.</p><span class="cual">Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">En casa</span><p class="antes">“No entiendo la factura, el contrato ni el trámite.”</p><p class="despues">La IA te lo explica simple y te arma la lista de pasos a seguir.</p><span class="cual">Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Profesional</span><p class="antes">“Mis clientes me buscan en Google y no me encuentran.”</p><p class="despues">Tu web publicada, con tus servicios y un botón para que te escriban por WhatsApp.</p><span class="cual">Tu web con IA</span></article>
+    </div>
+    <p class="casos-foot reveal">¿El tuyo no está? Mejor. <a href="#" class="js-wa" data-curso="">Contanos cuál es</a> y te decimos si lo podemos trabajar.</p>
+  </div>
+</section>
+
 <!-- CURSOS -->
-<section id="cursos" style="background:var(--paper-2)">
+<section id="cursos">
   <div class="wrap">
     <div class="courses-head reveal">
       <div><span class="kicker">Los cursos</span><h2 style="margin-top:14px">Tres escalones. <em>Empezá por el tuyo.</em></h2></div>
@@ -511,10 +549,10 @@
       </div>
       <div class="panel-show">
         <p class="label">Salís con</p>
-        <p class="outcome">Tu kit personal de IA, armado por vos.</p>
+        <p class="outcome">Tu caso resuelto con IA, y tu kit para seguir usándola.</p>
         <div class="kit">
-          <div><span class="sw" style="background:var(--accent-soft)"></span><span><b>Tus prompts guardados</b>Los que te sirven para tu día a día</span></div>
-          <div><span class="sw" style="background:linear-gradient(135deg,#f3b48f,#8e6a1f)"></span><span><b>Tus primeras imágenes</b>Creadas con ChatGPT</span></div>
+          <div><span class="sw" style="background:var(--accent-soft)"></span><span><b>Tu caso, resuelto</b>Eso que hoy te cuesta, funcionando con IA</span></div>
+          <div><span class="sw" style="background:linear-gradient(135deg,#f3b48f,#8e6a1f)"></span><span><b>Tus prompts guardados</b>Los que vas a seguir usando</span></div>
           <div><span class="sw" style="background:var(--petrol)"></span><span><b>Tu cuaderno en NotebookLM</b>Que te explica el tema que elijas</span></div>
         </div>
       </div>
@@ -581,19 +619,19 @@
 </section>
 
 <!-- CÓMO TE ANOTÁS -->
-<section>
+<section style="background:var(--paper-2)">
   <div class="wrap join">
     <div class="reveal">
       <span class="kicker">Cómo te anotás</span>
       <h2>Un mensaje y <em>estás adentro.</em></h2>
-      <p class="lead">Sin registrarte en ninguna plataforma. Nos escribís, pagás con Mercado Pago o transferencia, y te sumamos al grupo del curso.</p>
+      <p class="lead">Sin registrarte en ninguna plataforma. Nos escribís contándonos qué te gustaría resolver, pagás con Mercado Pago o transferencia, y te sumamos al grupo del curso.</p>
       <div style="margin-top:30px"><a href="#" class="btn btn-wa js-wa" data-curso=""><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Escribinos por WhatsApp</a></div>
     </div>
     <div class="wa" id="waChat" aria-hidden="true">
       <div class="wa-top"><span class="av">T</span><div>Tecla Cursos<small>en línea</small></div></div>
       <div class="wa-msgs">
-        <div class="bub out">Hola! Quiero inscribirme a Tu web con IA 🙌<time>19:02</time></div>
-        <div class="bub in">¡Hola! Buenísimo. Te paso el link de Mercado Pago para reservar tu lugar 👇<time>19:04</time></div>
+        <div class="bub out">Hola! Quiero inscribirme a Fundamentos. Me gustaría usar la IA para responder más rápido a mis clientes 🙌<time>19:02</time></div>
+        <div class="bub in">¡Hola! Buenísimo, ese caso lo trabajamos en clase. Te paso el link de Mercado Pago para reservar tu lugar 👇<time>19:04</time></div>
         <div class="bub out">Listo, pagado ✅<time>19:09</time></div>
         <div class="bub in">Ya estás adentro. Te sumamos al grupo del curso. ¡Nos vemos el martes 1/12! 🚀<time>19:10</time></div>
       </div>
@@ -602,7 +640,7 @@
 </section>
 
 <!-- CERTIFICADO -->
-<section class="cert-sec" style="background:var(--paper-2)">
+<section class="cert-sec">
   <div class="wrap cert-grid">
     <div class="reveal">
       <span class="kicker">Certificado incluido</span>
@@ -610,7 +648,7 @@
       <p class="lead">Al cerrar el curso recibís un certificado digital de Tecla con tu nombre, el curso y las horas cursadas. Lo podés sumar a tu CV o a tu perfil de LinkedIn.</p>
       <ul class="cert-req">
         <li>Asistí en vivo al menos a 3 de las 4 clases</li>
-        <li>Presentá tu proyecto final en la última clase</li>
+        <li>Mostrá tu caso resuelto en la última clase</li>
       </ul>
       <p class="cert-note">Es un certificado de finalización emitido por Tecla, no un título oficial.</p>
     </div>
@@ -627,7 +665,7 @@
 </section>
 
 <!-- QUIÉNES ENSEÑAN -->
-<section id="quienes">
+<section id="quienes" style="background:var(--paper-2)">
   <div class="wrap">
     <div class="reveal">
       <span class="kicker">Quiénes enseñan</span>
@@ -657,7 +695,7 @@
 </section>
 
 <!-- FAQ -->
-<section id="preguntas" style="background:var(--paper-2)">
+<section id="preguntas">
   <div class="wrap faq-grid">
     <div class="reveal">
       <span class="kicker">Preguntas</span>
@@ -668,7 +706,7 @@
       <details><summary>¿Qué necesito para cursar?</summary><p>Una computadora con internet y una cuenta de Gmail. Fundamentos se puede seguir desde el celular, pero con compu se aprovecha más. Tu web con IA requiere computadora.</p></details>
       <details><summary>¿Tengo que pagar alguna herramienta aparte?</summary><p>En Fundamentos usamos las versiones gratuitas de ChatGPT y NotebookLM. En Tu web con IA trabajamos con Claude Code, que necesita una suscripción de Claude (plan Pro, alrededor de USD 20 por mes) durante el curso. La paga cada alumno y la podés dar de baja al terminar. Publicar la web en GitHub y Vercel es gratis. Te explicamos todo antes de que pagues.</p></details>
       <details><summary>¿Y si falto a una clase?</summary><p>Todas las clases quedan grabadas. Te pasamos la grabación y podés hacer tus preguntas en el grupo de WhatsApp para ponerte al día.</p></details>
-      <details><summary>¿Me dan certificado?</summary><p>Sí. Al terminar recibís un certificado digital de Tecla con tu nombre, el curso y las horas cursadas. Para obtenerlo tenés que asistir en vivo al menos a 3 de las 4 clases y presentar tu proyecto final. Es un certificado de finalización emitido por Tecla, no un título oficial.</p></details>
+      <details><summary>¿Me dan certificado?</summary><p>Sí. Al terminar recibís un certificado digital de Tecla con tu nombre, el curso y las horas cursadas. Para obtenerlo tenés que asistir en vivo al menos a 3 de las 4 clases y mostrar tu caso resuelto en la última. Es un certificado de finalización emitido por Tecla, no un título oficial.</p></details>
       <details><summary>¿Qué días son las clases?</summary><p>La primera cohorte cursa el martes 1, el jueves 3, el jueves 10 y el martes 15 de diciembre. El martes 8 es feriado, así que esa clase pasa al martes siguiente.</p></details>
       <details><summary>¿Cuánta gente hay por curso?</summary><p>Grupos chicos, para que todos puedan preguntar. Por eso los cupos son limitados.</p></details>
       <details><summary>¿Cómo se paga?</summary><p>Con Mercado Pago o transferencia bancaria. Cuando nos escribís te pasamos los datos.</p></details>
@@ -682,7 +720,7 @@
   <div class="wrap">
     <div class="count" id="count"><b id="countN">10</b><span id="countT">días para<br>la primera clase</span></div>
     <h2>Reservá tu lugar en la primera cohorte.</h2>
-    <p>Escribinos, te contamos qué curso te conviene y te anotás en el momento.</p>
+    <p>Contanos qué te gustaría resolver con IA. Te decimos qué curso te conviene y te anotás en el momento.</p>
     <a href="#" class="btn btn-wa js-wa" data-curso="">Quiero mi lugar →</a>
     <p class="note">Te respondemos en el día · Cupos limitados</p>
   </div>
@@ -735,8 +773,8 @@
   function waLink(curso, aviso){
     let msg;
     if (aviso) msg = `Hola! Quiero que me avisen cuando abra el curso "${curso}" de Tecla.`;
-    else if (curso) msg = `Hola! Quiero inscribirme al curso "${curso}" de Tecla que arranca el 1/12.`;
-    else msg = "Hola! Quiero info sobre los cursos de IA de Tecla.";
+    else if (curso) msg = `Hola! Quiero inscribirme al curso "${curso}" de Tecla que arranca el 1/12. Lo que me gustaría resolver con IA es: `;
+    else msg = "Hola! Quiero info sobre los cursos de IA de Tecla. Lo que me gustaría resolver es: ";
     return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   }
   document.querySelectorAll('.js-wa').forEach(a=>{

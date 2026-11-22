@@ -12,29 +12,29 @@ CURSOS = [
   "titulo": "Fundamentos de IA",
   "bajada": "Aprendé a usar la inteligencia artificial en tu día a día, sin saber nada de tecnología.",
   "para": "Para quien nunca usó IA, o la probó y no le encontró la vuelta. Si usás WhatsApp, podés hacer este curso.",
-  "resultado": "Tu kit personal de IA: tu biblioteca de prompts, tus primeras imágenes y un cuaderno de NotebookLM que te explica el tema que vos elijas.",
+  "resultado": "Tu caso resuelto con IA: eso que hoy te cuesta, funcionando. Y tu kit para seguir usándola: tu biblioteca de prompts, tus imágenes y tu cuaderno de NotebookLM.",
   "datos": [("Duración","4 clases · 2 semanas"),("Clases en vivo","90 minutos cada una"),("Horario","Martes y jueves · 19 h"),("Fechas","1, 3, 10 y 15 de diciembre"),("Modalidad","Online por Google Meet"),("Precio","$30.000")],
   "necesitas": ["Una computadora con internet (se puede seguir desde el celular, pero con compu se aprovecha más).","Una cuenta de Gmail.","Nada más: usamos las versiones gratuitas de ChatGPT y NotebookLM."],
   "podras": ["Entender qué es la IA, cómo funciona y en qué te puede ayudar (y en qué no).","Pedirle las cosas de forma que te dé lo que necesitás, a la primera o con pocos ajustes.","Crear imágenes y textos para tu trabajo, tu negocio o tu vida diaria.","Estudiar o explicar cualquier tema con NotebookLM, a partir de tus propios documentos."],
   "clases": [
    {"t":"Qué es la IA y cómo pensar con ella","obj":"Perderle el miedo y entender qué hay detrás de la IA, con ejemplos de la vida real.",
     "temas":["Qué es la IA generativa, explicado sin tecnicismos: por qué parece que \"piensa\".","Las herramientas que importan hoy: ChatGPT, Gemini, Claude y NotebookLM.","Qué hace bien, qué hace mal y cuándo no confiarle: errores, inventos y datos personales.","Crear tu cuenta y configurarla."],
-    "practica":"Tu primera conversación con IA: le pedimos tres cosas reales de tu semana, como una receta con lo que hay en la heladera, un mensaje difícil o un trámite que no entendés.",
+    "practica":"Tu primera conversación con IA, sobre tu caso: le contás qué querés resolver y armamos juntos el plan para las 4 clases. Además, tres pedidos reales de tu semana.",
     "tarea":"Usar la IA tres veces antes de la próxima clase y anotar qué funcionó y qué no."},
    {"t":"Prompts que funcionan","obj":"Aprender a pedirle bien las cosas para que la respuesta sirva.",
     "temas":["La fórmula de un buen pedido: rol, contexto, tarea y formato.","Darle ejemplos y límites: largo, tono, a quién va dirigido.","Conversar en vez de pedir una vez: cómo corregir y mejorar una respuesta.","Los errores más comunes y cómo evitarlos."],
-    "practica":"Reescribimos juntos pedidos que salen mal hasta que salen bien. Empezás tu biblioteca de prompts en un documento de Google.",
-    "tarea":"Sumar a tu biblioteca cinco prompts para tu trabajo o tu día a día."},
+    "practica":"Reescribimos juntos pedidos que salen mal hasta que salen bien. Empezás tu biblioteca de prompts con los que necesita tu caso.",
+    "tarea":"Probar tus prompts sobre tu caso y traer lo que no salió como esperabas."},
    {"t":"Crear imágenes y textos","obj":"Usar la IA para crear contenido que puedas usar de verdad.",
     "temas":["Crear imágenes con ChatGPT: cómo describir lo que querés, el estilo y el formato.","Editar y corregir una imagen sin empezar de cero.","Textos que se usan: posteos, mails, descripciones de productos, un CV.","Cómo reconocer imágenes falsas y qué cuidar al publicar contenido hecho con IA."],
-    "practica":"Armás un flyer o un posteo para un evento, tu negocio o algo que te importe, con imagen y texto.",
-    "tarea":"Crear tres imágenes para tu kit."},
+    "practica":"Creás las imágenes y los textos que tu caso necesita: posteos, un flyer, respuestas para clientes o un mail.",
+    "tarea":"Dejar tu caso casi resuelto para mostrarlo en la última clase."},
    {"t":"Aprender y explicar con NotebookLM","obj":"Convertir cualquier tema en algo fácil de entender, a partir de tus propias fuentes.",
-    "temas":["Qué es NotebookLM y por qué no inventa: responde solo con lo que vos le das.","Cargar fuentes: PDFs, páginas web y videos de YouTube.","Preguntarle, pedirle un resumen, una guía de estudio y un audio tipo podcast.","Cierre: cómo seguir usando la IA después del curso."],
-    "practica":"Armás tu cuaderno sobre un tema que elijas: tu trabajo, algo que estudiás o un trámite.",
+    "temas":["Qué es NotebookLM y por qué no inventa: responde solo con lo que vos le das.","Cargar fuentes: PDFs, páginas web y videos de YouTube.","Preguntarle, pedirle un resumen, una guía de estudio y un audio tipo podcast.","Muestra de resultados: cada uno presenta lo que resolvió.","Cómo seguir usando la IA después del curso."],
+    "practica":"Armás tu cuaderno sobre el tema de tu caso y presentás frente al grupo lo que resolviste.",
     "tarea":None},
   ],
-  "final":"Presentás tu kit personal de IA: tu biblioteca de prompts, tus imágenes y tu cuaderno de NotebookLM.",
+  "final":"Muestra de resultados: presentás tu caso resuelto con IA y tu kit para seguir usándola.",
  },
  {
   "slug": "tu-web-con-ia",
@@ -64,7 +64,7 @@ CURSOS = [
     "practica":"Publicamos todas las webs en vivo y cada alumno presenta la suya.",
     "tarea":None},
   ],
-  "final":"Presentás la web de tu negocio publicada en internet, con su link.",
+  "final":"Muestra de resultados: presentás la web de tu negocio publicada en internet, con su link.",
  },
 ]
 
@@ -155,6 +155,7 @@ def build(c):
     <div class="box"><p class="label">Qué necesitás</p><ul>{nec}</ul></div>
   </div>
   <div class="box"><p class="label">Cómo es la cursada</p><ul>
+    <li><b>Trabajás sobre tu caso real.</b> Al inscribirte nos contás qué querés resolver, y las prácticas las hacés sobre eso, no sobre ejemplos inventados.</li>
     <li>4 clases en vivo de 90 minutos por Google Meet, con tiempo para tus preguntas.</li>
     <li>Todas las clases quedan grabadas. Si faltás, te pasamos la grabación.</li>
     <li>Grupo de WhatsApp con los profes durante todo el curso, para destrabarte entre clase y clase.</li>
@@ -167,10 +168,10 @@ def build(c):
   {foot(3)}
 </section>
 <section class="page">
-  <p class="label">Al terminar</p><h2>Proyecto final y certificado</h2>
+  <p class="label">Al terminar</p><h2>Tu caso resuelto y tu certificado</h2>
   <div class="box resultado"><p class="label">Proyecto final</p><p>{e(c["final"])}</p></div>
   <div class="box cert"><div><p class="label">Certificado de finalización</p>
-    <p>Al terminar recibís un certificado digital de Tecla con tu nombre, el curso y la cantidad de horas. Para obtenerlo tenés que asistir en vivo al menos a 3 de las 4 clases y presentar tu proyecto final.</p>
+    <p>Al terminar recibís un certificado digital de Tecla con tu nombre, el curso y la cantidad de horas. Para obtenerlo tenés que asistir en vivo al menos a 3 de las 4 clases y mostrar tu caso resuelto en la última.</p>
     <p style="margin-top:8px;font-size:9pt;color:#868b93">Es un certificado de finalización emitido por Tecla, no un título oficial.</p></div>
     <div class="cert-mock"><small>Tecla Cursos certifica que</small><b>Tu nombre</b><small>completó el curso</small><b>{e(c["titulo"])}</b><small>6 horas de clases en vivo · Diciembre 2026</small></div></div>
   <p class="label" style="margin-top:20px">Quiénes enseñan</p>
