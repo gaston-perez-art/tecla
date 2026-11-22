@@ -2,7 +2,7 @@
 
 ## Qué es esto
 Sitio web de **Tecla**, en vivo en **https://www.somostecla.com**. Tres unidades de negocio:
-- **Tecla Cursos** (unidad principal desde nov 2026) — cursos cortos de IA, online y en vivo, 4 clases. Es la home (`/index.html`). Inscripción por WhatsApp (constante `WHATSAPP` en el JS; si está vacía, cae al Google Form). Acento mostaza `#C99A3B`.
+- **Tecla Cursos** (unidad principal desde nov 2026) — cursos cortos de IA, online y en vivo, 4 clases. Es la home (`/index.html`). Inscripción por WhatsApp al 11 3922-9068 (constante `WHATSAPP` en el JS; si está vacía, cae al Google Form). Acento mostaza `#C99A3B`.
 - **Tecla Soporte** — servicio técnico informático. Vive en `/servicios/` con un switch.
 - **Tecla para docentes** — ayuda a docentes del sistema educativo bonaerense. También en `/servicios/`.
 
