@@ -21,6 +21,7 @@ index.html        → home = Tecla Cursos
 servicios/index.html → Soporte + Docentes con switch (ex home). Usar rutas absolutas (/fotos, /logos)
 soporte/, docentes/ → redirigen a /servicios/?u=soporte|docentes (links compartidos, no borrar)
 cursos/           → redirige a / (link viejo)
+arrepentimiento/  → botón de arrepentimiento (Ley 24.240 / Res. 424/2020). Linkeado desde el footer de la home. Guarda en el mismo Google Form
 CNAME             → dominio (no tocar)
 favicon.svg / favicon-512.png → íconos de pestaña
 og-image.png      → miniatura al compartir (Open Graph)
