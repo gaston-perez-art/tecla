@@ -52,7 +52,8 @@ Otros papeles cálidos usados en secciones: `#F4EFE5`, `#ECE4D3`, `#E9DFCE`, `#D
 
 ## Tipografía
 
-- **Títulos:** `Fraunces`, serif (con fallback Georgia). Se usa en itálica en el logo y para acentos editoriales.
+- **Títulos:** `Bricolage Grotesque`, sans serif, **peso 600** (no 700/800: el bold pesado se siente agresivo), letter-spacing -0.022em. Elegida el 21/11/2026 tras benchmark de escuelas (Coderhouse usa Plus Jakarta Sans, Henry Satoshi/Space Grotesk, UTN Inter): ninguna usa serif en títulos.
+- **Logo:** `Fraunces` itálica, solo en la "T" y el wordmark "Tecla". No usar Fraunces en el resto del sitio.
 - **Cuerpo / UI:** `Inter`, sans-serif.
 - **Datos / código:** `ui-monospace`, monospace.
 
