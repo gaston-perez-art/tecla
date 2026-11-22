@@ -326,16 +326,56 @@
   .cert-req li{display:flex;gap:10px;align-items:center;font-weight:500}
   .cert-req li::before{content:"✓";width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
   .cert-note{font-size:13.5px;color:var(--ink-muted);margin-top:18px}
-  .cert{background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:34px 30px;text-align:center;box-shadow:0 30px 60px -24px rgba(30,58,95,.3);transform:rotate(-1.5deg);transition:transform .5s var(--ease);position:relative;outline:1px solid var(--accent-soft);outline-offset:-12px}
-  .cert:hover{transform:rotate(0) scale(1.02)}
-  .cert-head{display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Fraunces',serif;font-size:18px;margin-bottom:22px}
-  .cert-head svg{width:26px;height:26px;border-radius:7px}
-  .cert-head em{color:var(--accent-ink)}
-  .cert small{display:block;font-size:12px;color:var(--ink-muted)}
-  .cert-name{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:600;margin:4px 0 10px;letter-spacing:-.02em}
-  .cert-course{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:600;color:var(--accent-ink);margin:2px 0 8px}
-  .cert-sign{display:flex;justify-content:space-around;margin-top:26px;font-size:12px;color:var(--ink-soft)}
-  .cert-sign span{border-top:1px solid var(--line-strong);padding-top:6px;min-width:110px}
+  /* DIPLOMA 3D: papel grueso con textura, guarda ornamental, sello dorado en relieve, inclinación con el mouse */
+  .stage{perspective:1400px;display:flex;justify-content:center;padding:24px 0 40px}
+  .dip{--rx:14deg;--ry:-16deg;--gx:30%;--gy:20%;position:relative;width:100%;max-width:480px;aspect-ratio:1.414/1;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(2deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .dip.live{transition:transform .12s linear}
+  /* espesor del papel: capas apiladas hacia atrás */
+  .dip .thick{position:absolute;inset:0;border-radius:3px;background:#e6dcc6;transform:translateZ(calc(var(--z) * -1px))}
+  /* sombra de contacto sobre la mesa */
+  .dip .shadow{position:absolute;left:6%;right:2%;bottom:-8%;height:30%;background:radial-gradient(ellipse at center,rgba(40,30,10,.45),rgba(40,30,10,0) 70%);filter:blur(14px);transform:translateZ(-40px) rotateX(70deg)}
+  .paper{position:absolute;inset:0;border-radius:3px;overflow:hidden;transform:translateZ(1px);
+    background:
+      radial-gradient(120% 90% at 30% 15%,rgba(255,255,255,.9),rgba(255,255,255,0) 60%),
+      linear-gradient(160deg,#fffdf6 0%,#f7f0e1 55%,#efe4cc 100%);
+    box-shadow:inset 0 0 0 1px rgba(120,90,40,.18),inset 0 0 40px rgba(150,110,40,.12),0 40px 60px -18px rgba(60,40,10,.45),0 12px 20px -8px rgba(60,40,10,.25);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9% 10%}
+  /* textura de papel (ruido) */
+  .paper::before{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .36  0 0 0 0 .2  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  /* brillo que sigue al mouse */
+  .paper::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx) var(--gy),rgba(255,255,255,.55),rgba(255,255,255,0) 45%);mix-blend-mode:soft-light}
+  /* guarda ornamental doble */
+  .guard{position:absolute;inset:4.5%;border:1.5px solid #b48a3c;pointer-events:none}
+  .guard::before{content:"";position:absolute;inset:5px;border:.75px solid rgba(180,138,60,.6)}
+  .guard i{position:absolute;width:22px;height:22px;border:1.5px solid #b48a3c;background:#fbf6ea;transform:rotate(45deg)}
+  .guard i:nth-child(1){top:-12px;left:-12px}.guard i:nth-child(2){top:-12px;right:-12px}.guard i:nth-child(3){bottom:-12px;left:-12px}.guard i:nth-child(4){bottom:-12px;right:-12px}
+  .dip-brand{display:flex;align-items:center;gap:7px;font-family:'Fraunces',serif;font-size:15px;color:#1E3A5F;margin-bottom:4%}
+  .dip-brand svg{width:22px;height:22px;border-radius:6px}
+  .dip-brand em{color:#8e6a1f;font-style:italic}
+  .dip-kicker{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:#8e6a1f;font-weight:600}
+  .dip-title{font-family:'Fraunces',serif;font-size:clamp(17px,2.6vw,23px);color:#1d2a3a;margin:1% 0 3%;letter-spacing:.02em}
+  .dip small{display:block;font-size:10px;color:#6f6656}
+  .dip-name{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,3.6vw,32px);color:#14202e;margin:1% 0 1.5%;padding:0 6% 1%;border-bottom:1px solid rgba(180,138,60,.55)}
+  .dip-course{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(14px,2.1vw,18px);color:#1E3A5F;margin:1% 0 1%}
+  .dip-sign{display:flex;justify-content:space-between;width:64%;margin:6% 24% 0 0}
+  .dip-sign span{flex:0 0 42%;border-top:1px solid rgba(20,32,46,.45);padding-top:4px;font-size:9.5px;color:#4e5661}
+  .dip-sign b{display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:15px;color:#1d2a3a;margin-bottom:-2px;opacity:.85}
+  /* sello dorado en relieve con cintas */
+  .seal{position:absolute;right:6%;bottom:7%;width:18%;aspect-ratio:1;transform:translateZ(14px)}
+  .seal .ribbon{position:absolute;top:58%;width:30%;height:75%;background:linear-gradient(90deg,#123052,#1E3A5F 50%,#0f2744);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);box-shadow:0 4px 6px rgba(0,0,0,.25)}
+  .seal .ribbon.l{left:16%;transform:rotate(14deg)}.seal .ribbon.r{right:16%;transform:rotate(-14deg)}
+  .seal .disc{position:absolute;inset:0;border-radius:50%;
+    background:
+      repeating-conic-gradient(from 0deg,#c9a24a 0deg 6deg,#a87f2c 6deg 12deg);
+    box-shadow:0 6px 12px rgba(80,55,10,.45),inset 0 0 0 2px rgba(255,240,190,.5)}
+  .seal .core{position:absolute;inset:13%;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,#fff3c4 0%,#e7c46a 22%,#c39a3e 55%,#8a6420 100%);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 6px rgba(90,60,10,.55);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,3vw,26px);color:#7a5517;text-shadow:0 1px 0 rgba(255,240,200,.8),0 -1px 0 rgba(90,60,10,.4)}
+  .seal .core::after{content:"";position:absolute;inset:9%;border-radius:50%;border:1px dashed rgba(122,85,23,.55)}
+  @media (prefers-reduced-motion: reduce){ .dip{transition:none} }
 
   @media(max-width:900px){
     .cert-grid{grid-template-columns:1fr;gap:40px}
@@ -497,20 +537,20 @@
 </section>
 
 <!-- CASOS REALES -->
-<section class="casos-sec" style="background:var(--paper-2)">
+<section class="casos-sec" id="casos" style="background:var(--paper-2)">
   <div class="wrap">
     <div class="casos-head reveal">
       <span class="kicker">Traé tu caso</span>
       <h2>¿Qué te cuesta hoy? <em>Eso es lo que resolvemos.</em></h2>
-      <p>Cada alumno llega con algo real. Estos son algunos de los casos que se pueden trabajar en el curso.</p>
+      <p>En los tres niveles es igual: cada alumno llega con algo real de su vida o su negocio, y el curso gira alrededor de eso. Algunos ejemplos:</p>
     </div>
     <div class="casos">
-      <article class="caso reveal"><span class="quien">Docente</span><p class="antes">“Planificar y armar evaluaciones me come el fin de semana.”</p><p class="despues">Armás planificaciones, consignas y rúbricas en minutos, y vos solo revisás.</p><span class="cual">Fundamentos</span></article>
-      <article class="caso reveal"><span class="quien">Comerciante</span><p class="antes">“Me escriben por WhatsApp y respondo lo mismo treinta veces.”</p><p class="despues">Tenés respuestas listas para cada consulta y una lista de precios clara para mandar.</p><span class="cual">Fundamentos</span></article>
-      <article class="caso reveal"><span class="quien">Emprendedora</span><p class="antes">“No sé qué publicar en Instagram y nunca tengo tiempo.”</p><p class="despues">Sacás un mes de posteos, con imágenes y textos, en una tarde.</p><span class="cual">Fundamentos</span></article>
-      <article class="caso reveal"><span class="quien">Estudiante</span><p class="antes">“Tengo que estudiar 200 páginas para el final.”</p><p class="despues">Tu cuaderno en NotebookLM te resume, te toma preguntas y te lo explica en audio.</p><span class="cual">Fundamentos</span></article>
-      <article class="caso reveal"><span class="quien">En casa</span><p class="antes">“No entiendo la factura, el contrato ni el trámite.”</p><p class="despues">La IA te lo explica simple y te arma la lista de pasos a seguir.</p><span class="cual">Fundamentos</span></article>
-      <article class="caso reveal"><span class="quien">Profesional</span><p class="antes">“Mis clientes me buscan en Google y no me encuentran.”</p><p class="despues">Tu web publicada, con tus servicios y un botón para que te escriban por WhatsApp.</p><span class="cual">Tu web con IA</span></article>
+      <article class="caso reveal"><span class="quien">Docente</span><p class="antes">“Planificar y armar evaluaciones me come el fin de semana.”</p><p class="despues">Armás planificaciones, consignas y rúbricas en minutos, y vos solo revisás.</p><span class="cual">Nivel 1 · Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Estudiante</span><p class="antes">“Tengo que estudiar 200 páginas para el final.”</p><p class="despues">Tu cuaderno en NotebookLM te resume, te toma preguntas y te lo explica en audio.</p><span class="cual">Nivel 1 · Fundamentos</span></article>
+      <article class="caso reveal"><span class="quien">Profesional</span><p class="antes">“Mis clientes me buscan en Google y no me encuentran.”</p><p class="despues">Tu web publicada, con tus servicios y un botón para que te escriban por WhatsApp.</p><span class="cual">Nivel 2 · Tu web con IA</span></article>
+      <article class="caso reveal"><span class="quien">Emprendedora</span><p class="antes">“Vendo solo por Instagram y parece que no es un negocio serio.”</p><p class="despues">Tu web con tu catálogo, tu historia y tus datos, con un link para poner en la bio.</p><span class="cual">Nivel 2 · Tu web con IA</span></article>
+      <article class="caso reveal"><span class="quien">Comerciante</span><p class="antes">“Me escriben por WhatsApp y respondo lo mismo treinta veces.”</p><p class="despues">Un asistente con IA responde las consultas de siempre y te pasa las ventas.</p><span class="cual">Nivel 3 · Vendé con IA</span></article>
+      <article class="caso reveal"><span class="quien">Profesional con turnos</span><p class="antes">“Paso el día coordinando turnos y persiguiendo pagos.”</p><p class="despues">Tus clientes reservan y pagan solos con Mercado Pago, y vos solo atendés.</p><span class="cual">Nivel 3 · Vendé con IA</span></article>
     </div>
     <p class="casos-foot reveal">¿El tuyo no está? Mejor. <a href="#" class="js-wa" data-curso="">Contanos cuál es</a> y te decimos si lo podemos trabajar.</p>
   </div>
@@ -561,7 +601,7 @@
     <!-- NIVEL 2 -->
     <div class="panel" role="tabpanel">
       <div class="panel-info">
-        <p class="who">Para emprendedores que quieren que su negocio exista en internet sin pagarle a una agencia. No hace falta saber programar.</p>
+        <p class="who">Para emprendedores que quieren que su negocio exista en internet sin pagarle a una agencia. Trabajás sobre tu negocio real, con tus fotos y tus productos. No hace falta saber programar.</p>
         <h4>Las 4 clases</h4>
         <ol class="classes">
           <li><span>Clase 1</span>Qué tiene que tener la página de tu negocio para vender</li>
@@ -590,7 +630,7 @@
     <div class="panel" role="tabpanel">
       <div class="panel-info">
         <span class="soon-note">Próxima cohorte en 2027</span>
-        <p class="who">Para profesionales que quieren vender online y animarse a hacerlo solos.</p>
+        <p class="who">Para profesionales que quieren vender online y animarse a hacerlo solos. Trabajás sobre tu negocio real: tus productos, tus precios y las preguntas que te hacen tus clientes.</p>
         <h4>Las 4 clases</h4>
         <ol class="classes">
           <li><span>Clase 1</span>Diseñar tu tienda y tu catálogo</li>
@@ -640,7 +680,7 @@
 </section>
 
 <!-- CERTIFICADO -->
-<section class="cert-sec">
+<section class="cert-sec" id="certificado">
   <div class="wrap cert-grid">
     <div class="reveal">
       <span class="kicker">Certificado incluido</span>
@@ -652,14 +692,24 @@
       </ul>
       <p class="cert-note">Es un certificado de finalización emitido por Tecla, no un título oficial.</p>
     </div>
-    <div class="cert reveal" aria-label="Ejemplo del certificado">
-      <div class="cert-head"><svg viewBox="0 0 240 240"><rect width="240" height="240" rx="64.8" fill="#1E3A5F"/><text x="120" y="172" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="160" fill="#fff">T</text></svg><span>Tecla <em>cursos</em></span></div>
-      <small>Certifica que</small>
-      <p class="cert-name">Tu nombre acá</p>
-      <small>completó el curso</small>
-      <p class="cert-course">Tu web con IA</p>
-      <small>6 horas de clases en vivo · Diciembre 2026</small>
-      <div class="cert-sign"><span>Gastón Pérez</span><span>Andrés Pérez</span></div>
+    <div class="stage reveal" aria-label="Ejemplo del certificado de Tecla">
+      <div class="dip" id="dip">
+        <span class="shadow"></span>
+        <span class="thick" style="--z:2"></span><span class="thick" style="--z:4;background:#ddd0b5"></span><span class="thick" style="--z:6;background:#d3c4a5"></span>
+        <div class="paper">
+          <div class="guard"><i></i><i></i><i></i><i></i></div>
+          <div class="dip-brand"><svg viewBox="0 0 240 240"><rect width="240" height="240" rx="64.8" fill="#1E3A5F"/><text x="120" y="172" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="160" fill="#fff">T</text></svg>Tecla <em>cursos</em></div>
+          <span class="dip-kicker">Cursos de IA en vivo</span>
+          <p class="dip-title">Certificado de finalización</p>
+          <small>Se otorga a</small>
+          <p class="dip-name">Tu nombre acá</p>
+          <small>por haber completado el curso</small>
+          <p class="dip-course">Tu web con IA</p>
+          <small>6 horas de clases en vivo · Diciembre de 2026</small>
+          <div class="dip-sign"><span><b>Gastón Pérez</b>Profesor</span><span><b>Andrés Pérez</b>Profesor</span></div>
+        </div>
+        <div class="seal"><span class="ribbon l"></span><span class="ribbon r"></span><span class="disc"></span><span class="core">T</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -921,6 +971,21 @@
       setTimeout(()=>{ qt.textContent = PREG[k++ % PREG.length]; q.classList.add('show'); }, 700);
       setTimeout(()=>{ q.classList.remove('show'); hand.classList.remove('up'); }, 4800);
     }, 9500);
+  })();
+  /* diploma: se inclina y le cambia el brillo según el mouse */
+  (function(){
+    const d = document.getElementById('dip'); if (!d || reduced) return;
+    const stage = d.parentElement;
+    stage.addEventListener('mousemove', e=>{
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      d.classList.add('live');
+      d.style.setProperty('--ry', ((x - .5) * 26) + 'deg');
+      d.style.setProperty('--rx', ((.5 - y) * 22) + 'deg');
+      d.style.setProperty('--gx', (x * 100) + '%');
+      d.style.setProperty('--gy', (y * 100) + '%');
+    });
+    stage.addEventListener('mouseleave', ()=>{ d.classList.remove('live'); ['--rx','--ry','--gx','--gy'].forEach(v=>d.style.removeProperty(v)); });
   })();
 </script>
 </body>
