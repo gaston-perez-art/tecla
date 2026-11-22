@@ -7,7 +7,7 @@
 <meta name="description" content="Cursos cortos de IA, online y en vivo. Traés algo que te cuesta en tu trabajo, tu negocio o tu casa, y en 4 clases te vas con la IA resolviéndolo. Grupos chicos, desde $30.000." />
 <link rel="canonical" href="https://www.somostecla.com/" />
 <meta name="robots" content="index, follow" />
-<meta name="author" content="Tecla — Gastón y Andrés Pérez" />
+<meta name="author" content="Tecla — Gastón Pérez" />
 <meta name="theme-color" content="#fbfbfd" />
 <script type="application/ld+json">
 {
@@ -38,6 +38,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap&text=Gast%C3%B3nP%C3%A9rez%20" rel="stylesheet">
 <style>
   :root{
     --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff;
@@ -162,16 +163,17 @@
   .toast i{width:8px;height:8px;border-radius:50%;background:#30d158}
 
   /* tarjetas flotantes del hero */
-  .float{position:absolute;z-index:2;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 20px 40px -14px rgba(20,30,60,.25);padding:14px 16px;text-align:left;font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:12px;animation:bob 7s ease-in-out infinite}
+  .float{position:absolute;z-index:2;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 20px 40px -14px rgba(20,30,60,.25);padding:14px 16px;text-align:left;font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:12px;}
   .float b{display:block;color:var(--ink);font-size:14px;font-weight:600}
   .float.f1{left:-34px;bottom:16%}
-  .float.f2{right:-18px;bottom:22%;animation-delay:-3.5s}
+  .float.f2{right:-18px;bottom:22%}
   .faces{display:flex}
   .faces img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #fff}
   .faces img+img{margin-left:-10px}
   .live{display:inline-flex;align-items:center;gap:5px;color:#e5484d;font-weight:600;font-size:11.5px}
   .live::before{content:"";width:6px;height:6px;border-radius:50%;background:#e5484d}
-  .mini-cert{width:52px;height:38px;border-radius:4px;background:url(/img/certificado.webp) center/cover;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .mini-cert{width:52px;height:34px;border-radius:5px;background:radial-gradient(120% 140% at 100% 0%,#2f64b0 0%,#132640 55%,#0b1626 100%);box-shadow:0 2px 6px rgba(0,0,0,.25);position:relative}
+  .mini-cert::after{content:"";position:absolute;left:7px;bottom:8px;width:24px;height:3px;border-radius:2px;background:#C99A3B;box-shadow:0 -6px 0 -0.5px rgba(255,255,255,.7)}
   @keyframes bob{50%{transform:translateY(-8px)}}
 
   /* LOGOS */
@@ -209,34 +211,58 @@
   .tile.cta p{color:rgba(255,255,255,.75);margin-top:10px;max-width:420px}
   .tile.cta .pill{align-self:flex-start;margin-top:26px}
 
-  /* CURSOS: comparativa */
-  .compare{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;border-top:1px solid var(--line)}
-  .col{padding:40px 30px 10px;border-right:1px solid var(--line2);display:flex;flex-direction:column}
-  .col:last-child{border-right:0}
-  .col .lv{font-size:14px;font-weight:600;color:var(--gold)}
-  .col h3{font-size:34px;margin:8px 0 10px}
-  .col .desc{color:var(--ink2);font-size:16px;min-height:72px}
-  .col .price{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.03em;margin:22px 0 2px}
-  .col .when{font-size:14px;color:var(--ink3)}
-  .col .acts{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin:24px 0 30px}
-  .col .acts .more{font-size:15px}
-  .col .out{border-top:1px solid var(--line2);padding-top:24px}
-  .col .out small{display:block;font-size:13px;font-weight:600;color:var(--ink3);margin-bottom:6px}
-  .col .out p{font-family:var(--display);font-weight:500;font-size:20px;line-height:1.25;letter-spacing:-.015em}
-  .col ol{list-style:none;margin-top:24px;display:grid;gap:12px;counter-reset:c}
-  .col ol li{counter-increment:c;display:grid;grid-template-columns:26px 1fr;font-size:15px;color:var(--ink2)}
-  .col ol li::before{content:counter(c);font-weight:600;color:var(--ink)}
-  .col.soon{opacity:.62}
-  .tag{align-self:flex-start;font-size:12px;font-weight:600;color:var(--ink2);background:var(--bg2);padding:4px 10px;border-radius:980px;margin-bottom:10px}
+  /* CURSOS: tres tarjetas iguales, filas alineadas con subgrid */
+  .cursos-sec{padding:110px 0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(6,auto);gap:0 20px;margin-top:56px}
+  .card{display:grid;grid-template-rows:subgrid;grid-row:span 6;background:var(--card);border-radius:28px;padding:32px 30px 30px;box-shadow:0 0 0 1px var(--line2),0 24px 48px -32px rgba(20,30,60,.22);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .card:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--line2),0 40px 70px -36px rgba(20,30,60,.35)}
+  .c-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
+  .c-top .lv{color:var(--gold)}
+  .c-top .who{color:var(--ink3)}
+  .card h3{font-size:30px;margin:14px 0 8px}
+  .card .desc{color:var(--ink2);font-size:16px;line-height:1.45}
+  .card .get{margin-top:22px;padding-top:20px;border-top:1px solid var(--line2);font-family:var(--display);font-weight:500;font-size:19px;line-height:1.28;letter-spacing:-.015em}
+  .card .get small{display:block;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--ink3);letter-spacing:0;margin-bottom:6px}
+  .buy{margin-top:22px}
+  .card .price{font-family:var(--display);font-weight:600;font-size:38px;letter-spacing:-.035em;line-height:1}
+  .card .when{font-size:14px;color:var(--ink3);line-height:1.45;margin-top:8px}
+  .acts{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:24px}
+  .acts .pill{width:100%}
+  .acts .more{font-size:15px}
+  .more-ph{height:22px}
+  .card.soon{background:transparent;box-shadow:0 0 0 1px var(--line2)}
+  .card.soon h3,.card.soon .price,.card.soon .get{color:var(--ink3)}
+  .card.soon .c-top .who{color:var(--ink2);background:var(--bg2);padding:3px 10px;border-radius:980px}
 
   /* CURSADA */
   .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:72px}
   .feat svg{width:30px;height:30px;color:var(--brand);margin-bottom:18px}
   .feat h3{font-size:22px;letter-spacing:-.02em;margin-bottom:8px}
   .feat p{color:var(--ink2);font-size:16px}
-  .cert-shot{margin:110px auto 0;max-width:1000px}
-  .cert-shot img{width:100%;height:auto;border-radius:28px;box-shadow:0 50px 100px -40px rgba(30,30,40,.45)}
-  .cert-cap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:30px;font-size:15px;color:var(--ink2)}
+  /* CERTIFICADO digital (diseñado a 1000x625 y escalado) */
+  .cert-stage{margin:100px auto 0;max-width:960px;perspective:1800px}
+  .cert-frame{position:relative;aspect-ratio:1000/625;transform:rotateX(9deg) rotateY(-7deg) rotateZ(1deg);transform-style:preserve-3d;transition:transform 1s var(--ease);border-radius:22px;box-shadow:0 70px 120px -50px rgba(10,20,45,.6),0 30px 60px -30px rgba(10,20,45,.35)}
+  .cert-stage:hover .cert-frame{transform:none}
+  .cert-doc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:22px;overflow:hidden;color:#fff;padding:54px 64px;display:flex;flex-direction:column;
+    background:radial-gradient(90% 120% at 100% 0%,#2f64b0 0%,#1a3358 38%,#0f1d33 70%,#0a1422 100%)}
+  .cd-glow{position:absolute;right:-120px;bottom:-200px;width:620px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,154,59,.38),rgba(123,92,196,.18) 55%,transparent 75%);filter:blur(10px)}
+  .cd-mark{position:absolute;right:-30px;top:60px;width:480px;height:480px;fill:rgba(255,255,255,.045)}
+  .cd-top{position:relative;display:flex;justify-content:space-between;align-items:center}
+  .cd-brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-size:26px;font-weight:500}
+  .cd-brand svg{width:40px;height:40px;border-radius:11px}
+  .cd-brand i{font-style:italic;color:rgba(255,255,255,.55);font-size:23px}
+  .cd-kind{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#e2c27c}
+  .cd-body{position:relative;margin:auto 0}
+  .cd-small{font-size:18px;color:rgba(255,255,255,.6)}
+  .cd-name{font-family:var(--display);font-weight:600;font-size:78px;letter-spacing:-.035em;line-height:1.05;margin:4px 0 18px}
+  .cd-course{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.025em;line-height:1.1;margin-top:4px;background:linear-gradient(90deg,#f0d495,#C99A3B);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .cd-foot{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr 1.4fr;gap:24px;align-items:end;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);font-size:18px;font-weight:500}
+  .cd-foot small{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);margin-bottom:4px}
+  .cd-sign{text-align:right}
+  .cd-sign .sig{display:block;font-family:'Mrs Saint Delafield',cursive;font-size:54px;line-height:.8;color:#fff;margin-bottom:6px;transform:rotate(-4deg);transform-origin:right bottom}
+  .cd-sign b{display:block;font-weight:600;font-size:16px;padding-top:8px;border-top:1px solid rgba(255,255,255,.35)}
+  .cd-sign small{margin:2px 0 0}
+  .cert-cap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:56px;font-size:15px;color:var(--ink2)}
   .cert-cap span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:2px}
   .fine{font-size:13px;color:var(--ink3);text-align:center;margin-top:14px}
 
@@ -246,18 +272,12 @@
   .steps3 h3{font-size:24px;margin:12px 0 8px;letter-spacing:-.02em}
   .steps3 p{color:var(--ink2);font-size:16px}
 
-  /* PROFES */
-  .team{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:72px}
-  .prof{background:var(--card);border-radius:28px;overflow:hidden}
-  .prof .ph{aspect-ratio:5/4;overflow:hidden;background:#e8e8ed}
-  .prof .ph img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform 1.2s var(--ease)}
-  .prof:hover .ph img{transform:scale(1.04)}
-  .prof .tx{padding:30px 32px 34px}
-  .prof .role{font-size:14px;font-weight:600;color:var(--gold)}
-  .prof h3{font-size:32px;margin:4px 0 12px}
-  .prof p{color:var(--ink2);font-size:16px}
-  .prof .co{margin-top:16px;font-size:14px;color:var(--ink3)}
-  .prof .in{display:inline-block;margin-top:14px}
+  /* PROFE */
+  .teacher{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center;max-width:980px;margin:0 auto}
+  .t-ph{aspect-ratio:1;border-radius:32px;overflow:hidden;background:#e8e8ed;box-shadow:0 40px 80px -40px rgba(20,30,60,.35)}
+  .t-ph img{width:100%;height:100%;object-fit:cover}
+  .t-tx .sub{max-width:520px}
+  .t-co{margin:22px 0 16px;font-size:15px;color:var(--ink3)}
 
   /* FAQ */
   .faq{max-width:820px;margin:64px auto 0}
@@ -305,9 +325,11 @@
 
   @media(max-width:980px){
     .float{display:none}
-    .compare{grid-template-columns:1fr;border-top:0}
-    .col{border-right:0;border-top:1px solid var(--line);padding:40px 4px 20px}
-    .col .desc{min-height:0}
+    .cards{grid-template-columns:1fr;grid-template-rows:none;gap:16px;max-width:520px;margin-left:auto;margin-right:auto}
+    .card{grid-template-rows:none;grid-row:auto;display:block}
+    .teacher{grid-template-columns:1fr;gap:36px;text-align:center}
+    .t-ph{max-width:320px;margin:0 auto}
+    .t-tx .sub{margin-left:auto;margin-right:auto}
     .feats{grid-template-columns:1fr 1fr}
     .bento{grid-template-columns:1fr 1fr}
     .w4,.w2{grid-column:span 2}
@@ -323,11 +345,11 @@
     .device{padding:7px 7px 9px;border-radius:14px 14px 4px 4px}
     .base{height:10px}
     .ctas{flex-direction:column;gap:18px}
-    .feats,.steps3,.team{grid-template-columns:1fr}
+    .feats,.steps3{grid-template-columns:1fr}
     .feats{gap:34px}
     .tile{padding:26px;border-radius:22px}
-    .cert-shot{margin-top:72px}
-    .cert-shot img{border-radius:18px}
+    .cert-stage{margin-top:64px}
+    .cert-frame{transform:none}
     summary{font-size:19px}
   }
 </style>
@@ -344,7 +366,7 @@
       <a href="#casos">Tu caso</a>
       <a href="#cursos">Cursos</a>
       <a href="#cursada">Cursada</a>
-      <a href="#profes">Profes</a>
+      <a href="#profe">Tu profe</a>
       <a href="#preguntas">Preguntas</a>
       <a href="/servicios/">Soporte y docentes</a>
       <a href="#cursos" class="pill">Inscribirme</a>
@@ -366,7 +388,7 @@
   </div>
 
   <div class="device-wrap rv d3">
-    <div class="float f1"><div class="faces"><img src="/fotos/gaston.jpg" alt=""><img src="/fotos/andres.jpg" alt=""></div><div><span class="live">En vivo</span><b>Gastón y Andrés</b>te acompañan en cada clase</div></div>
+    <div class="float f1"><div class="faces"><img src="/fotos/gaston.jpg" alt=""></div><div><span class="live">En vivo</span><b>Gastón Pérez</b>tu profe en cada clase</div></div>
     <div class="float f2"><span class="mini-cert"></span><div><b>Certificado incluido</b>al terminar el curso</div></div>
     <div class="device">
       <div class="screen" id="screen">
@@ -407,9 +429,9 @@
 <!-- LOGOS -->
 <div class="logos">
   <div class="wrap">
-    <p>Aprendés con quienes trabajaron en</p>
+    <p>Aprendés con alguien que construyó productos en</p>
     <div class="logo-row">
-      <img class="l-ml" src="/logos/mercadolibre.svg" alt="Mercado Libre"><img class="l-rappi" src="/logos/rappi.svg" alt="Rappi"><img class="l-bb" src="/logos/bigbox.svg" alt="Bigbox"><img class="l-coder" src="/logos/coderhouse.svg" alt="Coderhouse"><img class="l-henry" src="/logos/henry.svg" alt="Henry"><img class="l-pj" src="/logos/poderjudicial.svg" alt="Poder Judicial">
+      <img class="l-ml" src="/logos/mercadolibre.svg" alt="Mercado Libre"><img class="l-rappi" src="/logos/rappi.svg" alt="Rappi"><img class="l-bb" src="/logos/bigbox.svg" alt="Bigbox"><img class="l-coder" src="/logos/coderhouse.svg" alt="Coderhouse"><img class="l-henry" src="/logos/henry.svg" alt="Henry">
     </div>
   </div>
 </div>
@@ -417,7 +439,7 @@
 <!-- MANIFIESTO -->
 <section class="manifesto" id="manifiesto">
   <div class="wrap">
-    <p class="words" id="words">En YouTube nadie te contesta. Acá tenés dos profes en vivo, un grupo de WhatsApp y *tu propio caso sobre la mesa.*</p>
+    <p class="words" id="words">En YouTube nadie te contesta. Acá tenés a tu profe en vivo, un grupo de WhatsApp y *tu propio caso sobre la mesa.*</p>
   </div>
 </section>
 
@@ -442,52 +464,37 @@
 </section>
 
 <!-- CURSOS -->
-<section id="cursos">
+<section id="cursos" class="cursos-sec">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow rv">Los cursos</span>
-      <h2 class="h-l rv d1">Tres escalones.<br>Empezá por el tuyo.</h2>
+      <h2 class="h-l rv d1">Elegí por dónde empezar.</h2>
     </div>
-    <div class="compare">
-      <div class="col rv">
-        <span class="lv">Nivel 1 · Desde cero</span>
+    <div class="cards">
+      <article class="card rv">
+        <div class="c-top"><span class="lv">Nivel 1</span><span class="who">Desde cero</span></div>
         <h3>Fundamentos de IA</h3>
         <p class="desc">Para quien nunca usó IA, o la probó y no le encontró la vuelta.</p>
-        <p class="price">$30.000</p>
-        <p class="when">4 clases · 1, 3, 10 y 15/12 · 19 h</p>
-        <div class="acts">
-          <a href="#" class="pill js-wa" data-curso="Fundamentos de IA">Inscribirme</a>
-          <button class="more js-prog" data-prog="fundamentos-de-ia" data-curso="Fundamentos de IA">Descargar el programa</button>
-        </div>
-        <div class="out"><small>Salís con</small><p>Tu caso resuelto con IA, y tu kit para seguir usándola.</p>
-          <ol><li>Qué es la IA y cómo pensar con ella</li><li>Prompts que funcionan</li><li>Crear imágenes y textos</li><li>Aprender y explicar con NotebookLM</li></ol></div>
-      </div>
-      <div class="col rv d1">
-        <span class="lv">Nivel 2 · Emprendedores</span>
+        <p class="get"><small>Salís con</small>Tu caso resuelto con IA y tu kit para seguir usándola.</p>
+        <div class="buy"><p class="price">$30.000</p><p class="when">4 clases en vivo · 19 h<br>1, 3, 10 y 15 de diciembre</p></div>
+        <div class="acts"><a href="#" class="pill js-wa" data-curso="Fundamentos de IA">Inscribirme</a><button class="more js-prog" data-prog="fundamentos-de-ia" data-curso="Fundamentos de IA">Ver el programa</button></div>
+      </article>
+      <article class="card rv d1">
+        <div class="c-top"><span class="lv">Nivel 2</span><span class="who">Emprendedores</span></div>
         <h3>Tu web con IA</h3>
-        <p class="desc">Para que tu negocio exista en internet sin pagarle a una agencia. Sin saber programar.</p>
-        <p class="price">$60.000</p>
-        <p class="when">4 clases · 1, 3, 10 y 15/12 · 20:30 h</p>
-        <div class="acts">
-          <a href="#" class="pill js-wa" data-curso="Tu web con IA">Inscribirme</a>
-          <button class="more js-prog" data-prog="tu-web-con-ia" data-curso="Tu web con IA">Descargar el programa</button>
-        </div>
-        <div class="out"><small>Salís con</small><p>La web de tu negocio, publicada y con su link.</p>
-          <ol><li>Qué tiene una web que vende</li><li>Construir con Claude Code</li><li>Hacerla tuya</li><li>Publicar en internet</li></ol></div>
-      </div>
-      <div class="col soon rv d2">
-        <span class="tag">Próximamente · 2027</span>
-        <span class="lv">Nivel 3 · Profesionales</span>
+        <p class="desc">Para que tu negocio exista en internet, sin agencia y sin saber programar.</p>
+        <p class="get"><small>Salís con</small>La web de tu negocio, publicada y con su link.</p>
+        <div class="buy"><p class="price">$60.000</p><p class="when">4 clases en vivo · 20:30 h<br>1, 3, 10 y 15 de diciembre</p></div>
+        <div class="acts"><a href="#" class="pill js-wa" data-curso="Tu web con IA">Inscribirme</a><button class="more js-prog" data-prog="tu-web-con-ia" data-curso="Tu web con IA">Ver el programa</button></div>
+      </article>
+      <article class="card soon rv d2">
+        <div class="c-top"><span class="lv">Nivel 3</span><span class="who">Próximamente</span></div>
         <h3>Vendé con IA</h3>
         <p class="desc">Para vender online y animarte a hacerlo solo, sobre tu negocio real.</p>
-        <p class="price">$90.000</p>
-        <p class="when">Próxima cohorte en 2027</p>
-        <div class="acts">
-          <a href="#" class="pill ghost js-wa" data-curso="Vendé con IA" data-aviso="1">Avisarme cuando abra</a>
-        </div>
-        <div class="out"><small>Salís con</small><p>Tu tienda cobrando y un asistente que atiende por vos.</p>
-          <ol><li>Tu tienda y tu catálogo</li><li>Cobrar con Mercado Pago</li><li>Tu asistente con IA</li><li>Publicar y salir a vender</li></ol></div>
-      </div>
+        <p class="get"><small>Salís con</small>Tu tienda cobrando y un asistente que atiende por vos.</p>
+        <div class="buy"><p class="price">$90.000</p><p class="when">4 clases en vivo<br>Próxima cohorte en 2027</p></div>
+        <div class="acts"><a href="#" class="pill ghost js-wa" data-curso="Vendé con IA" data-aviso="1">Avisarme cuando abra</a><span class="more-ph"></span></div>
+      </article>
     </div>
   </div>
 </section>
@@ -501,14 +508,35 @@
     </div>
     <div class="feats">
       <div class="feat rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><h3>En vivo, de verdad</h3><p>4 clases de 90 minutos por Google Meet, con tiempo para tus preguntas.</p></div>
-      <div class="feat rv d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><h3>Nunca te trabás</h3><p>Grupo de WhatsApp con los profes durante todo el curso.</p></div>
+      <div class="feat rv d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><h3>Nunca te trabás</h3><p>Grupo de WhatsApp con tu profe durante todo el curso.</p></div>
       <div class="feat rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><h3>Todo queda grabado</h3><p>Si faltás a una clase, te pasamos la grabación.</p></div>
       <div class="feat rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg><h3>Certificado</h3><p>Con tu nombre, el curso y las horas. Para tu CV y tu LinkedIn.</p></div>
     </div>
-    <figure class="cert-shot rv">
-      <picture><source srcset="/img/certificado.webp" type="image/webp"><img src="/img/certificado.jpg" width="1448" height="1086" loading="lazy" alt="Certificado de finalización de Tecla Cursos sobre un escritorio, firmado por Gastón Pérez y Andrés Pérez, con sello dorado"></picture>
-    </figure>
-    <div class="cert-cap"><span>Asistí en vivo a 3 de las 4 clases</span><span>Mostrá tu caso resuelto en la última</span></div>
+    <div class="cert-stage rv" aria-label="Ejemplo del certificado de finalización de Tecla Cursos">
+      <div class="cert-frame" id="certFrame">
+        <div class="cert-doc" id="certDoc">
+          <div class="cd-glow"></div>
+          <svg class="cd-mark" viewBox="0 0 240 240" aria-hidden="true"><path d="M538 1425Q596 1425 665.5 1414.5Q735 1404 807.5 1388.5Q880 1373 947.0 1357.0Q1014 1341 1068.5 1330.5Q1123 1320 1156 1320Q1191 1320 1210.5 1332.5Q1230 1345 1238 1368Q1243 1386 1243.0 1405.0Q1243 1424 1245 1444Q1252 1484 1277.0 1509.5Q1302 1535 1351 1535Q1392 1535 1419.0 1505.5Q1446 1476 1445 1418Q1444 1328 1382.5 1273.0Q1321 1218 1218 1218Q1173 1218 1106.5 1230.5Q1040 1243 964.0 1261.5Q888 1280 811.0 1298.0Q734 1316 667.0 1328.5Q600 1341 554 1341Q475 1341 440.0 1313.5Q405 1286 404 1237Q403 1213 409.0 1194.0Q415 1175 421.5 1156.5Q428 1138 428 1114Q427 1075 399.0 1048.0Q371 1021 326 1021Q272 1022 240.0 1062.0Q208 1102 211 1171Q213 1243 251.0 1300.5Q289 1358 361.5 1391.5Q434 1425 538 1425ZM670 160Q662 132 670.5 118.0Q679 104 699 100L769 84Q807 70 804 44Q802 22 784.0 11.0Q766 0 737 0H288Q260 0 247.5 11.0Q235 22 235 39Q236 58 249.5 69.5Q263 81 285 88L352 102Q374 107 389.5 124.5Q405 142 417 177Q429 217 450.0 290.5Q471 364 497.5 458.5Q524 553 553.0 658.0Q582 763 611.0 869.0Q640 975 666.0 1070.5Q692 1166 713.0 1242.0Q734 1318 747 1362L988 1316Q973 1270 952.0 1194.0Q931 1118 905.0 1023.0Q879 928 850.5 823.5Q822 719 794.0 616.5Q766 514 742.0 423.0Q718 332 699.0 263.5Q680 195 670 160Z" transform="translate(42.30,191.99) scale(0.09381,-0.09381)"/></svg>
+          <div class="cd-top">
+            <div class="cd-brand"><svg viewBox="0 0 240 240"><rect width="240" height="240" rx="64.8" fill="#fff"/><path d="M538 1425Q596 1425 665.5 1414.5Q735 1404 807.5 1388.5Q880 1373 947.0 1357.0Q1014 1341 1068.5 1330.5Q1123 1320 1156 1320Q1191 1320 1210.5 1332.5Q1230 1345 1238 1368Q1243 1386 1243.0 1405.0Q1243 1424 1245 1444Q1252 1484 1277.0 1509.5Q1302 1535 1351 1535Q1392 1535 1419.0 1505.5Q1446 1476 1445 1418Q1444 1328 1382.5 1273.0Q1321 1218 1218 1218Q1173 1218 1106.5 1230.5Q1040 1243 964.0 1261.5Q888 1280 811.0 1298.0Q734 1316 667.0 1328.5Q600 1341 554 1341Q475 1341 440.0 1313.5Q405 1286 404 1237Q403 1213 409.0 1194.0Q415 1175 421.5 1156.5Q428 1138 428 1114Q427 1075 399.0 1048.0Q371 1021 326 1021Q272 1022 240.0 1062.0Q208 1102 211 1171Q213 1243 251.0 1300.5Q289 1358 361.5 1391.5Q434 1425 538 1425ZM670 160Q662 132 670.5 118.0Q679 104 699 100L769 84Q807 70 804 44Q802 22 784.0 11.0Q766 0 737 0H288Q260 0 247.5 11.0Q235 22 235 39Q236 58 249.5 69.5Q263 81 285 88L352 102Q374 107 389.5 124.5Q405 142 417 177Q429 217 450.0 290.5Q471 364 497.5 458.5Q524 553 553.0 658.0Q582 763 611.0 869.0Q640 975 666.0 1070.5Q692 1166 713.0 1242.0Q734 1318 747 1362L988 1316Q973 1270 952.0 1194.0Q931 1118 905.0 1023.0Q879 928 850.5 823.5Q822 719 794.0 616.5Q766 514 742.0 423.0Q718 332 699.0 263.5Q680 195 670 160Z" fill="#132640" transform="translate(42.30,191.99) scale(0.09381,-0.09381)"/></svg>Tecla <i>cursos</i></div>
+            <span class="cd-kind">Certificado de finalización</span>
+          </div>
+          <div class="cd-body">
+            <span class="cd-small">Se otorga a</span>
+            <p class="cd-name">Tu nombre acá</p>
+            <span class="cd-small">por completar el curso</span>
+            <p class="cd-course">Tu web con IA</p>
+          </div>
+          <div class="cd-foot">
+            <div><small>Duración</small>6 horas en vivo</div>
+            <div><small>Cohorte</small>Diciembre 2026</div>
+            <div><small>Proyecto final</small>Caso resuelto</div>
+            <div class="cd-sign"><span class="sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cert-cap"><span>Asistí en vivo a 3 de las 4 clases</span><span>Mostrá tu caso resuelto en la última</span><span>Lo recibís en PDF, listo para LinkedIn</span></div>
     <p class="fine">Certificado de finalización emitido por Tecla. No es un título oficial.</p>
   </div>
 </section>
@@ -530,29 +558,18 @@
   </div>
 </section>
 
-<!-- PROFES -->
-<section class="alt" id="profes">
+<!-- PROFE -->
+<section class="alt" id="profe">
   <div class="wrap">
-    <div class="center">
-      <span class="eyebrow rv">Quiénes enseñan</span>
-      <h2 class="h-l rv d1">Las clases las damos nosotros.</h2>
-      <p class="sub rv d2" style="margin-top:22px">Dos hermanos que viven de la tecnología. No una plataforma anónima: nos conocés por nombre.</p>
-    </div>
-    <div class="team">
-      <article class="prof rv">
-        <div class="ph"><img src="/fotos/gaston.jpg" alt="Gastón Pérez" loading="lazy"></div>
-        <div class="tx"><span class="role">Producto e IA</span><h3>Gastón Pérez</h3>
-          <p>Product Manager con MBA. Construye productos digitales hace años y usa IA todos los días para hacerlo. Fue tutor de los cursos de Product Manager y Scrum en Coderhouse.</p>
-          <p class="co">Mercado Libre · Rappi · Bigbox · Coderhouse · Henry</p>
-          <a class="more in" href="https://www.linkedin.com/in/gastonmartinperez" target="_blank" rel="noopener">Ver LinkedIn</a></div>
-      </article>
-      <article class="prof rv d1">
-        <div class="ph"><img src="/fotos/andres.jpg" alt="Andrés Pérez" loading="lazy"></div>
-        <div class="tx"><span class="role">Tecnología y sistemas</span><h3>Andrés Pérez</h3>
-          <p>Técnico informático con más de 5 años de experiencia. Te explica la tecnología sin vueltas y te destraba cuando algo no anda.</p>
-          <p class="co">Técnico de TI · Poder Judicial de la Provincia de Buenos Aires</p>
-          <a class="more in" href="https://www.linkedin.com/in/andrés-pérez-180b5520a" target="_blank" rel="noopener">Ver LinkedIn</a></div>
-      </article>
+    <div class="teacher rv">
+      <div class="t-ph"><img src="/fotos/gaston.jpg" alt="Gastón Pérez" loading="lazy"></div>
+      <div class="t-tx">
+        <span class="eyebrow">Profesor titular</span>
+        <h2 class="h-l">Gastón Pérez</h2>
+        <p class="sub" style="margin-top:18px">Product Manager con MBA. Construyo productos digitales hace años y uso IA todos los días para hacerlo. Fui tutor de los cursos de Product Manager y Scrum en Coderhouse.</p>
+        <p class="t-co">Mercado Libre · Rappi · Bigbox · Coderhouse · Henry</p>
+        <a class="more" href="https://www.linkedin.com/in/gastonmartinperez" target="_blank" rel="noopener">Ver LinkedIn</a>
+      </div>
     </div>
   </div>
 </section>
@@ -657,31 +674,20 @@
     fit(); addEventListener('resize', fit);
   })();
 
-  /* demo del hero: alguien pide su web y la web se construye en vivo */
+  /* demo del hero: imagen fija del resultado terminado (se entiende de un vistazo) */
   (function(){
-    const PROMPT = 'Haceme la página de mi panadería en Florencio Varela, con mis productos y un botón para pedir por WhatsApp.';
-    const u = document.getElementById('hu'), a = document.getElementById('ha'), toast = document.getElementById('htoast');
-    const steps = [...document.querySelectorAll('#hsteps li')], blks = [...document.querySelectorAll('.blk')];
-    let timers = [];
-    const later = (fn, ms)=>timers.push(setTimeout(fn, ms));
-    function reset(){ a.classList.remove('show'); toast.classList.remove('show'); steps.forEach(s=>s.classList.remove('ok')); blks.forEach(b=>b.classList.remove('on')); }
-    function end(){ u.textContent = PROMPT; a.classList.add('show'); steps.forEach(s=>s.classList.add('ok')); blks.forEach(b=>b.classList.add('on')); toast.classList.add('show'); }
-    if (reduced){ end(); return; }
-    function run(){
-      timers.forEach(clearTimeout); timers = []; reset();
-      let n = 0;
-      (function type(){
-        if (n <= PROMPT.length){ u.innerHTML = PROMPT.slice(0, n) + '<span class="caret"></span>'; n++; later(type, 28 + Math.random()*30); }
-        else {
-          u.textContent = PROMPT;
-          later(()=>a.classList.add('show'), 500);
-          [0,1,2,3].forEach(i=> later(()=>{ steps[i].classList.add('ok'); if (blks[i]) blks[i].classList.add('on'); }, 1300 + i*1100));
-          later(()=>toast.classList.add('show'), 1300 + 3*1100 + 300);
-          later(run, 1300 + 3*1100 + 5200);
-        }
-      })();
-    }
-    later(run, 900);
+    document.getElementById('hu').textContent = 'Haceme la página de mi panadería en Florencio Varela, con mis productos y un botón para pedir por WhatsApp.';
+    document.getElementById('ha').classList.add('show');
+    document.querySelectorAll('#hsteps li').forEach(li=>li.classList.add('ok'));
+    document.querySelectorAll('.blk').forEach(b=>b.classList.add('on'));
+    document.getElementById('htoast').classList.add('show');
+  })();
+
+  /* certificado: diseñado a 1000px y escalado al ancho real */
+  (function(){
+    const f = document.getElementById('certFrame'), d = document.getElementById('certDoc');
+    const fit = ()=> d.style.transform = `scale(${f.clientWidth/1000})`;
+    fit(); addEventListener('resize', fit);
   })();
 
   /* manifiesto: las palabras se encienden a medida que scrolleás */
