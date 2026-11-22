@@ -80,3 +80,11 @@ De la landing. Directa, honesta, del lado del docente. Frases clave:
 - **Precio en la landing:** Tecla Plus figura en **$30.000 ARS/mes**. En la tesis el Plus estaba anclado en ~$40.000 (mediana "caro pero pagaría"). Definir cuál queda como oficial.
 - Dominio sugerido en la landing: **tecla.ar** · contacto **hola@tecla.ar** · Instagram + WhatsApp. Confirmar si están registrados.
 - La landing es un buen punto de partida para el "sitio para darse a conocer" que mencionaste.
+
+## Tecla Cursos (home) — estilo "Apple" (22/11/2026)
+
+- Fondo blanco `#fbfbfd` alternado con `#f5f5f7`. Texto `#1d1d1f`, secundario `#6e6e73`. Nada de crema en la home de Cursos.
+- Una idea por pantalla, mucho aire (secciones de ~140px), titulares grandes centrados (Bricolage 600, tracking -0.03em).
+- Botones tipo píldora negra; links secundarios azules con "›".
+- Acento: dorado `#C99A3B` solo para etiquetas chicas. Degradé del titular: petróleo → azul → violeta → dorado.
+- Imágenes reales o demos de producto de alta fidelidad. Nada de mockups con emojis o íconos de mentira: se ven de juguete.
