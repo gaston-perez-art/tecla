@@ -227,6 +227,23 @@
   .col ol li{counter-increment:c;display:grid;grid-template-columns:26px 1fr;font-size:15px;color:var(--ink2)}
   .col ol li::before{content:counter(c);font-weight:600;color:var(--ink)}
   .col.soon{opacity:.62}
+  .col .cuotas{font-size:14px;color:var(--ink2);margin-bottom:4px}
+  .out .cpc{margin-top:26px}
+  .out .cpc+ol{margin-top:10px}
+  .col ol li b{display:block;color:var(--ink);font-weight:600}
+  .col ol li span{display:block;font-size:14px;color:var(--ink3);margin-top:2px}
+  .col .not{margin-top:26px;border-top:1px solid var(--line2);padding-top:22px}
+  .col .not ul{list-style:none}
+  .col .not small{display:block;font-size:13px;font-weight:600;color:var(--ink3);margin-bottom:4px}
+  .col .not li{font-size:14px;color:var(--ink2);padding-left:18px;position:relative;margin-top:8px}
+  .col .not li::before{content:"×";position:absolute;left:0;color:var(--ink3);font-weight:600}
+  .assure{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:64px}
+  .assure div{background:var(--bg2);border-radius:22px;padding:26px 28px}
+  .assure b{display:block;font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.02em;margin-bottom:6px}
+  .assure p{color:var(--ink2);font-size:15px}
+  .assure .more{font-size:15px;margin-top:10px}
+  .final .next{margin-top:26px}
+  .final .more{color:#8ab4ff;font-size:15px}
   .tag{align-self:flex-start;font-size:12px;font-weight:600;color:var(--ink2);background:var(--bg2);padding:4px 10px;border-radius:980px;margin-bottom:10px}
 
   /* CURSADA */
@@ -323,7 +340,7 @@
     .device{padding:7px 7px 9px;border-radius:14px 14px 4px 4px}
     .base{height:10px}
     .ctas{flex-direction:column;gap:18px}
-    .feats,.steps3,.team{grid-template-columns:1fr}
+    .feats,.steps3,.team,.assure{grid-template-columns:1fr}
     .feats{gap:34px}
     .tile{padding:26px;border-radius:22px}
     .cert-shot{margin-top:72px}
@@ -427,7 +444,7 @@
     <div class="center">
       <span class="eyebrow rv">Traé tu caso</span>
       <h2 class="h-l rv d1">¿Qué te cuesta hoy?<br>Eso es lo que resolvemos.</h2>
-      <p class="sub rv d2" style="margin-top:22px">En los tres niveles es igual: llegás con algo real de tu vida o tu negocio, y el curso gira alrededor de eso.</p>
+      <p class="sub rv d2" style="margin-top:22px">Estos son casos típicos de lo que trae la gente. En los tres niveles es igual: llegás con algo real de tu vida o tu negocio, y el curso gira alrededor de eso.</p>
     </div>
     <div class="bento">
       <article class="tile w4 dark rv"><span class="who">Docente</span><q>Planificar y armar evaluaciones me come el fin de semana.</q><p class="res">Armás planificaciones, consignas y rúbricas en minutos, y vos solo revisás.</p><span class="lvl">Nivel 1 · Fundamentos</span></article>
@@ -454,26 +471,32 @@
         <h3>Fundamentos de IA</h3>
         <p class="desc">Para quien nunca usó IA, o la probó y no le encontró la vuelta.</p>
         <p class="price">$30.000</p>
-        <p class="when">4 clases · 1, 3, 10 y 15/12 · 19 h</p>
+        <p class="cuotas">o hasta 3 cuotas con Mercado Pago</p>
+        <p class="when">4 clases de 90 min · 1, 3, 10 y 15/12<br>19 a 20:30 h (hora argentina)</p>
         <div class="acts">
           <a href="#" class="pill js-wa" data-curso="Fundamentos de IA">Inscribirme</a>
           <button class="more js-prog" data-prog="fundamentos-de-ia" data-curso="Fundamentos de IA">Descargar el programa</button>
         </div>
         <div class="out"><small>Salís con</small><p>Tu caso resuelto con IA, y tu kit para seguir usándola.</p>
-          <ol><li>Qué es la IA y cómo pensar con ella</li><li>Prompts que funcionan</li><li>Crear imágenes y textos</li><li>Aprender y explicar con NotebookLM</li></ol></div>
+          <small class="cpc">Clase por clase, te llevás</small>
+          <ol><li><div><b>Qué es la IA y cómo pensar con ella</b><span>Tu primera conversación con IA sobre tu caso, y el plan para las 4 clases.</span></div></li><li><div><b>Prompts que funcionan</b><span>Tu biblioteca de prompts para tu caso.</span></div></li><li><div><b>Crear imágenes y textos</b><span>Las imágenes y textos que tu caso necesita: posteos, un flyer, un mail.</span></div></li><li><div><b>Aprender y explicar con NotebookLM</b><span>Tu cuaderno sobre el tema de tu caso, y tu caso resuelto presentado al grupo.</span></div></li></ol></div>
+        <div class="not"><small>No es para vos si…</small><ul><li>Ya usás la IA seguido y te da lo que necesitás: te conviene el Nivel 2.</li><li>Buscás teoría: acá cada clase se trabaja sobre tu caso.</li></ul></div>
       </div>
       <div class="col rv d1">
         <span class="lv">Nivel 2 · Emprendedores</span>
         <h3>Tu web con IA</h3>
         <p class="desc">Para que tu negocio exista en internet sin pagarle a una agencia. Sin saber programar.</p>
         <p class="price">$60.000</p>
-        <p class="when">4 clases · 1, 3, 10 y 15/12 · 20:30 h</p>
+        <p class="cuotas">o hasta 3 cuotas con Mercado Pago</p>
+        <p class="when">4 clases de 90 min · 1, 3, 10 y 15/12<br>20:30 a 22 h (hora argentina)</p>
         <div class="acts">
           <a href="#" class="pill js-wa" data-curso="Tu web con IA">Inscribirme</a>
           <button class="more js-prog" data-prog="tu-web-con-ia" data-curso="Tu web con IA">Descargar el programa</button>
         </div>
         <div class="out"><small>Salís con</small><p>La web de tu negocio, publicada y con su link.</p>
-          <ol><li>Qué tiene una web que vende</li><li>Construir con Claude Code</li><li>Hacerla tuya</li><li>Publicar en internet</li></ol></div>
+          <small class="cpc">Clase por clase, te llevás</small>
+          <ol><li><div><b>Qué tiene una web que vende</b><span>El resumen de tu negocio, y Claude Code instalado en tu compu.</span></div></li><li><div><b>Construir con Claude Code</b><span>La primera versión de tu web, funcionando.</span></div></li><li><div><b>Hacerla tuya</b><span>Tu web con tu marca, botón de WhatsApp y una lista de mejoras.</span></div></li><li><div><b>Publicar en internet</b><span>Tu web online con su link, y cómo cambiarla después.</span></div></li></ol></div>
+        <div class="not"><small>No es para vos si…</small><ul><li>No tenés computadora: este curso no se hace desde el celular.</li><li>No querés pagar Claude Pro (unos USD 20) durante el curso.</li><li>Necesitás cobrar online: eso es el Nivel 3.</li></ul></div>
       </div>
       <div class="col soon rv d2">
         <span class="tag">Próximamente · 2027</span>
@@ -481,6 +504,7 @@
         <h3>Vendé con IA</h3>
         <p class="desc">Para vender online y animarte a hacerlo solo, sobre tu negocio real.</p>
         <p class="price">$90.000</p>
+        <p class="cuotas">o hasta 3 cuotas con Mercado Pago</p>
         <p class="when">Próxima cohorte en 2027</p>
         <div class="acts">
           <a href="#" class="pill ghost js-wa" data-curso="Vendé con IA" data-aviso="1">Avisarme cuando abra</a>
@@ -488,6 +512,10 @@
         <div class="out"><small>Salís con</small><p>Tu tienda cobrando y un asistente que atiende por vos.</p>
           <ol><li>Tu tienda y tu catálogo</li><li>Cobrar con Mercado Pago</li><li>Tu asistente con IA</li><li>Publicar y salir a vender</li></ol></div>
       </div>
+    </div>
+    <div class="assure">
+      <div class="rv"><b>Garantía de la primera clase</b><p>Si después de la primera clase sentís que no es para vos, avisanos antes de la segunda y te devolvemos el 100%.</p></div>
+      <div class="rv d1"><b>¿Ya hiciste un nivel?</b><p>Tenés precio preferencial en el siguiente. Escribinos antes de inscribirte.</p><a href="#" class="more js-wa" data-curso="" data-alumni="1">Pedir mi precio</a></div>
     </div>
   </div>
 </section>
@@ -523,7 +551,7 @@
     </div>
     <div class="steps3">
       <div class="rv"><span class="n">1</span><h3>Nos contás tu caso</h3><p>Por WhatsApp: qué querés resolver y qué curso te interesa. Si no sabés cuál, te ayudamos a elegir.</p></div>
-      <div class="rv d1"><span class="n">2</span><h3>Reservás tu lugar</h3><p>Pagás con Mercado Pago o transferencia. Los cupos son chicos, así que tu lugar queda guardado al instante.</p></div>
+      <div class="rv d1"><span class="n">2</span><h3>Reservás tu lugar</h3><p>Pagás con Mercado Pago (hasta 3 cuotas) o transferencia. Los cupos son chicos, así que tu lugar queda guardado al instante.</p></div>
       <div class="rv d2"><span class="n">3</span><h3>Arrancamos el 1/12</h3><p>Te sumamos al grupo del curso y te pasamos el link de la primera clase.</p></div>
     </div>
     <div class="ctas rv"><a href="#" class="pill js-wa" data-curso="">Escribinos por WhatsApp</a></div>
@@ -564,12 +592,16 @@
     <div class="faq rv d1">
       <details><summary>¿Necesito saber algo de tecnología?</summary><p>Para Fundamentos, nada: si usás WhatsApp, podés hacer el curso. Para Tu web con IA solo tenés que manejarte con una computadora. No hace falta saber programar, ese es justamente el punto.</p></details>
       <details><summary>¿Qué es eso de traer mi caso?</summary><p>Al inscribirte nos contás qué te gustaría resolver: algo de tu trabajo, tu negocio, tus estudios o tu casa. Las prácticas de cada clase las hacés sobre eso, y en la última mostrás lo que resolviste. Si no se te ocurre nada, te damos casos reales para elegir.</p></details>
-      <details><summary>¿Qué días son las clases?</summary><p>La primera cohorte cursa el martes 1, el jueves 3, el jueves 10 y el martes 15 de diciembre. El martes 8 es feriado, así que esa clase pasa al martes siguiente.</p></details>
+      <details><summary>¿Qué días son las clases?</summary><p>La primera cohorte cursa el martes 1, el jueves 3, el jueves 10 y el martes 15 de diciembre. El martes 8 es feriado, así que esa clase pasa al martes siguiente. Fundamentos es de 19 a 20:30 y Tu web con IA de 20:30 a 22 (hora argentina).</p></details>
+      <details><summary>¿Cuál me conviene: Fundamentos o Tu web con IA?</summary><p>Depende de qué te querés llevar. Fundamentos es para aprender a usar la IA en tu día a día desde cero: pedirle bien las cosas, crear imágenes y textos, estudiar con NotebookLM. Tu web con IA es para salir con algo concreto: la página de tu negocio publicada. Si ya usás la IA seguido y lo que querés es tu web, andá directo al Nivel 2. Si dudás, escribinos y te decimos con honestidad cuál te sirve.</p></details>
+      <details><summary>¿Cuánto tiempo le tengo que dedicar?</summary><p>Las 4 clases en vivo de 90 minutos, más una tarea corta entre clase y clase sobre tu propio caso: por ejemplo, probar tus prompts o completar las secciones de tu web. Si te trabás, lo resolvés en el grupo de WhatsApp.</p></details>
       <details><summary>¿Qué necesito para cursar?</summary><p>Una computadora con internet y una cuenta de Gmail. Fundamentos se puede seguir desde el celular, pero con compu se aprovecha más. Tu web con IA requiere computadora.</p></details>
       <details><summary>¿Tengo que pagar alguna herramienta aparte?</summary><p>En Fundamentos usamos las versiones gratuitas de ChatGPT y NotebookLM. En Tu web con IA trabajamos con Claude Code, que necesita una suscripción de Claude (plan Pro, alrededor de USD 20 por mes) durante el curso. La paga cada alumno y la podés dar de baja al terminar. Publicar la web en GitHub y Vercel es gratis.</p></details>
       <details><summary>¿Y si falto a una clase?</summary><p>Todas las clases quedan grabadas. Te pasamos la grabación y podés hacer tus preguntas en el grupo de WhatsApp para ponerte al día.</p></details>
       <details><summary>¿Me dan certificado?</summary><p>Sí. Al terminar recibís un certificado digital de Tecla con tu nombre, el curso y las horas cursadas. Para obtenerlo tenés que asistir en vivo al menos a 3 de las 4 clases y mostrar tu caso resuelto en la última. Es un certificado de finalización emitido por Tecla, no un título oficial.</p></details>
-      <details><summary>¿Cómo se paga?</summary><p>Con Mercado Pago o transferencia bancaria. Cuando nos escribís te pasamos los datos.</p></details>
+      <details><summary>¿Cómo se paga?</summary><p>Con Mercado Pago, en hasta 3 cuotas, o por transferencia bancaria. Cuando nos escribís te pasamos los datos.</p></details>
+      <details><summary>¿Y si no me convence?</summary><p>Si después de la primera clase sentís que el curso no es para vos, avisanos antes de la segunda y te devolvemos el 100%. Además, tenés 10 días corridos desde que te inscribiste para arrepentirte de la compra: lo pedís desde el <a class="more" href="/arrepentimiento/" style="font-size:inherit">botón de arrepentimiento</a>, al pie de la página.</p></details>
+      <details><summary>Ya hice un curso con ustedes, ¿tengo algún beneficio?</summary><p>Sí. Si hiciste un nivel, tenés precio preferencial en el siguiente. Escribinos por WhatsApp antes de inscribirte.</p></details>
     </div>
   </div>
 </section>
@@ -582,13 +614,14 @@
     <h2 class="h-xl rv d1">¿Qué vas a resolver?</h2>
     <p class="sub rv d2" style="margin:24px auto 0">Contanos tu caso y reservá tu lugar en la primera cohorte. Los cupos son chicos.</p>
     <div class="ctas rv d3"><a href="#" class="pill light js-wa" data-curso="">Quiero mi lugar</a></div>
+    <p class="next rv"><button class="more js-prog" data-mode="aviso" data-curso="Próxima cohorte">¿No llegás en diciembre? Te avisamos de la próxima cohorte</button></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
     <span>Tecla · Cursos de IA en vivo · Buenos Aires · 2026</span>
-    <span><a href="/soporte">Soporte técnico</a> · <a href="/docentes">Para docentes</a> · <a href="#" class="js-wa" data-curso="">WhatsApp 11 3922-9068</a></span>
+    <span><a href="/soporte">Soporte técnico</a> · <a href="/docentes">Para docentes</a> · <a href="#" class="js-wa" data-curso="">WhatsApp 11 3922-9068</a> · <a href="/arrepentimiento/">Botón de arrepentimiento</a></span>
   </div>
 </footer>
 
@@ -598,19 +631,19 @@
     <button class="mx" id="pmClose" aria-label="Cerrar">×</button>
     <div id="pmForm">
       <h3 id="pmTitle">Descargá el programa.</h3>
-      <p class="s"><b id="pmCurso">Fundamentos de IA</b>, clase por clase: qué ves, qué necesitás y qué te llevás.</p>
+      <p class="s" id="pmS"><b id="pmCurso">Fundamentos de IA</b>, clase por clase: qué ves, qué necesitás y qué te llevás.</p>
       <form id="pmF">
         <input name="nombre" placeholder="Tu nombre" autocomplete="name" required>
         <input name="email" type="email" placeholder="Tu email" autocomplete="email" required>
         <input name="wa" type="tel" placeholder="Tu WhatsApp (opcional)" autocomplete="tel">
-        <button class="pill" type="submit">Descargar programa</button>
+        <button class="pill" type="submit" id="pmBtn">Descargar programa</button>
       </form>
       <p class="f">Usamos tus datos solo para contarte sobre los cursos.</p>
     </div>
     <div class="done" id="pmDone" hidden>
       <div class="check"></div>
-      <h3>Tu programa está listo.</h3>
-      <p class="s">Descargalo y, si te queda alguna duda, escribinos.</p>
+      <h3 id="pmDoneT">Tu programa está listo.</h3>
+      <p class="s" id="pmDoneS">Descargalo y, si te queda alguna duda, escribinos.</p>
       <a class="pill" id="pmLink" href="#" target="_blank" rel="noopener" download style="width:100%">Descargar PDF</a>
       <p class="f"><a href="#" class="more js-wa" data-curso="" style="font-size:14px">Escribinos por WhatsApp</a></p>
     </div>
@@ -628,16 +661,17 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* links de WhatsApp */
-  function waLink(curso, aviso){
+  function waLink(curso, aviso, alumni){
     let msg;
     if (aviso) msg = `Hola! Quiero que me avisen cuando abra el curso "${curso}" de Tecla.`;
+    else if (alumni) msg = "Hola! Ya hice un curso de Tecla y quiero mi precio preferencial para el siguiente nivel. El curso que hice fue: ";
     else if (curso) msg = `Hola! Quiero inscribirme al curso "${curso}" de Tecla que arranca el 1/12. Lo que me gustaría resolver con IA es: `;
     else msg = "Hola! Quiero info sobre los cursos de IA de Tecla. Lo que me gustaría resolver es: ";
     return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   }
   document.querySelectorAll('.js-wa').forEach(a=>{
-    const curso = a.dataset.curso || '', aviso = a.dataset.aviso === '1';
-    a.href = WHATSAPP ? waLink(curso, aviso) : FORM_URL;
+    const curso = a.dataset.curso || '', aviso = a.dataset.aviso === '1', alumni = a.dataset.alumni === '1';
+    a.href = WHATSAPP ? waLink(curso, aviso, alumni) : FORM_URL;
     a.target = '_blank'; a.rel = 'noopener';
     a.addEventListener('click', ()=>{ try { gtag('event', aviso ? 'curso_aviso' : 'curso_inscripcion', {curso: curso || 'general'}); } catch(e){} });
   });
@@ -710,17 +744,26 @@
   (function(){
     const m = document.getElementById('progModal'), f = document.getElementById('pmF');
     const formBox = document.getElementById('pmForm'), done = document.getElementById('pmDone');
-    let cur = {prog:'', curso:''};
-    function open(prog, curso){
-      cur = {prog, curso};
-      document.getElementById('pmCurso').textContent = curso;
-      document.getElementById('pmLink').href = `/programas/${prog}.pdf`;
+    const $ = id=>document.getElementById(id);
+    const T = {
+      prog:  {title:$('pmTitle').textContent, s:$('pmS').innerHTML, btn:$('pmBtn').textContent, dt:$('pmDoneT').textContent, ds:$('pmDoneS').textContent},
+      aviso: {title:'Te avisamos de la próxima cohorte.', s:'Dejanos tus datos y te escribimos cuando abramos fechas nuevas.', btn:'Avisarme', dt:'Listo, te avisamos.', ds:'Cuando haya fechas nuevas, te escribimos antes que a nadie.'}
+    };
+    let cur = {prog:'', curso:'', mode:'prog'};
+    function open(prog, curso, mode){
+      mode = mode === 'aviso' ? 'aviso' : 'prog';
+      cur = {prog, curso, mode};
+      const t = T[mode];
+      $('pmTitle').textContent = t.title; $('pmS').innerHTML = t.s; $('pmBtn').textContent = t.btn;
+      $('pmDoneT').textContent = t.dt; $('pmDoneS').textContent = t.ds;
+      $('pmLink').style.display = mode === 'aviso' ? 'none' : '';
+      if (mode === 'prog'){ $('pmCurso').textContent = curso; $('pmLink').href = `/programas/${prog}.pdf`; }
       formBox.hidden = false; done.hidden = true;
       m.classList.add('open'); setTimeout(()=>f.nombre.focus(), 250);
-      try { gtag('event','programa_abrir',{curso}); } catch(e){}
+      try { gtag('event', mode === 'aviso' ? 'cohorte_aviso_abrir' : 'programa_abrir', {curso}); } catch(e){}
     }
     const close = ()=>m.classList.remove('open');
-    document.querySelectorAll('.js-prog').forEach(b=>b.addEventListener('click', ()=>open(b.dataset.prog, b.dataset.curso)));
+    document.querySelectorAll('.js-prog').forEach(b=>b.addEventListener('click', ()=>open(b.dataset.prog, b.dataset.curso, b.dataset.mode)));
     document.getElementById('pmClose').onclick = close;
     m.addEventListener('click', e=>{ if (e.target === m) close(); });
     addEventListener('keydown', e=>{ if (e.key === 'Escape') close(); });
@@ -730,9 +773,10 @@
       d.append('entry.110104213', f.nombre.value.trim());
       d.append('entry.2136733523', [f.email.value.trim(), f.wa.value.trim()].filter(Boolean).join(' · '));
       d.append('entry.263753652', 'Tecla Cursos');
-      d.append('entry.1618210654', 'Descargó el programa: ' + cur.curso);
+      const aviso = cur.mode === 'aviso';
+      d.append('entry.1618210654', aviso ? 'Quiere aviso de la próxima cohorte' : 'Descargó el programa: ' + cur.curso);
       try { fetch(FORM_POST, {method:'POST', mode:'no-cors', body:d}); } catch(err){}
-      try { gtag('event','programa_descarga',{curso:cur.curso}); } catch(err){}
+      try { gtag('event', aviso ? 'cohorte_aviso' : 'programa_descarga', {curso:cur.curso}); } catch(err){}
       formBox.hidden = true; done.hidden = false;
     });
   })();
