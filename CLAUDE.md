@@ -1,14 +1,15 @@
 # CLAUDE.md — Contexto del repo para Claude Code
 
 ## Qué es esto
-Sitio web de **Tecla**, en vivo en **https://www.somostecla.com**. Es una **landing estática de una sola página** con un **switch** entre dos unidades de negocio:
-- **Tecla Soporte** — servicio técnico informático (unidad principal, es el default del sitio).
-- **Tecla para docentes** — ayuda a docentes del sistema educativo bonaerense.
+Sitio web de **Tecla**, en vivo en **https://www.somostecla.com**. Tres unidades de negocio:
+- **Tecla Cursos** (unidad principal desde nov 2026) — cursos cortos de IA, online y en vivo, 4 clases. Es la home (`/index.html`). Inscripción por WhatsApp (constante `WHATSAPP` en el JS; si está vacía, cae al Google Form). Acento mostaza `#C99A3B`.
+- **Tecla Soporte** — servicio técnico informático. Vive en `/servicios/` con un switch.
+- **Tecla para docentes** — ayuda a docentes del sistema educativo bonaerense. También en `/servicios/`.
 
-Etapa: validación (MVP). El sitio no vende ni cobra; presenta las dos unidades y **recolecta contactos** vía Google Form.
+Etapa: validación (MVP). Soporte y Docentes recolectan contactos vía Google Form; Cursos vende por WhatsApp.
 
 ## Stack y cómo se despliega
-- **Todo vive en `index.html`**: HTML + CSS + JS en un solo archivo autocontenido. **No hay build, no hay frameworks, no hay dependencias.** No agregar React, bundlers ni npm salvo pedido explícito.
+- **Cada página es un HTML autocontenido** (HTML + CSS + JS en un solo archivo). **No hay build, no hay frameworks, no hay dependencias.** No agregar React, bundlers ni npm salvo pedido explícito.
 - **Hosting:** GitHub Pages. **Cada push a `main` publica el sitio** en 1-2 min. No hay pipeline extra.
 - **Dominio:** `somostecla.com` (archivo `CNAME`, no tocar a mano).
 - **Contactos:** los botones abren un **Google Form** (link dentro de `index.html`, buscar `docs.google.com/forms`) que guarda en una Google Sheet. Sin backend.
@@ -16,7 +17,10 @@ Etapa: validación (MVP). El sitio no vende ni cobra; presenta las dos unidades 
 
 ## Estructura
 ```
-index.html        → el sitio completo (editar acá casi todo)
+index.html        → home = Tecla Cursos
+servicios/index.html → Soporte + Docentes con switch (ex home). Usar rutas absolutas (/fotos, /logos)
+soporte/, docentes/ → redirigen a /servicios/?u=soporte|docentes (links compartidos, no borrar)
+cursos/           → redirige a / (link viejo)
 CNAME             → dominio (no tocar)
 favicon.svg / favicon-512.png → íconos de pestaña
 og-image.png      → miniatura al compartir (Open Graph)
