@@ -396,10 +396,17 @@
   .coh-days{display:flex;flex-wrap:wrap;gap:6px;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s,margin .5s var(--ease)}
   .coh-days i{font-style:normal;font-size:12.5px;font-weight:500;background:#fff;border-radius:980px;padding:5px 10px;box-shadow:0 0 0 1px var(--line2);transform:translateY(6px) scale(.92);opacity:0;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .3s}
   .coh-days i b{font-weight:600}
-  .coh:hover,.coh.open,.coh:focus-visible{background:#fff;box-shadow:0 0 0 1px var(--line2),0 18px 36px -22px rgba(20,30,60,.35);outline:none}
-  .coh:hover .cal-in,.coh.open .cal-in,.coh:focus-visible .cal-in{transform:rotateY(180deg)}
-  .coh:hover .coh-days,.coh.open .coh-days,.coh:focus-visible .coh-days{max-height:140px;opacity:1;margin-top:10px}
-  .coh:hover .coh-days i,.coh.open .coh-days i,.coh:focus-visible .coh-days i{transform:none;opacity:1}
+  .coh.open,.coh:focus-visible{background:#fff;box-shadow:0 0 0 1px var(--line2),0 18px 36px -22px rgba(20,30,60,.35);outline:none}
+  .coh.open .cal-in,.coh:focus-visible .cal-in{transform:rotateY(180deg)}
+  .coh.open .coh-days,.coh:focus-visible .coh-days{max-height:140px;opacity:1;margin-top:10px}
+  .coh.open .coh-days i,.coh:focus-visible .coh-days i{transform:none;opacity:1}
+  .coh{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  @media (hover:hover) and (pointer:fine){
+    .coh:hover{background:#fff;box-shadow:0 0 0 1px var(--line2),0 18px 36px -22px rgba(20,30,60,.35)}
+    .coh:hover .cal-in{transform:rotateY(180deg)}
+    .coh:hover .coh-days{max-height:140px;opacity:1;margin-top:10px}
+    .coh:hover .coh-days i{transform:none;opacity:1}
+  }
   .coh-days i:nth-child(2){transition-delay:.05s}.coh-days i:nth-child(3){transition-delay:.1s}.coh-days i:nth-child(4){transition-delay:.15s}.coh-days i:nth-child(n+5){transition-delay:.2s}
   .coh-more{margin-top:10px;font-size:14px}
   .fechas .more-list{display:none}
@@ -524,9 +531,20 @@
     .dots i{width:6px;height:6px;border-radius:6px;background:var(--line);transition:width .3s var(--ease),background .3s}
     .dots i.on{width:18px;background:var(--ink)}
   }
+  /* en pantallas táctiles nada se levanta con :hover (se quedaba "pegado" al deslizar) */
+  @media (hover:none), (pointer:coarse){
+    .tile:hover,.card:hover,.co:hover,.cred:hover,.logo-row img:hover,.pill:hover{transform:none}
+    .tile:hover{box-shadow:none}
+    .card:hover{box-shadow:0 0 0 1px var(--line2),0 24px 48px -32px rgba(20,30,60,.22)}
+    .co:hover{box-shadow:0 0 0 1px var(--line2)}
+  }
   .dots{display:none}
   @media(max-width:700px){
     .dots{display:flex}
+    /* carruseles: las tarjetas ya están visibles (aparece el carrusel entero, no cada tarjeta de costado) */
+    .bento,.cards,.tray{overscroll-behavior-x:contain;touch-action:pan-x pan-y;-webkit-tap-highlight-color:transparent}
+    .bento > .rv,.cards > .rv,.tray > .rv{opacity:1;transform:none;transition:none}
+    .bento > *,.cards > *,.tray > *{transition:none}
     .sbar{width:calc(100% - 20px);bottom:calc(10px + env(safe-area-inset-bottom))}
     .sbar button{padding:10px 10px 10px 16px;gap:10px;border-radius:22px}
     .sb-p{font-size:18px}
