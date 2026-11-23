@@ -3,20 +3,14 @@
 > Consolidado a partir del zip de Claude Design (logos + landing `Tecla.html`). Referencia única de marca para el sitio y las piezas.
 > **Última actualización:** 14/07/2026
 
-## Logo
+## Logo (desde 23/11/2026)
 
-Isotipo: **"T" en itálica** (tipografía Fraunces) en blanco, sobre cuadrado redondeado color petróleo (`#1E3A5F`, radio ~27%). Wordmark: "Tecla".
+Isotipo: **"T." en una tecla negra** (`#14161b`, radio ~26%) con un **resplandor de brasa naranja** que sale desde abajo a la derecha (`#ff6a1a` → `#9a2d0a`), un brillo sutil arriba, la T blanca de trazo grueso con puntas redondeadas y un **punto dorado** `#C99A3B`.
+Wordmark: **"tecla."** en minúscula, Bricolage Grotesque 700, tracking -0.045em, con el punto en dorado. Al lado, en gris, la unidad: *cursos*, *aula*.
 
-Variantes disponibles (en `logo/`):
-
-| Archivo | Uso |
-|---|---|
-| `tecla-mark.svg` | Solo isotipo (la "T"). Favicon, avatar, app icon. |
-| `tecla-wordmark.svg` | Solo texto "Tecla". |
-| `tecla-lockup-light.svg` | Isotipo + wordmark para fondos claros. Uso principal. |
-| `tecla-lockup-dark.svg` | Para fondos oscuros. |
-| `tecla-lockup-mono.svg` | Monocromo (una tinta). |
-| `tecla-lockup-transparent.svg` | Fondo transparente. |
+- Archivo maestro: `logo/tecla-mark.svg` (también `favicon.svg` y `favicon-512.png`).
+- En las páginas se usa como `<img src="/logo/tecla-mark.svg">`.
+- La versión anterior (T itálica Fraunces sobre petróleo) quedó en desuso; los `logo/tecla-lockup-*.svg` son históricos.
 
 ## Paleta
 

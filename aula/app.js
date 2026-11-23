@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=5';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=6';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -16,7 +16,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 2400); };
 const isAdmin = u => !!u && ADMINS.includes(u.email.toLowerCase());
 
-const LOGO = c => `<svg viewBox="0 0 240 240"><rect width="240" height="240" rx="64.8" fill="${c}"/><path d="M538 1425Q596 1425 665.5 1414.5Q735 1404 807.5 1388.5Q880 1373 947.0 1357.0Q1014 1341 1068.5 1330.5Q1123 1320 1156 1320Q1191 1320 1210.5 1332.5Q1230 1345 1238 1368Q1243 1386 1243.0 1405.0Q1243 1424 1245 1444Q1252 1484 1277.0 1509.5Q1302 1535 1351 1535Q1392 1535 1419.0 1505.5Q1446 1476 1445 1418Q1444 1328 1382.5 1273.0Q1321 1218 1218 1218Q1173 1218 1106.5 1230.5Q1040 1243 964.0 1261.5Q888 1280 811.0 1298.0Q734 1316 667.0 1328.5Q600 1341 554 1341Q475 1341 440.0 1313.5Q405 1286 404 1237Q403 1213 409.0 1194.0Q415 1175 421.5 1156.5Q428 1138 428 1114Q427 1075 399.0 1048.0Q371 1021 326 1021Q272 1022 240.0 1062.0Q208 1102 211 1171Q213 1243 251.0 1300.5Q289 1358 361.5 1391.5Q434 1425 538 1425ZM670 160Q662 132 670.5 118.0Q679 104 699 100L769 84Q807 70 804 44Q802 22 784.0 11.0Q766 0 737 0H288Q260 0 247.5 11.0Q235 22 235 39Q236 58 249.5 69.5Q263 81 285 88L352 102Q374 107 389.5 124.5Q405 142 417 177Q429 217 450.0 290.5Q471 364 497.5 458.5Q524 553 553.0 658.0Q582 763 611.0 869.0Q640 975 666.0 1070.5Q692 1166 713.0 1242.0Q734 1318 747 1362L988 1316Q973 1270 952.0 1194.0Q931 1118 905.0 1023.0Q879 928 850.5 823.5Q822 719 794.0 616.5Q766 514 742.0 423.0Q718 332 699.0 263.5Q680 195 670 160Z" fill="${c === '#fff' ? '#132640' : '#fff'}" transform="translate(42.30,191.99) scale(0.09381,-0.09381)"/></svg>`;
+const LOGO = () => `<img class="mk" src="/logo/tecla-mark.svg" alt="">`;
 
 /* ---------- Cursos base (el admin los crea con un botón) ---------- */
 const BASE = {
@@ -124,7 +124,7 @@ function shell(inner, tab = ''){
   const av = u.photo ? `<img src="${esc(u.photo)}" alt="">` : esc((firstName()[0] || '?').toUpperCase());
   $app.innerHTML = `
   <header class="top">
-    <a class="brand" href="#/">${LOGO('#1E3A5F')}Tecla <i>aula</i></a>
+    <a class="brand" href="#/">${LOGO()}<span class="wm">tecla<b>.</b></span><i>aula</i></a>
     <nav><a href="#/" class="${tab==='cursos'?'on':''}">Mis cursos</a>${isAdmin(u)?`<a href="#/admin" class="${tab==='admin'?'on':''}">Admin</a>`:''}</nav>
     <div class="me">${DEMO?'<span class="demo-tag">Modo demo</span>':''}<span>${esc(u.email)}</span><div class="av">${av}</div><button class="pill light sm" id="out">Salir</button></div>
   </header>
@@ -137,7 +137,7 @@ function viewLogin(){
   $app.innerHTML = `
   <div class="login">
     <div class="login-l">
-      <a class="brand" href="/">${LOGO('#1E3A5F')}Tecla <i>aula</i></a>
+      <a class="brand" href="/">${LOGO()}<span class="wm">tecla<b>.</b></span><i>aula</i></a>
       <div class="lbox">
         <h1>Iniciar sesión</h1>
         <p>Entrá con el Gmail con el que te inscribiste a tu curso.</p>
@@ -153,7 +153,7 @@ function viewLogin(){
 function viewNotEnrolled(){
   const msg = encodeURIComponent(`Hola! Ya me inscribí a un curso de Tecla pero no puedo entrar al aula con ${S.user.email}`);
   $app.innerHTML = `<div class="notice">
-    <a class="brand" href="/" style="justify-content:center;margin-bottom:40px">${LOGO('#1E3A5F')}Tecla <i>aula</i></a>
+    <a class="brand" href="/" style="justify-content:center;margin-bottom:40px">${LOGO()}<span class="wm">tecla<b>.</b></span><i>aula</i></a>
     <h1>Tu cuenta todavía no está habilitada.</h1>
     <p>Entraste como <b>${esc(S.user.email)}</b>. Si ya pagaste tu curso, escribinos y te habilitamos en el día. Si te inscribiste con otro mail, salí y entrá con ese.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
@@ -281,7 +281,7 @@ async function viewUnidad(cid, uid){
 
 function certHTML(nombre, curso){
   return `<div class="cert-wrap"><div class="cert-frame" id="cf"><div class="cert-doc" id="cd"><div class="cd-glow"></div>
-    <div class="cd-top"><div class="cd-brand">${LOGO('#fff')}Tecla <i>cursos</i></div><span class="cd-kind">Certificado de finalización</span></div>
+    <div class="cd-top"><div class="cd-brand">${LOGO()}<span class="wm">tecla<b>.</b></span><i>cursos</i></div><span class="cd-kind">Certificado de finalización</span></div>
     <div class="cd-body"><span class="cd-small">Se otorga a</span><p class="cd-name">${esc(nombre)}</p><span class="cd-small">por completar el curso </span><p class="cd-course">${esc(curso.titulo)}</p></div>
     <div class="cd-foot"><div><small>Duración</small>${esc(curso.horas || 6)} horas en vivo</div><div><small>Cohorte</small>${esc(curso.cohorte || '')}</div><div><small>Proyecto final</small>Caso resuelto</div>
       <div class="cd-sign"><span class="sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div></div></div></div>`;
@@ -414,7 +414,7 @@ addEventListener('unhandledrejection', e => {
 /* ---------- Arranque ---------- */
 (async () => {
   if (!DEMO && !READY){
-    $app.innerHTML = `<div class="notice"><a class="brand" href="/" style="justify-content:center;margin-bottom:40px">${LOGO('#1E3A5F')}Tecla <i>aula</i></a><h1>El aula abre pronto.</h1><p>Cuando arranque tu curso vas a entrar acá con tu Gmail.</p><a class="pill" href="/">Volver a Tecla</a></div>`;
+    $app.innerHTML = `<div class="notice"><a class="brand" href="/" style="justify-content:center;margin-bottom:40px">${LOGO()}<span class="wm">tecla<b>.</b></span><i>aula</i></a><h1>El aula abre pronto.</h1><p>Cuando arranque tu curso vas a entrar acá con tu Gmail.</p><a class="pill" href="/">Volver a Tecla</a></div>`;
     return;
   }
   api = DEMO ? demoApi() : await firebaseApi();

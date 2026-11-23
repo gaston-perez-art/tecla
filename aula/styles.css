@@ -40,9 +40,11 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;line-h
 .login-r::after{content:"";position:absolute;right:-120px;bottom:-200px;width:620px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,154,59,.35),rgba(123,92,196,.18) 55%,transparent 75%)}
 .login-r h2{position:relative;z-index:1;font-size:46px;max-width:460px}
 .login-r h2 em{font-style:normal;color:#e2c27c}
-.brand{display:flex;align-items:center;gap:9px;font-family:Fraunces,serif;font-size:20px;font-weight:500}
-.brand svg{width:28px;height:28px;border-radius:8px}
-.brand i{color:var(--ink3);font-size:17px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .mk{width:30px;height:30px;border-radius:8px}
+.wm{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.045em;line-height:1}
+.wm b{color:var(--gold)}
+.brand i{font-style:normal;color:var(--ink3);font-size:15px;font-weight:500}
 
 /* TOPBAR */
 .top{position:sticky;top:0;z-index:20;height:58px;display:flex;align-items:center;gap:22px;padding:0 28px;background:rgba(251,251,253,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line2)}
@@ -152,9 +154,10 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;line-h
 .cert-doc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:20px;overflow:hidden;color:#fff;padding:54px 64px;display:flex;flex-direction:column;background:radial-gradient(90% 120% at 100% 0%,#2f64b0 0%,#1a3358 38%,#0f1d33 70%,#0a1422 100%);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .cd-glow{position:absolute;right:-120px;bottom:-200px;width:620px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,154,59,.38),rgba(123,92,196,.18) 55%,transparent 75%)}
 .cd-top{position:relative;display:flex;justify-content:space-between;align-items:center}
-.cd-brand{display:flex;align-items:center;gap:12px;font-family:Fraunces,serif;font-size:26px;font-weight:500}
-.cd-brand svg{width:40px;height:40px;border-radius:11px}
-.cd-brand i{color:rgba(255,255,255,.55);font-size:23px}
+.cd-brand{display:flex;align-items:center;gap:12px}
+.cd-brand .mk{width:42px;height:42px;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.cd-brand .wm{font-size:30px;color:#fff}
+.cd-brand i{font-style:normal;color:rgba(255,255,255,.55);font-size:20px;font-weight:500}
 .cd-kind{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#e2c27c}
 .cd-body{position:relative;margin:auto 0}
 .cd-small{font-size:18px;color:rgba(255,255,255,.6)}

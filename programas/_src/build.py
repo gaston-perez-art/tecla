@@ -76,9 +76,10 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;letter-spa
 .page{width:210mm;min-height:297mm;padding:18mm 18mm 16mm;position:relative;page-break-after:always;background:#FAF7F2}
 .page:last-child{page-break-after:auto}
 .cover{background:#0f1216;color:#fff;display:flex;flex-direction:column}
-.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:17pt}
-.brand svg{width:30px;height:30px;border-radius:8px}
-.brand em{font-style:italic;color:#C99A3B;font-size:15pt}
+.brand{display:flex;align-items:center;gap:10px}
+.wm{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20pt;letter-spacing:-.045em}
+.wm b{color:#C99A3B}
+.brand em{font-style:normal;color:rgba(255,255,255,.55);font-size:14pt}
 .cover .nivel{margin-top:58mm;font-weight:600;color:#C99A3B;font-size:11pt}
 .cover h1{font-size:50pt;margin:8px 0 14px}
 .cover .bajada{font-size:15pt;color:rgba(255,255,255,.78);max-width:150mm;line-height:1.4}
@@ -118,7 +119,7 @@ li{margin-bottom:4px}
 .cta{background:#25D366;color:#063b1d;border-radius:12px;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between}
 """
 
-LOGO = '<svg viewBox="0 0 240 240"><rect width="240" height="240" rx="64.8" fill="#1E3A5F"/><text x="120" y="172" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="160" fill="#fff">T</text></svg>'
+LOGO = '<img src="' + (ROOT/'logo/tecla-mark.svg').as_uri() + '" style="width:32px;height:32px;border-radius:9px">'
 
 def e(s): return html.escape(s)
 
@@ -136,10 +137,10 @@ def build(c):
     nec = "".join(f"<li>{e(x)}</li>" for x in c["necesitas"])
     foot = lambda n: f'<div class="foot"><span>Tecla Cursos · {e(c["titulo"])}</span><span>somostecla.com · {n}</span></div>'
     return f'''<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Programa · {e(c["titulo"])} · Tecla</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@1,500&display=swap" rel="stylesheet">
 <style>{CSS}</style></head><body>
 <section class="page cover">
-  <div class="brand">{LOGO} Tecla <em>cursos</em></div>
+  <div class="brand">{LOGO}<span class="wm">tecla<b>.</b></span><em>cursos</em></div>
   <p class="nivel">{e(c["nivel"])} · Programa del curso</p>
   <h1>{e(c["titulo"])}</h1>
   <p class="bajada">{e(c["bajada"])}</p>

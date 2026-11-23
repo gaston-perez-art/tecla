@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-  <rect x="0" y="0" width="240" height="240" rx="64.80000000000001" fill="#1E3A5F"></rect>
-  
-  <text x="120" y="120" font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="500" font-size="148.8" fill="#ffffff" text-anchor="middle" dominant-baseline="central">T</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs>
+    <radialGradient id="brasa" cx=".82" cy=".86" r=".75">
+      <stop offset="0" stop-color="#ff6a1a" stop-opacity=".55"/>
+      <stop offset=".45" stop-color="#9a2d0a" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#14161b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brillo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".10"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="62" fill="#14161b"/>
+  <rect width="240" height="240" rx="62" fill="url(#brasa)"/>
+  <rect width="240" height="240" rx="62" fill="url(#brillo)"/>
+  <path d="M66 80H154M110 80V170" stroke="#fff" stroke-width="34" stroke-linecap="round" fill="none"/>
+  <circle cx="176" cy="162" r="19" fill="#C99A3B"/>
+</svg>
