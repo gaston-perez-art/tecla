@@ -94,6 +94,9 @@
   .nav-links{display:flex;align-items:center;gap:28px;font-size:13px;color:var(--ink2)}
   .nav-links a:hover{color:var(--ink)}
   .nav-links .pill{font-size:13px;padding:6px 14px;color:#fff}
+  .nav-links .aula-btn{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:500;padding:5px 13px;border-radius:980px;box-shadow:inset 0 0 0 1px var(--line);transition:background .2s}
+  .nav-links .aula-btn:hover{background:var(--bg2)}
+  .nav-links .aula-btn svg{width:14px;height:14px}
 
   /* HERO */
   .hero{padding:92px 0 0;text-align:center;position:relative;overflow:hidden}
@@ -346,7 +349,9 @@
     section{padding:96px 0}
     .manifesto{padding:110px 0}
     .wrap{padding:0 20px}
-    .nav-links a:not(.pill){display:none}
+    .nav-links a:not(.pill):not(.aula-btn){display:none}
+    .nav-links .aula-btn{font-size:0;padding:7px;gap:0}
+    .nav-links .aula-btn svg{width:16px;height:16px}
     .hero{padding-top:56px}
     .device-wrap{margin-top:52px;padding:0 12px}
     .device{padding:7px 7px 9px;border-radius:14px 14px 4px 4px}
@@ -376,7 +381,7 @@
       <a href="#profe">Tu profe</a>
       <a href="#preguntas">Preguntas</a>
       <a href="/servicios/">Soporte y docentes</a>
-      <a href="/aula/">Aula</a>
+      <a href="/aula/" class="aula-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Ingresar al aula</a>
       <a href="#cursos" class="pill">Inscribirme</a>
     </div>
   </div>
