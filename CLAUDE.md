@@ -51,3 +51,6 @@ design-system.md  → guía de marca completa
 - **Testimonios:** falta material real. Gastón está reuniendo citas de docentes y clientes de soporte; cuando estén, agregar sección de testimonios (una cita con nombre de pila vale más que el claim actual "lo escuchamos de docentes de Florencio Varela").
 - **Coherencia Poder Judicial:** el logo/link del marquee es de **Nación** (`pjn.gov.ar`) pero la card de Andrés dice **Provincia de Buenos Aires**. Falta definir cuál es el correcto y alinear.
 - No romper: el switch, el sticky de contacto (en mobile abre el form directo; en desktop centra el asset), el marquee infinito, el swipe del marquee y el swipe entre unidades en mobile, y el orden de cards por unidad en mobile.
+
+## Video del hero
+`video/hero.mp4` (12 s, loop) se genera desde `_preview/hero-video.html` (línea de tiempo con `seek(t)`), grabando 360 cuadros con puppeteer y codificando con ffmpeg. `_preview/` no se publica (está en .git/info/exclude). Si cambia el aula, regenerarlo.
