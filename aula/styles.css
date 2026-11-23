@@ -148,26 +148,38 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;line-h
 .in:focus{outline:none;border-color:var(--link);box-shadow:0 0 0 4px rgba(31,95,191,.12)}
 .foot-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line2)}
 
-/* CERTIFICADO (diseñado a 1000x625 y escalado) */
+/* CERTIFICADO */
 .cert-wrap{max-width:960px;margin:10px auto 0}
-.cert-frame{position:relative;aspect-ratio:1000/625;border-radius:20px;box-shadow:0 50px 100px -40px rgba(10,20,45,.55)}
-.cert-doc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:20px;overflow:hidden;color:#fff;padding:54px 64px;display:flex;flex-direction:column;background:radial-gradient(90% 120% at 100% 0%,#2f64b0 0%,#1a3358 38%,#0f1d33 70%,#0a1422 100%);-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.cd-glow{position:absolute;right:-120px;bottom:-200px;width:620px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,154,59,.38),rgba(123,92,196,.18) 55%,transparent 75%)}
-.cd-top{position:relative;display:flex;justify-content:space-between;align-items:center}
-.cd-brand{display:flex;align-items:center;gap:12px}
-.cd-brand .mk{width:42px;height:42px;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
-.cd-brand .wm{font-size:30px;color:#fff}
-.cd-brand i{font-style:normal;color:rgba(255,255,255,.55);font-size:20px;font-weight:500}
-.cd-kind{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#e2c27c}
-.cd-body{position:relative;margin:auto 0}
-.cd-small{font-size:18px;color:rgba(255,255,255,.6)}
-.cd-name{font-family:var(--display);font-weight:600;font-size:72px;letter-spacing:-.035em;line-height:1.05;margin:4px 0 18px}
-.cd-course{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.025em;background:linear-gradient(90deg,#f0d495,#C99A3B);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
-.cd-foot{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr 1.4fr;gap:24px;align-items:end;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);font-size:18px;font-weight:500}
-.cd-foot small{display:block;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:4px}
-.cd-sign{text-align:right}
-.cd-sign .sig{display:block;font-family:'Mrs Saint Delafield',cursive;font-size:54px;line-height:.8;margin-bottom:6px;transform:rotate(-4deg);transform-origin:right bottom}
-.cd-sign b{display:block;font-size:16px;padding-top:8px;border-top:1px solid rgba(255,255,255,.35)}
+.cert-frame{position:relative;aspect-ratio:1000/625;border-radius:18px;box-shadow:0 50px 100px -40px rgba(10,10,20,.55)}
+/* CERTIFICADO Tecla (oscuro, brasa en movimiento). Diseñado a 1000x625 y escalado. */
+.tc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:18px;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;padding:58px 80px 50px;background:#0e0f13;color:#f5f5f7;font-family:Inter,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.tc-bg{position:absolute;inset:-20%;z-index:-2}
+.tc-bg span{position:absolute;border-radius:50%;filter:blur(70px)}
+.tc-bg span:nth-child(1){width:620px;height:620px;left:-120px;bottom:-260px;background:#ff6a1a;opacity:.55;animation:tcm1 16s ease-in-out infinite}
+.tc-bg span:nth-child(2){width:560px;height:560px;right:-60px;top:-220px;background:#9a2d0a;opacity:.6;animation:tcm2 20s ease-in-out infinite}
+.tc-bg span:nth-child(3){width:420px;height:420px;right:120px;bottom:-200px;background:#C99A3B;opacity:.35;animation:tcm3 24s ease-in-out infinite}
+@keyframes tcm1{50%{transform:translate(120px,60px) scale(1.15)}}
+@keyframes tcm2{0%,100%{transform:scale(1.1)}50%{transform:translate(-140px,-50px) scale(.95)}}
+@keyframes tcm3{50%{transform:translate(80px,-90px)}}
+@media (prefers-reduced-motion: reduce){.tc-bg span{animation:none}}
+.tc-grain{position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.tc-brand{display:flex;align-items:center;gap:10px}
+.tc-brand img{width:40px;height:40px;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+.tc-brand span{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.045em;line-height:1;color:#fff}
+.tc-brand b{color:#C99A3B}
+.tc-kind{margin-top:44px;font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#e2c27c}
+.tc-course{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:84px;letter-spacing:-.045em;line-height:1;margin-top:14px;color:#fff}
+.tc-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:40px;letter-spacing:-.025em;margin-top:16px;color:#fff}
+.tc-text{font-size:17px;line-height:1.6;max-width:690px;margin-top:20px;color:rgba(255,255,255,.72)}
+.tc-text b{font-weight:600;color:#fff}
+.tc-date{font-size:15px;margin-top:16px;color:rgba(255,255,255,.72)}
+.tc-foot{margin-top:auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end}
+.tc-left{text-align:left;font-size:13px;line-height:1.5;color:rgba(255,255,255,.72)}
+.tc-left b{display:block;font-size:15px;font-weight:600;color:#fff}
+.tc-sign{text-align:center;min-width:220px}
+.tc-sig{display:block;font-family:'Mrs Saint Delafield',cursive;font-size:56px;line-height:.7;transform:rotate(-5deg);margin-bottom:8px;color:#fff}
+.tc-sign b{display:block;font-size:15px;font-weight:600;padding-top:8px;border-top:1.5px solid rgba(255,255,255,.5);color:#fff}
+.tc-sign small{font-size:13px;color:rgba(255,255,255,.6)}
 .cert-actions{display:flex;justify-content:center;gap:12px;margin-top:30px;flex-wrap:wrap}
 
 /* ADMIN */
@@ -212,6 +224,6 @@ select.in{flex:0 0 auto;-webkit-appearance:none;appearance:none;padding-right:42
   body *{visibility:hidden}
   .cert-frame,.cert-frame *{visibility:visible}
   .cert-frame{position:fixed;left:0;top:0;width:1000px;box-shadow:none}
-  .cert-doc{transform:none !important}
+  .tc{transform:none !important}
   @page{size:1000px 625px;margin:0}
 }

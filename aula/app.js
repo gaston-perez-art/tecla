@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=6';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=7';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -75,7 +75,7 @@ function demoApi(){
     ]
   };
   const db = {
-    alumnos: { [me.email]: { nombre: me.name, cursos: { 'fundamentos-de-ia': { cert:false, asistencias:1 } } },
+    alumnos: { [me.email]: { nombre: me.name, cursos: { 'fundamentos-de-ia': { cert: admin, asistencias:1 } } },
                'juan@demo.com': { nombre:'Juan Pérez', cursos: { 'fundamentos-de-ia': { cert:false, asistencias:0 } } } },
     cursos: JSON.parse(JSON.stringify(BASE)),
     progreso: { [me.email]: { 'fundamentos-de-ia': { vistas: { 'm1-01':true } } },
@@ -279,12 +279,20 @@ async function viewUnidad(cid, uid){
   window.scrollTo(0, 0);
 }
 
+const MESES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 function certHTML(nombre, curso){
-  return `<div class="cert-wrap"><div class="cert-frame" id="cf"><div class="cert-doc" id="cd"><div class="cd-glow"></div>
-    <div class="cd-top"><div class="cd-brand">${LOGO()}<span class="wm">tecla<b>.</b></span><i>cursos</i></div><span class="cd-kind">Certificado de finalización</span></div>
-    <div class="cd-body"><span class="cd-small">Se otorga a</span><p class="cd-name">${esc(nombre)}</p><span class="cd-small">por completar el curso </span><p class="cd-course">${esc(curso.titulo)}</p></div>
-    <div class="cd-foot"><div><small>Duración</small>${esc(curso.horas || 6)} horas en vivo</div><div><small>Cohorte</small>${esc(curso.cohorte || '')}</div><div><small>Proyecto final</small>Caso resuelto</div>
-      <div class="cd-sign"><span class="sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div></div></div></div>`;
+  const last = curso.clases?.at(-1)?.fecha, d = last ? new Date(last) : new Date();
+  const fecha = `${d.getDate()} de ${MESES_L[d.getMonth()]} de ${d.getFullYear()}`;
+  return `<div class="cert-wrap"><div class="cert-frame" id="cf"><div class="tc" id="cd">
+    <div class="tc-bg"><span></span><span></span><span></span></div><div class="tc-grain"></div>
+    <div class="tc-brand"><img src="/logo/tecla-mark.svg" alt=""><span>tecla<b>.</b></span></div>
+    <p class="tc-kind">Certificado de finalización</p>
+    <p class="tc-course">${esc(curso.titulo)}</p>
+    <p class="tc-name">${esc(nombre)}</p>
+    <p class="tc-text">Completó con éxito su curso en Tecla, con <b>${curso.clases?.length || 4} clases en vivo</b> y <b>${esc(curso.horas || 6)} horas</b> de formación, y presentó su caso real resuelto con inteligencia artificial.</p>
+    <p class="tc-date">${fecha}</p>
+    <div class="tc-foot"><div class="tc-left"><b>Cohorte ${esc(curso.cohorte || '')}</b>somostecla.com</div><div class="tc-sign"><span class="tc-sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div>
+  </div></div></div>`;
 }
 async function viewCert(cid){
   const curso = await api.getCurso(cid), insc = S.alumno?.cursos?.[cid];

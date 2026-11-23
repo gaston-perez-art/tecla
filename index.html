@@ -255,26 +255,35 @@
   .cert-stage{margin:100px auto 0;max-width:960px;perspective:1800px}
   .cert-frame{position:relative;aspect-ratio:1000/625;transform:rotateX(9deg) rotateY(-7deg) rotateZ(1deg);transform-style:preserve-3d;transition:transform 1s var(--ease);border-radius:22px;box-shadow:0 70px 120px -50px rgba(10,20,45,.6),0 30px 60px -30px rgba(10,20,45,.35)}
   .cert-stage:hover .cert-frame{transform:none}
-  .cert-doc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:22px;overflow:hidden;color:#fff;padding:54px 64px;display:flex;flex-direction:column;
-    background:radial-gradient(90% 120% at 100% 0%,#2f64b0 0%,#1a3358 38%,#0f1d33 70%,#0a1422 100%)}
-  .cd-glow{position:absolute;right:-120px;bottom:-200px;width:620px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,154,59,.38),rgba(123,92,196,.18) 55%,transparent 75%);filter:blur(10px)}
-  .cd-mark{position:absolute;right:-20px;top:70px;width:470px;height:470px}
-  .cd-top{position:relative;display:flex;justify-content:space-between;align-items:center}
-  .cd-brand{display:flex;align-items:center;gap:12px}
-  .cd-brand img{width:42px;height:42px;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
-  .cd-brand .wm{font-size:30px;color:#fff}
-  .cd-brand i{font-style:normal;color:rgba(255,255,255,.55);font-size:20px;font-weight:500}
-  .cd-kind{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#e2c27c}
-  .cd-body{position:relative;margin:auto 0}
-  .cd-small{font-size:18px;color:rgba(255,255,255,.6)}
-  .cd-name{font-family:var(--display);font-weight:600;font-size:78px;letter-spacing:-.035em;line-height:1.05;margin:4px 0 18px}
-  .cd-course{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.025em;line-height:1.1;margin-top:4px;background:linear-gradient(90deg,#f0d495,#C99A3B);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
-  .cd-foot{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr 1.4fr;gap:24px;align-items:end;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);font-size:18px;font-weight:500}
-  .cd-foot small{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);margin-bottom:4px}
-  .cd-sign{text-align:right}
-  .cd-sign .sig{display:block;font-family:'Mrs Saint Delafield',cursive;font-size:54px;line-height:.8;color:#fff;margin-bottom:6px;transform:rotate(-4deg);transform-origin:right bottom}
-  .cd-sign b{display:block;font-weight:600;font-size:16px;padding-top:8px;border-top:1px solid rgba(255,255,255,.35)}
-  .cd-sign small{margin:2px 0 0}
+  /* CERTIFICADO Tecla (oscuro, brasa en movimiento). Diseñado a 1000x625 y escalado. */
+  .tc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:18px;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;padding:58px 80px 50px;background:#0e0f13;color:#f5f5f7;font-family:Inter,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tc-bg{position:absolute;inset:-20%;z-index:-2}
+  .tc-bg span{position:absolute;border-radius:50%;filter:blur(70px)}
+  .tc-bg span:nth-child(1){width:620px;height:620px;left:-120px;bottom:-260px;background:#ff6a1a;opacity:.55;animation:tcm1 16s ease-in-out infinite}
+  .tc-bg span:nth-child(2){width:560px;height:560px;right:-60px;top:-220px;background:#9a2d0a;opacity:.6;animation:tcm2 20s ease-in-out infinite}
+  .tc-bg span:nth-child(3){width:420px;height:420px;right:120px;bottom:-200px;background:#C99A3B;opacity:.35;animation:tcm3 24s ease-in-out infinite}
+  @keyframes tcm1{50%{transform:translate(120px,60px) scale(1.15)}}
+  @keyframes tcm2{0%,100%{transform:scale(1.1)}50%{transform:translate(-140px,-50px) scale(.95)}}
+  @keyframes tcm3{50%{transform:translate(80px,-90px)}}
+  @media (prefers-reduced-motion: reduce){.tc-bg span{animation:none}}
+  .tc-grain{position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .tc-brand{display:flex;align-items:center;gap:10px}
+  .tc-brand img{width:40px;height:40px;border-radius:11px;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+  .tc-brand span{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.045em;line-height:1;color:#fff}
+  .tc-brand b{color:#C99A3B}
+  .tc-kind{margin-top:44px;font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#e2c27c}
+  .tc-course{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:84px;letter-spacing:-.045em;line-height:1;margin-top:14px;color:#fff}
+  .tc-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:40px;letter-spacing:-.025em;margin-top:16px;color:#fff}
+  .tc-text{font-size:17px;line-height:1.6;max-width:690px;margin-top:20px;color:rgba(255,255,255,.72)}
+  .tc-text b{font-weight:600;color:#fff}
+  .tc-date{font-size:15px;margin-top:16px;color:rgba(255,255,255,.72)}
+  .tc-foot{margin-top:auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end}
+  .tc-left{text-align:left;font-size:13px;line-height:1.5;color:rgba(255,255,255,.72)}
+  .tc-left b{display:block;font-size:15px;font-weight:600;color:#fff}
+  .tc-sign{text-align:center;min-width:220px}
+  .tc-sig{display:block;font-family:'Mrs Saint Delafield',cursive;font-size:56px;line-height:.7;transform:rotate(-5deg);margin-bottom:8px;color:#fff}
+  .tc-sign b{display:block;font-size:15px;font-weight:600;padding-top:8px;border-top:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .tc-sign small{font-size:13px;color:rgba(255,255,255,.6)}
   .cert-cap{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:56px;font-size:15px;color:var(--ink2)}
   .cert-cap span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:2px}
   .fine{font-size:13px;color:var(--ink3);text-align:center;margin-top:14px}
@@ -533,25 +542,15 @@
     </div>
     <div class="cert-stage rv" aria-label="Ejemplo del certificado de finalización de Tecla Cursos">
       <div class="cert-frame" id="certFrame">
-        <div class="cert-doc" id="certDoc">
-          <div class="cd-glow"></div>
-          <svg class="cd-mark" viewBox="0 0 240 240" aria-hidden="true"><path d="M66 80H154M110 80V170" stroke="rgba(255,255,255,.028)" stroke-width="34" stroke-linecap="round" fill="none"/><circle cx="176" cy="162" r="19" fill="rgba(201,154,59,.07)"/></svg>
-          <div class="cd-top">
-            <div class="cd-brand"><img src="/logo/tecla-mark.svg" alt=""><span class="wm">tecla<b>.</b></span><i>cursos</i></div>
-            <span class="cd-kind">Certificado de finalización</span>
-          </div>
-          <div class="cd-body">
-            <span class="cd-small">Se otorga a</span>
-            <p class="cd-name">Tu nombre acá</p>
-            <span class="cd-small">por completar el curso</span>
-            <p class="cd-course">Tu web con IA</p>
-          </div>
-          <div class="cd-foot">
-            <div><small>Duración</small>6 horas en vivo</div>
-            <div><small>Cohorte</small>Diciembre 2026</div>
-            <div><small>Proyecto final</small>Caso resuelto</div>
-            <div class="cd-sign"><span class="sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div>
-          </div>
+        <div class="tc" id="certDoc">
+          <div class="tc-bg"><span></span><span></span><span></span></div><div class="tc-grain"></div>
+          <div class="tc-brand"><img src="/logo/tecla-mark.svg" alt=""><span>tecla<b>.</b></span></div>
+          <p class="tc-kind">Certificado de finalización</p>
+          <p class="tc-course">Tu web con IA</p>
+          <p class="tc-name">Tu nombre acá</p>
+          <p class="tc-text">Completó con éxito su curso en Tecla, con <b>4 clases en vivo</b> y <b>6 horas</b> de formación, y presentó su caso real resuelto con inteligencia artificial.</p>
+          <p class="tc-date">15 de diciembre de 2026</p>
+          <div class="tc-foot"><div class="tc-left"><b>Cohorte Diciembre 2026</b>somostecla.com</div><div class="tc-sign"><span class="tc-sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div>
         </div>
       </div>
     </div>
