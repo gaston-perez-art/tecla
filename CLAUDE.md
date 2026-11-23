@@ -23,6 +23,7 @@ soporte/, docentes/ → redirigen a /servicios/?u=soporte|docentes (links compar
 cursos/           → redirige a / (link viejo)
 aula/             → Mi Tecla, el aula de alumnos (vanilla JS + Firebase Auth/Firestore). Ver SETUP-aula.md. Demo: /aula/?demo
 firestore.rules   → reglas de seguridad del aula (se pegan en la consola de Firebase)
+                    Al cambiar archivos de aula/, subir el número ?v= en aula/index.html y en el import de config.js (el CDN cachea 4 h)
 arrepentimiento/  → botón de arrepentimiento (Ley 24.240 / Res. 424/2020). Linkeado desde el footer de la home. Guarda en el mismo Google Form
 CNAME             → dominio (no tocar)
 favicon.svg / favicon-512.png → íconos de pestaña
