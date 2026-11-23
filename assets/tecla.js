@@ -344,12 +344,25 @@ if (reduced) $$('.hero-video').forEach(v => { v.removeAttribute('autoplay'); v.p
 $$('.tray').forEach(track => {
   const items = [...track.children], dots = document.createElement('div');
   dots.className = 'dots'; dots.innerHTML = items.map(()=>'<i></i>').join(''); track.after(dots);
-  const upd = () => { const w = items[0].getBoundingClientRect().width + 10; const k = Math.min(items.length - 1, Math.round(track.scrollLeft / w)); [...dots.children].forEach((d,i)=>d.classList.toggle('on', i === k)); };
+  /* el último puntito se enciende al llegar al final aunque la última tarjeta no pueda quedar a la izquierda */
+  const upd = () => { const max = track.scrollWidth - track.clientWidth; const k = max <= 0 ? 0 : Math.round(track.scrollLeft / max * (items.length - 1)); [...dots.children].forEach((d,i)=>d.classList.toggle('on', i === k)); };
   track.addEventListener('scroll', upd, {passive:true}); upd();
 });
 
 /* certificado: diseñado a 1000px y escalado al ancho real */
-(() => { const f = $('#certFrame'), d = $('#certDoc'); if (!f) return; const fit = () => d.style.transform = `scale(${f.clientWidth/1000})`; fit(); addEventListener('resize', fit); })();
+(() => {
+  const f = $('#certFrame'), d = $('#certDoc'); if (!f) return;
+  const fit = () => d.style.transform = `scale(${f.clientWidth/1000})`; fit(); addEventListener('resize', fit);
+  /* hover: una luz cálida sigue al puntero y el certificado se acerca apenas hacia él (plano, sin 3D) */
+  if (reduced || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  f.addEventListener('pointermove', e => {
+    const r = f.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    f.style.setProperty('--mx', (x * 100) + '%'); f.style.setProperty('--my', (y * 100) + '%');
+    f.style.setProperty('--tx', ((x - .5) * 14).toFixed(1) + 'px'); f.style.setProperty('--ty', ((y - .5) * 10).toFixed(1) + 'px');
+    f.classList.add('lit');
+  });
+  f.addEventListener('pointerleave', () => { f.classList.remove('lit'); f.style.setProperty('--tx','0px'); f.style.setProperty('--ty','0px'); });
+})();
 
 /* manifiesto: las palabras se encienden a medida que scrolleás */
 (() => {

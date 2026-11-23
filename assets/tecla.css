@@ -241,8 +241,11 @@ nav.top.scrolled{border-bottom-color:rgba(0,0,0,.08)}
 .feat p{color:var(--ink2);font-size:16px}
 /* CERTIFICADO digital (diseñado a 1000x625 y escalado) */
 .cert-stage{margin:100px auto 0;max-width:960px;perspective:1800px}
-.cert-frame{position:relative;aspect-ratio:1000/625;transform:rotateX(9deg) rotateY(-7deg) rotateZ(1deg);transform-style:preserve-3d;transition:transform 1s var(--ease);border-radius:22px;box-shadow:0 70px 120px -50px rgba(10,20,45,.6),0 30px 60px -30px rgba(10,20,45,.35)}
-.cert-stage:hover .cert-frame{transform:none}
+.cert-frame{position:relative;aspect-ratio:1000/625;border-radius:18px;box-shadow:0 50px 100px -50px rgba(10,20,45,.55),0 24px 48px -30px rgba(10,20,45,.3);transform:translate3d(var(--tx,0),var(--ty,0),0);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.cert-frame::after{content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,214,160,.22),rgba(255,140,60,.08) 40%,transparent 70%);mix-blend-mode:screen}
+.cert-frame.lit::after{opacity:1}
+.cert-frame.lit{box-shadow:0 60px 110px -50px rgba(154,45,10,.55),0 24px 48px -30px rgba(10,20,45,.3)}
+
 /* CERTIFICADO Tecla (oscuro, brasa en movimiento). Diseñado a 1000x625 y escalado. */
 .tc{position:absolute;top:0;left:0;width:1000px;height:625px;transform-origin:0 0;border-radius:18px;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;padding:58px 80px 50px;background:#0e0f13;color:#f5f5f7;font-family:Inter,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .tc-bg{position:absolute;inset:-20%;z-index:-2}
@@ -456,7 +459,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
   .feat h3{font-size:17px}
   .feat p{font-size:14px}
   .cert-stage{margin-top:48px}
-  .cert-frame{transform:none}
+  
   .cert-cap{flex-direction:column;align-items:center;gap:8px;margin-top:34px;font-size:14px}
   summary{font-size:18px;padding:20px 0}
   .h-l{font-size:clamp(32px,9vw,40px)}
@@ -531,11 +534,11 @@ nav.top.menu-open .mbtn .h{display:none}
   nav.top.menu-open{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
   nav.top.menu-open .nav-menu{max-height:calc(100dvh - 52px);height:calc(100dvh - 52px);overflow:auto;overscroll-behavior:contain}
   .nm{padding:8px 20px 26px;display:grid;gap:2px}
-  .nm a.l{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.02em;padding:11px 0;border-bottom:1px solid var(--line2)}
+  .nm a.l{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:500;letter-spacing:-.01em;padding:14px 2px;border-bottom:1px solid var(--line2)}
   .nm a.l::after{content:"›";color:var(--ink3);font-family:Inter,sans-serif;font-weight:400}
   .nm .aula-l{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);font-weight:500;font-size:16px}
   .nm .aula-l svg{width:18px;height:18px}
-  .nm small{display:block;margin:22px 0 6px;font-size:13px;font-weight:600;color:var(--ink3)}
+  .nm small{display:block;margin:26px 2px 4px;font-size:13px;font-weight:600;color:var(--ink3)}
   .nm .unit{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--bg2);margin-top:8px}
   .nm .unit i{width:10px;height:10px;border-radius:50%;flex:none}
   .nm .unit b{display:block;font-size:15.5px;font-weight:600}
@@ -694,3 +697,25 @@ body.menu-lock{overflow:hidden}
 }
 .cl details p{padding:0;max-width:none}
 .cl .obj{margin-bottom:10px}
+
+/* ===== Pulido 23/11 ===== */
+/* hero corto: aire abajo y el halo se desvanece sin cortarse */
+.hero-s{overflow:visible;padding-bottom:40px}
+.hero-s .halo{top:160px;height:620px;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent);mask-image:radial-gradient(closest-side,#000 55%,transparent)}
+.hero-s .cred{position:relative;z-index:1}
+.catalog-sec{padding-top:110px;padding-bottom:96px}
+.catalog-sec + .mq{margin-top:0}
+/* cursada: cada pieza con su titular */
+.show-h{margin:130px auto 0;max-width:760px}
+.show-h h3{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;line-height:1.08;margin-top:4px}
+#cursada .device-wrap{margin-top:48px}
+#cursada .cert-stage{margin-top:48px}
+/* footer oscuro: sigue al cierre negro */
+footer{background:#000;color:#86868b;border-top:1px solid rgba(255,255,255,.08)}
+.foot a:hover{color:#f5f5f7}
+@media(max-width:700px){
+  .hero-s{padding-bottom:28px}
+  .catalog-sec{padding-top:72px;padding-bottom:64px}
+  .show-h{margin-top:88px}
+  #cursada .device-wrap,#cursada .cert-stage{margin-top:30px}
+}

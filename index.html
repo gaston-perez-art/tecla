@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap&text=Gast%C3%B3nP%C3%A9rez%20" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tecla.css?v=1">
+<link rel="stylesheet" href="/assets/tecla.css?v=2">
 </head>
 <body>
 
@@ -109,6 +109,7 @@
       <div class="feat rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg><h3>Certificado</h3><p>Con tu nombre, el curso y las horas. Para tu CV y tu LinkedIn.</p></div>
     </div>
   </div>
+  <div class="wrap"><div class="show-h center"><span class="eyebrow rv">Tu aula</span><h3 class="rv d1">Tus clases, tu progreso y tu material.<br>Todo en un lugar.</h3></div></div>
   <div class="device-wrap rv d3">
     <div class="float f1"><div class="faces"><img src="/fotos/gaston.jpg" alt=""></div><div><span class="live">En vivo</span><b>Gastón Pérez</b>ex Mercado Libre · tu profe</div></div>
     <div class="float f2"><span class="mini-cert"></span><div><b>Certificado incluido</b>al terminar el curso</div></div>
@@ -122,6 +123,7 @@
     <div class="base"></div>
   </div>
   <div class="wrap">
+    <div class="show-h center"><span class="eyebrow rv">Tu certificado</span><h3 class="rv d1">Con tu nombre.<br>Listo para tu LinkedIn.</h3></div>
     <div class="cert-stage rv" aria-label="Ejemplo del certificado de finalización de Tecla Cursos">
       <div class="cert-frame" id="certFrame">
         <div class="tc" id="certDoc">
@@ -175,7 +177,7 @@
 
     <div class="tray">
       <div class="co rv"><span class="co-lg"><img src="/logos/bigbox.svg" alt="Bigbox" style="height:44px"></span><b>Senior Product Owner</b><small>2026 – hoy</small></div>
-      <div class="co rv d1"><span class="co-lg"><img src="/logos/mercadolibre.svg" alt="Mercado Libre" style="height:30px"></span><b>Product Shipping Specialist</b><small>2025 – 2026</small></div>
+      <div class="co rv d1"><span class="co-lg"><img src="/logos/mercadolibre.svg" alt="Mercado Libre" style="height:30px"></span><b>Product Specialist</b><small>2025 – 2026</small></div>
       <div class="co rv d2"><span class="co-lg"><img src="/logos/henry.svg" alt="Henry" style="height:17px;filter:brightness(0)"></span><b>Product Manager</b><small>2022 – 2025</small></div>
       <div class="co rv d3"><span class="co-lg"><img src="/logos/rappi.svg" alt="Rappi" style="height:28px"></span><b>Product Lead</b><small>2022</small></div>
       <div class="co rv d3"><span class="co-lg"><img src="/logos/coderhouse.svg" alt="Coderhouse" style="height:28px"></span><b>Growth Product Owner</b><small>2021 – 2022 · y tutor</small></div>
@@ -205,7 +207,7 @@
 
 <footer id="foot"></footer>
 
-<script src="/assets/tecla.js?v=1"></script>
+<script src="/assets/tecla.js?v=2"></script>
 <script>
   /* FAQ de la home: la general + cuál me conviene */
   document.getElementById('faqHome').innerHTML = [['¿Necesito saber algo de tecnología?','Para Fundamentos, nada: si usás WhatsApp, podés hacer el curso. Para Tu web con IA solo tenés que manejarte con una computadora. No hace falta saber programar, ese es justamente el punto.'],['¿Cuál me conviene: Fundamentos o Tu web con IA?','Depende de qué te querés llevar. Fundamentos es para aprender a usar la IA en tu día a día desde cero. Tu web con IA es para salir con algo concreto: la página de tu negocio publicada. Si ya usás la IA seguido y lo que querés es tu web, andá directo al Nivel 2. Si dudás, escribinos.']].concat(FAQ_GENERAL).map(([q,a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('');
