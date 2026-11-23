@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=4';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=5';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -164,11 +164,13 @@ function viewNotEnrolled(){
 
 async function viewHome(){
   const ids = isAdmin(S.user) ? (await api.listCursos()).map(c => c.id) : Object.keys(S.alumno?.cursos || {});
-  const cursos = (await Promise.all(ids.map(async id => ({ id, ...(await api.getCurso(id)) })))).filter(c => c.titulo).sort((a,b)=>(a.orden||9)-(b.orden||9));
+  const cursos = (await Promise.all(ids.map(async id => { let d = null; try { d = await api.getCurso(id); } catch(e){}
+    return { id, ...(BASE[id] || {}), titulo: BASE[id]?.titulo || id.replace(/-/g,' '), ...(d || {}), pendiente: !d }; }))).sort((a,b)=>(a.orden||9)-(b.orden||9));
   const cards = cursos.map(c => {
     const first = c.clases?.[0]?.fecha, last = c.clases?.[c.clases.length-1]?.fecha;
     return `<div class="box ccard"><span class="lv">${esc(c.nivel)}</span><h2>${esc(c.titulo)}</h2>
       <p>${first ? `${new Date(first).getDate()} de ${MESES[new Date(first).getMonth()]} – ${new Date(last).getDate()} de ${MESES[new Date(last).getMonth()]} · ` : ''}${esc(c.horario || '')}</p>
+      ${c.pendiente ? '<p style="margin-top:6px"><span class="tag">Pronto vas a ver el material acá</span></p>' : ''}
       <div class="row"><a class="pill" href="#/c/${c.id}">Ir al curso</a>${S.alumno?.cursos?.[c.id]?.cert ? `<a class="pill light" href="#/c/${c.id}/cert">Ver certificado</a>` : ''}</div></div>`;
   }).join('') || `<p class="empty">Todavía no tenés cursos asignados.</p>`;
   shell(`<h1 class="hello">${greeting()}, ${esc(firstName())}</h1><div class="grid-c">${cards}</div>`, 'cursos');
@@ -176,7 +178,14 @@ async function viewHome(){
 
 async function viewCurso(id){
   const [curso, unidades, prog] = await Promise.all([api.getCurso(id), api.getUnidades(id), api.getProgreso(S.user.email)]);
-  if (!curso) return shell(`<p class="empty">No encontramos este curso.</p>`);
+  if (!curso){
+    const b = BASE[id] || { titulo: id.replace(/-/g,' ') };
+    return shell(`<a class="back" href="#/">Mis cursos</a><h1 class="hello">${esc(b.titulo)}</h1>
+      <div class="box" style="max-width:640px"><h3>Tu curso está por empezar</h3>
+      <p style="color:var(--ink2)">Ya estás inscripto/a. Muy pronto vas a ver acá las fechas, el link de cada clase en vivo y todo el material.</p>
+      ${b.clases ? `<p style="margin-top:14px"><b>Primera clase:</b> ${fdate(b.clases[0].fecha)}</p>` : ''}
+      <p style="margin-top:18px"><a class="more" href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">¿Dudas? Escribinos por WhatsApp</a></p></div>`, 'cursos');
+  }
   const us = sortU(unidades), p = prog[id] || {}, insc = S.alumno?.cursos?.[id], st = stats(curso, us, p, insc);
   const now = Date.now();
   const next = (curso.clases || []).find(c => new Date(c.fecha).getTime() + 100*60000 > now);
