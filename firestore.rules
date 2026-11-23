@@ -1,0 +1,39 @@
+rules_version = '2';
+// Reglas de seguridad de Mi Tecla (el aula). Se pegan en Firebase → Firestore → Reglas.
+// El contenido de los cursos solo lo leen alumnos inscriptos; solo el admin escribe.
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function me() { return request.auth.token.email.lower(); }
+    function isAdmin() { return signedIn() && me() in ['gaston.product.expert@gmail.com']; }
+    function alumno() { return get(/databases/$(db)/documents/alumnos/$(me())).data; }
+    function enrolled(c) {
+      return signedIn()
+        && exists(/databases/$(db)/documents/alumnos/$(me()))
+        && alumno().cursos.keys().hasAny([c]);
+    }
+
+    // Alumnos habilitados: el id del documento es el email en minúsculas.
+    match /alumnos/{email} {
+      allow read: if isAdmin() || (signedIn() && me() == email);
+      allow write: if isAdmin();
+    }
+
+    // Cursos y sus unidades (el contenido de las clases).
+    match /cursos/{c} {
+      allow read: if isAdmin() || enrolled(c);
+      allow write: if isAdmin();
+      match /unidades/{u} {
+        allow read: if isAdmin() || enrolled(c);
+        allow write: if isAdmin();
+      }
+    }
+
+    // Progreso y entregas de cada alumno: lo escribe el propio alumno.
+    match /progreso/{email} {
+      allow read: if isAdmin() || (signedIn() && me() == email);
+      allow write: if signedIn() && me() == email;
+    }
+  }
+}

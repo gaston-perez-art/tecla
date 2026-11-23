@@ -21,6 +21,8 @@ index.html        → home = Tecla Cursos
 servicios/index.html → Soporte + Docentes con switch (ex home). Usar rutas absolutas (/fotos, /logos)
 soporte/, docentes/ → redirigen a /servicios/?u=soporte|docentes (links compartidos, no borrar)
 cursos/           → redirige a / (link viejo)
+aula/             → Mi Tecla, el aula de alumnos (vanilla JS + Firebase Auth/Firestore). Ver SETUP-aula.md. Demo: /aula/?demo
+firestore.rules   → reglas de seguridad del aula (se pegan en la consola de Firebase)
 arrepentimiento/  → botón de arrepentimiento (Ley 24.240 / Res. 424/2020). Linkeado desde el footer de la home. Guarda en el mismo Google Form
 CNAME             → dominio (no tocar)
 favicon.svg / favicon-512.png → íconos de pestaña
