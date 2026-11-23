@@ -380,6 +380,13 @@ async function route(){
   }
 }
 
+/* Errores no atrapados (por ejemplo, permisos de Firestore): se muestran en pantalla */
+addEventListener('unhandledrejection', e => {
+  const c = e.reason?.code || '';
+  toast(c === 'permission-denied' ? 'Sin permiso para hacer eso. Revisá las reglas de Firestore.' : 'Algo falló: ' + (e.reason?.message || c || 'error desconocido'));
+  console.error(e.reason);
+});
+
 /* ---------- Arranque ---------- */
 (async () => {
   if (!DEMO && !READY){
