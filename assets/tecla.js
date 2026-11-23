@@ -136,12 +136,11 @@ function cover(c, extra = ''){
 function cohHTML(k, opts = {}){
   const d0 = dia(k.clases[0]), hoy = new Date().getFullYear();
   const fecha = `${DIAS_L[d0.getDay()]} ${d0.getDate()} de ${MES_L[d0.getMonth()]}${d0.getFullYear() !== hoy ? ' de ' + d0.getFullYear() : ''}`;
-  const nums = k.clases.map(d => dia(d).getDate()).join(' · ');
   const chips = k.clases.map((d,i) => { const x = dia(d); return `<i>${i+1}. <b>${DIAS_C[x.getDay()]} ${x.getDate()}/${x.getMonth()+1}</b></i>`; }).join('');
   const act = opts.curso ? `<span class="coh-act">${cupoTxt() ? `<small>${cupoTxt()}</small>` : ''}<a href="#" class="pill js-wa" data-curso="${esc(opts.curso.nombre)}" data-fecha="${k.clases[0]}">Reservar mi lugar</a></span>` : '';
   const Tag = opts.curso ? 'div' : 'button';
   return `<${Tag} ${Tag === 'button' ? 'type="button"' : 'tabindex="0"'} class="coh" aria-label="Arranca el ${fecha}. ${k.clases.length} clases, ${diasSemana(k)}, ${k.hora}">
-    <span class="coh-row"><span class="cal" aria-hidden="true"><span class="cal-in"><span class="cal-f"><small>${MES_C[d0.getMonth()]}</small><b>${d0.getDate()}</b></span><span class="cal-b"><small>Clases</small><b>${nums}</b></span></span></span>
+    <span class="coh-row"><span class="cal" aria-hidden="true"><span class="cal-in"><span class="cal-f"><small>${MES_C[d0.getMonth()]}</small><b>${d0.getDate()}</b></span><span class="cal-b"><b>${k.clases.length}</b><small>clases</small></span></span></span>
     <span class="coh-tx"><b>Arranca el ${fecha}</b><span>${diasSemana(k).replace(/^./, m=>m.toUpperCase())} · ${k.hora}</span></span>${act}</span>
     <span class="coh-days" aria-hidden="true">${chips}</span></${Tag}>`;
 }
@@ -265,7 +264,7 @@ function renderCurso(){
     ${c.clases.length ? `<section id="programa"><span class="eyebrow">El programa</span><h2>Clase por clase.</h2><div class="path">${clases}</div>
       <div class="final-p"><i></i><div><small>Última clase · Muestra de resultados</small><p>${esc(c.final)}</p></div></div>
       <p style="margin-top:18px"><button class="more js-prog" data-prog="${c.slug}" data-curso="${esc(c.nombre)}">Descargar el programa en PDF</button></p></section>` : ''}
-    <section id="fechas"><span class="eyebrow">${cupoTxt() && ks.length ? cupoTxt() : 'Fechas'}</span><h2>Próximas fechas.</h2>
+    <section id="fechas"><span class="eyebrow">Fechas</span><h2>Próximas fechas.</h2>
       <div class="dates">${ks.length ? ks.map(x => cohHTML(x, {curso:c})).join('') : `<p class="f-none">${esc(c.pronto || 'Próxima cohorte a confirmar')}. <button class="more js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme</button></p>`}</div></section>
     <section><span class="eyebrow">Qué necesitás</span><h2>Para cursar.</h2><ul class="need">${c.necesitas.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>
     <section id="cursada"><span class="eyebrow">La cursada</span><h2>Terminás con algo hecho.</h2>
