@@ -182,6 +182,15 @@
   .mini-cert::after{content:"";position:absolute;left:50%;top:13px;width:22px;height:3px;margin-left:-11px;border-radius:2px;background:#fff;box-shadow:0 6px 0 -.5px rgba(201,154,59,.9)}
   @keyframes bob{50%{transform:translateY(-8px)}}
 
+  /* BANDA DE PALABRAS: rellenas y con contorno, punto dorado */
+  .mq{margin-top:110px;padding:22px 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+  .mq-track{display:flex;align-items:center;width:max-content;animation:mq 55s linear infinite}
+  .mq-track span{font-family:var(--display);font-weight:700;font-size:clamp(40px,6.4vw,92px);line-height:1.05;letter-spacing:-.045em;color:var(--ink);white-space:nowrap;padding:0 .32em}
+  .mq-track .mq-o{color:transparent;-webkit-text-stroke:1.5px #86868b}
+  .mq-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);flex:none}
+  @keyframes mq{to{transform:translateX(-50%)}}
+  .mq + .logos{padding-top:64px}
+
   /* LOGOS */
   .logos{padding:96px 0 0}
   .logos p{text-align:center;font-size:14px;color:var(--ink3);margin-bottom:26px}
@@ -342,6 +351,7 @@
 
   @media (prefers-reduced-motion: reduce){
     .rv{opacity:1;transform:none;transition:none}
+    .mq-track{animation:none}
     .float,.badge .dot{animation:none}
     .words span{color:var(--ink)}
   }
@@ -388,6 +398,9 @@
     section{padding:76px 0}
     .manifesto{padding:90px 0}
     .logos{padding-top:64px}
+    .mq{margin-top:64px;padding:14px 0}
+    .mq-dot{width:9px;height:9px}
+    .mq-track .mq-o{-webkit-text-stroke:1.2px #86868b}
     .logo-row{gap:18px 34px}
     /* CARRUSELES: casos y cursos se deslizan y asoma la siguiente tarjeta */
     .bento,.cards{display:flex;grid-template-columns:none;grid-template-rows:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;gap:12px;margin:40px -20px 0;padding:6px 20px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:none}
@@ -454,6 +467,9 @@
     <div class="base"></div>
   </div>
 </header>
+
+<!-- BANDA DE PALABRAS -->
+<section class="mq" aria-hidden="true"><div class="mq-track"><span class="">Tu web</span><i class="mq-dot"></i><span class="mq-o">Tus posteos</span><i class="mq-dot"></i><span class="">Tus clientes</span><i class="mq-dot"></i><span class="mq-o">Tus finales</span><i class="mq-dot"></i><span class="">Tus planificaciones</span><i class="mq-dot"></i><span class="mq-o">Tu tienda</span><i class="mq-dot"></i><span class="">Tus turnos</span><i class="mq-dot"></i><span class="mq-o">Tu caso</span><i class="mq-dot"></i><span class="">Tu web</span><i class="mq-dot"></i><span class="mq-o">Tus posteos</span><i class="mq-dot"></i><span class="">Tus clientes</span><i class="mq-dot"></i><span class="mq-o">Tus finales</span><i class="mq-dot"></i><span class="">Tus planificaciones</span><i class="mq-dot"></i><span class="mq-o">Tu tienda</span><i class="mq-dot"></i><span class="">Tus turnos</span><i class="mq-dot"></i><span class="mq-o">Tu caso</span><i class="mq-dot"></i></div></section>
 
 <!-- LOGOS -->
 <div class="logos">
