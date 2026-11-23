@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=3';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=4';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -292,6 +292,16 @@ async function viewCert(cid){
 }
 
 /* ---------- Admin ---------- */
+const normWa = n => { let d = String(n || '').replace(/\D/g, ''); if (!d) return ''; if (d.startsWith('54')) return d; if (d.startsWith('0')) d = d.slice(1); return d.length === 10 ? '549' + d : d; };
+function welcomeLink(a, curso){
+  const c1 = curso?.clases?.[0];
+  const msg = `¡Hola ${(a.nombre || '').split(' ')[0]}! 🎉 Ya estás inscripto/a en *${curso?.titulo || 'tu curso'}* de Tecla.\n\n`
+    + `📚 Tu aula: https://www.somostecla.com/aula\nEntrá con "Continuar con Google" usando ${a.email}.\n\n`
+    + (c1 ? `🗓️ Primera clase: ${fdate(c1.fecha)}, por Google Meet. El link aparece en el aula.\n\n` : '')
+    + `💡 Andá pensando tu caso: eso que hoy te cuesta y querés resolver con IA.\n\nCualquier duda, escribime por acá. ¡Nos vemos!`;
+  return `https://wa.me/${normWa(a.wa)}?text=${encodeURIComponent(msg)}`;
+}
+
 async function viewAdmin(){
   if (!isAdmin(S.user)) { location.hash = '#/'; return; }
   const [alumnos, cursos, progreso] = await Promise.all([api.listAlumnos(), api.listCursos(), api.listProgreso()]);
@@ -304,18 +314,21 @@ async function viewAdmin(){
     return `<tr data-e="${esc(a.id)}" data-c="${esc(cid)}"><td><b>${esc(a.nombre || '')}</b><br><span class="note">${esc(a.id)}</span></td><td>${esc(cname(cid))}</td>
       <td>${total ? Math.round(vistas*100/total) : 0}%</td><td>${ents}</td>
       <td><input class="in asis" type="number" min="0" max="4" value="${insc.asistencias || 0}" style="width:64px"></td>
-      <td><input type="checkbox" class="cert" ${insc.cert?'checked':''}></td><td><button class="pill sm save">Guardar</button></td></tr>`;
+      <td><input type="checkbox" class="cert" ${insc.cert?'checked':''}></td><td style="white-space:nowrap"><button class="pill sm save">Guardar</button> <a class="pill light sm" href="${esc(welcomeLink({ ...a, email:a.id }, cursos.find(c=>c.id===cid) || BASE[cid]))}" target="_blank" rel="noopener" title="Enviar bienvenida por WhatsApp">Bienvenida</a></td></tr>`;
   })).join('') || `<tr><td colspan="7" class="empty">Todavía no habilitaste alumnos.</td></tr>`;
   const cursoForms = cursos.sort((a,b)=>(a.orden||9)-(b.orden||9)).map(c => `<div class="box" style="margin-bottom:14px" data-curso="${esc(c.id)}"><h3>${esc(c.titulo)} <small>${unidadesPorCurso[c.id] || 0} unidades publicadas</small></h3>
     <div class="scroll"><table class="atable"><thead><tr><th>Clase</th><th>Fecha y hora</th><th>Link de Meet</th><th>Link de la grabación</th></tr></thead><tbody>
     ${(c.clases || []).map((k, i) => `<tr data-i="${i}"><td>${k.n} · ${esc(k.titulo)}</td><td><input class="in f" type="datetime-local" value="${esc(k.fecha)}"></td><td><input class="in m" placeholder="https://meet.google.com/…" value="${esc(k.meet)}"></td><td><input class="in g" placeholder="https://drive.google.com/…" value="${esc(k.grabacion)}"></td></tr>`).join('')}
     </tbody></table></div><div style="margin-top:12px"><button class="pill sm savec">Guardar clases</button></div></div>`).join('');
+  const lw = S.lastWelcome;
+  const welcomeBox = lw ? `<div class="welcome"><span><b>✓ ${esc(lw.a.email)} habilitado en ${esc(lw.curso?.titulo || '')}.</b> Mandale la bienvenida:</span><a class="pill wa sm" href="${esc(welcomeLink(lw.a, lw.curso))}" target="_blank" rel="noopener">Enviar bienvenida por WhatsApp</a></div>` : '';
+  S.lastWelcome = null;
   const opts = cursoIds.map(id => `<option value="${esc(id)}">${esc(cname(id))}</option>`).join('');
   shell(`<div class="admin">
     <h1 class="hello">Admin</h1>
     <h2>Habilitar alumno</h2>
-    <div class="box"><form class="form-row" id="add"><input class="in" name="nombre" placeholder="Nombre y apellido (sale en el certificado)" required><input class="in" name="email" type="email" placeholder="Gmail del alumno" required><select class="in" name="curso">${opts}</select><button class="pill">Habilitar</button></form>
-      <p class="note">Habilitalo cuando confirme el pago. Tiene que entrar con ese mismo Gmail.</p></div>
+    <div class="box"><form class="form-row" id="add"><input class="in" name="nombre" placeholder="Nombre y apellido" title="Sale en el certificado" required><input class="in" name="email" type="email" placeholder="Gmail del alumno" required><input class="in" name="wa" type="tel" placeholder="WhatsApp"><select class="in" name="curso">${opts}</select><button class="pill">Habilitar</button></form>
+      <p class="note">Habilitalo cuando confirme el pago. El nombre sale en el certificado y tiene que entrar con ese mismo Gmail.</p>${welcomeBox}</div>
     <h2>Alumnos</h2>
     <div class="box scroll"><table class="atable"><thead><tr><th>Alumno</th><th>Curso</th><th>Visto</th><th>Entregas</th><th>Asistencias</th><th>Certificado</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
     <h2>Cursos y clases</h2>
@@ -328,8 +341,10 @@ async function viewAdmin(){
 
   document.getElementById('add').onsubmit = async e => {
     e.preventDefault(); const f = e.target; const email = f.email.value.trim().toLowerCase();
-    await api.saveAlumno(email, { nombre: f.nombre.value.trim(), cursos: { [f.curso.value]: { cert:false, asistencias:0 } } });
-    toast(`${email} habilitado`); route();
+    const a = { nombre: f.nombre.value.trim(), wa: f.wa.value.trim(), email };
+    await api.saveAlumno(email, { nombre: a.nombre, ...(a.wa ? { wa: a.wa } : {}), cursos: { [f.curso.value]: { cert:false, asistencias:0 } } });
+    S.lastWelcome = { a, curso: cursos.find(c => c.id === f.curso.value) || BASE[f.curso.value] };
+    route();
   };
   document.querySelectorAll('.save').forEach(b => b.onclick = async () => {
     const tr = b.closest('tr');

@@ -172,7 +172,11 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;line-h
 .admin h2:first-child{margin-top:0}
 .form-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .form-row .in{flex:1 1 180px}
-select.in{flex:0 0 auto}
+select.in{flex:0 0 auto;-webkit-appearance:none;appearance:none;padding-right:42px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236e6e73' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center}
+.welcome{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#e3f5e8;border-radius:16px;padding:14px 18px;font-size:15px}
+.welcome b{color:#1e7a3a}
+.pill.wa{background:#25D366;color:#063b1d}
+.pill.wa:hover{background:#1fc05b}
 .atable{width:100%;border-collapse:collapse;font-size:14px}
 .atable th{text-align:left;font-weight:600;color:var(--ink2);padding:10px 8px;border-bottom:1px solid var(--line2);white-space:nowrap}
 .atable td{padding:10px 8px;border-bottom:1px solid var(--line2);vertical-align:middle}
