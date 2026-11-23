@@ -6,7 +6,7 @@ service cloud.firestore {
 
     function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
     function me() { return request.auth.token.email.lower(); }
-    function isAdmin() { return signedIn() && me() in ['gaston.product.expert@gmail.com']; }
+    function isAdmin() { return signedIn() && me() in ['gaston.product.expert@gmail.com', 'andres.m.perez98@gmail.com']; }
     function alumno() { return get(/databases/$(db)/documents/alumnos/$(me())).data; }
     function enrolled(c) {
       return signedIn()

@@ -9,7 +9,7 @@ Sitio web de **Tecla**, en vivo en **https://www.somostecla.com**. Tres unidades
 Etapa: validación (MVP). Soporte y Docentes recolectan contactos vía Google Form; Cursos vende por WhatsApp.
 
 ## Stack y cómo se despliega
-- **Cada página es un HTML autocontenido** (HTML + CSS + JS en un solo archivo). **No hay build, no hay frameworks, no hay dependencias.** No agregar React, bundlers ni npm salvo pedido explícito.
+- **Sin build, sin frameworks, sin dependencias.** Home y páginas de curso comparten `assets/tecla.css` y `assets/tecla.js`; el resto de las páginas (servicios, aula, arrepentimiento) son autocontenidas. No agregar React, bundlers ni npm salvo pedido explícito.
 - **Hosting:** GitHub Pages. **Cada push a `main` publica el sitio** en 1-2 min. No hay pipeline extra.
 - **Dominio:** `somostecla.com` (archivo `CNAME`, no tocar a mano).
 - **Contactos:** los botones abren un **Google Form** (link dentro de `index.html`, buscar `docs.google.com/forms`) que guarda en una Google Sheet. Sin backend.
@@ -52,13 +52,16 @@ design-system.md  → guía de marca completa
 - **Coherencia Poder Judicial:** el logo/link del marquee es de **Nación** (`pjn.gov.ar`) pero la card de Andrés dice **Provincia de Buenos Aires**. Falta definir cuál es el correcto y alinear.
 - No romper: el switch, el sticky de contacto (en mobile abre el form directo; en desktop centra el asset), el marquee infinito, el swipe del marquee y el swipe entre unidades en mobile, y el orden de cards por unidad en mobile.
 
-## Fechas, promo y cupos (home)
-Todo sale de tres constantes al principio del `<script>` de `index.html`:
-- `CURSOS`: cada curso con su precio de lista y sus `cohortes` (fecha de cada clase + horario). Para abrir una cohorte nueva se agrega un objeto; las que ya arrancaron se ocultan solas. Se dibujan en las tarjetas (fila con calendario que gira al pasar el mouse o tocar) y en el bottom sheet.
-- `PROMO`: % y fecha límite del precio de lanzamiento. Pasada la fecha, vuelve solo al precio de lista.
-- `CUPOS`: lugares que quedan (en total). Se muestra en el hero, la barra fija, el sheet y el cierre. `null` lo oculta. Solo números reales.
-La barra fija de abajo aparece después del hero y se esconde en Cursos, el cierre y el footer. Al tocarla abre el bottom sheet para elegir curso.
-El flyer de historia (1080×1920) está en `_preview/flyer-historia.html` y se exporta a PNG con Chrome headless.
+## Cursos: catálogo + una página por curso (desde 23/11/2026)
+- **Datos y comportamiento compartidos:** `assets/tecla.js` (cursos, fechas, promo, cupos, FAQ, menú, barra fija, bottom sheet, modal) y `assets/tecla.css` (todos los estilos). Al cambiarlos, subir `?v=` en los `<link>`/`<script>` de `index.html` y de cada `cursos/<slug>/index.html`.
+- **Home (`/`)** = catálogo: hero corto con Gastón, grilla de cursos (`[data-catalogo]`), cursada con el aula y el certificado, cómo te anotás, profe, FAQ general y cierre.
+- **Página de curso (`/cursos/<slug>/`)**: shell con el `<head>` propio (título, descripción, OG, JSON-LD) y `<body data-curso="slug">`; el contenido lo arma `tecla.js` desde `CURSOS`. Desktop: columna de precio fija a la derecha. Mobile: barra fija abajo con el sheet de ese curso.
+- **Curso nuevo:** agregarlo en `CURSOS` (texto, clases, casos, FAQ, tono de portada: brasa | petroleo | dorado), copiar una carpeta de `cursos/` cambiando slug y textos del head, y sumarlo al `sitemap.xml`.
+- **Cohorte nueva:** agregar un objeto en `cohortes` con la fecha de cada clase. Las que ya arrancaron se ocultan solas.
+- **`PROMO`:** % y fecha límite del precio de lanzamiento; pasada la fecha vuelve solo al precio de lista.
+- **`CUPOS`:** lugares que quedan (en total), solo números reales; `null` lo oculta.
+- **Menú:** en mobile (≤860px) el nav queda en logo + Inscribirme + menú; adentro están los cursos, el aula y Tecla Soporte / Tecla para docentes.
+- `/cursos/` redirige a `/#cursos`. El flyer de historia (1080×1920) está en `_preview/flyer-historia.html`.
 
 ## Video del hero
 `video/hero.mp4` (12 s, loop) se genera desde `_preview/hero-video.html` (línea de tiempo con `seek(t)`), grabando 360 cuadros con puppeteer y codificando con ffmpeg. `_preview/` no se publica (está en .git/info/exclude). Si cambia el aula, regenerarlo.

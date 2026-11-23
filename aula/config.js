@@ -11,6 +11,6 @@ export const FIREBASE = {
 };
 
 /* Quiénes ven el panel de administración. Tiene que coincidir con firestore.rules. */
-export const ADMINS = ["gaston.product.expert@gmail.com"];
+export const ADMINS = ["gaston.product.expert@gmail.com", "andres.m.perez98@gmail.com"];
 
 export const WHATSAPP = "5491139229068";

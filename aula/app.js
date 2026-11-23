@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=8';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=9';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
