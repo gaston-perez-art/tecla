@@ -6,7 +6,7 @@
      #/c/:curso/u/:unidad  Lector de unidad
      #/c/:curso/cert       Certificado
      #/admin               Panel de administración */
-import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=7';
+import { FIREBASE, ADMINS, WHATSAPP } from './config.js?v=8';
 
 const $app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -126,10 +126,14 @@ function shell(inner, tab = ''){
   <header class="top">
     <a class="brand" href="#/">${LOGO()}<span class="wm">tecla<b>.</b></span><i>aula</i></a>
     <nav><a href="#/" class="${tab==='cursos'?'on':''}">Mis cursos</a>${isAdmin(u)?`<a href="#/admin" class="${tab==='admin'?'on':''}">Admin</a>`:''}</nav>
-    <div class="me">${DEMO?'<span class="demo-tag">Modo demo</span>':''}<span>${esc(u.email)}</span><div class="av">${av}</div><button class="pill light sm" id="out">Salir</button></div>
+    <div class="me">${DEMO?'<span class="demo-tag">Modo demo</span>':''}<span class="mail">${esc(u.email)}</span><button class="av" id="meBtn" aria-label="Tu cuenta" aria-expanded="false">${av}</button><button class="pill light sm out" id="out">Salir</button>
+      <div class="menu" id="menu" hidden><b>${esc(S.alumno?.nombre || u.name || '')}</b><span>${esc(u.email)}</span><button class="pill light sm" id="out2">Salir</button></div></div>
   </header>
   <main class="page">${inner}</main>`;
-  document.getElementById('out').onclick = () => api.logout();
+  document.getElementById('out').onclick = document.getElementById('out2').onclick = () => api.logout();
+  const mb = document.getElementById('meBtn'), menu = document.getElementById('menu');
+  mb.onclick = e => { e.stopPropagation(); menu.hidden = !menu.hidden; mb.setAttribute('aria-expanded', String(!menu.hidden)); };
+  document.addEventListener('click', e => { if (!menu.contains(e.target)) { menu.hidden = true; mb.setAttribute('aria-expanded','false'); } });
 }
 
 /* ---------- Vistas ---------- */
@@ -193,7 +197,7 @@ async function viewCurso(id){
   const nextBox = next ? `<div class="box"><h3>${live ? '<span class="live-dot">En vivo ahora</span>' : 'Próxima clase'}</h3>
       <div class="next"><div class="date"><b>${new Date(next.fecha).getDate()}</b><small>${MESES[new Date(next.fecha).getMonth()]}</small></div>
       <div class="info"><b>Clase ${next.n} · ${esc(next.titulo)}</b><span>${fdate(next.fecha)}</span></div>
-      ${next.meet ? `<a class="pill" href="${esc(next.meet)}" target="_blank" rel="noopener">Entrar a la clase</a>` : `<span class="tag">El link aparece antes de la clase</span>`}</div></div>`
+      ${next.meet ? `<a class="pill go" href="${esc(next.meet)}" target="_blank" rel="noopener">Entrar a la clase</a>` : `<span class="tag go">El link aparece antes de la clase</span>`}</div></div>`
     : `<div class="box"><h3>Clases</h3><p class="empty">Ya terminaron las clases en vivo de esta cohorte.</p></div>`;
   const mods = {};
   us.forEach(u => (mods[u.modulo] ||= []).push(u));
@@ -256,7 +260,8 @@ async function viewUnidad(cid, uid){
   shell(`
     <a class="back" href="#/c/${cid}">${esc(curso?.titulo || 'Volver')}</a>
     <div class="reader">
-      <aside class="side">${side}</aside>
+      <button class="side-toggle" id="sideT" aria-expanded="false"><span>Contenido del curso</span><small>${i+1} de ${us.length}</small></button>
+      <aside class="side" id="side">${side}</aside>
       <article class="doc"><span class="kick">Módulo ${u.modulo} · ${esc(curso?.clases?.find(c=>c.n==u.modulo)?.titulo || '')}</span><div id="md"></div>
         ${hasEntrega ? `<div class="entrega"><b>${ent ? 'Ya entregaste ✓' : 'Tu entrega'}</b><p>${ent ? `Enviaste <a class="more" href="${esc(ent.link)}" target="_blank" rel="noopener">tu link</a> el ${esc(ent.fecha)}. Podés reemplazarlo.` : 'Pegá el link de tu documento o de tu conversación compartida.'}</p>
           <form id="ent"><input class="in" type="url" name="link" placeholder="https://…" required value="${esc(ent?.link || '')}"><button class="pill">${ent ? 'Actualizar' : 'Entregar'}</button></form></div>` : ''}
@@ -265,6 +270,8 @@ async function viewUnidad(cid, uid){
       </article>
     </div>`, 'cursos');
   document.getElementById('md').replaceWith(renderMd(u.md));
+  const st = document.getElementById('sideT'), sd = document.getElementById('side');
+  st.onclick = () => { const o = sd.classList.toggle('open'); st.setAttribute('aria-expanded', String(o)); };
   document.getElementById('done').onclick = async () => {
     await api.patchProgreso(S.user.email, { [cid]: { vistas: { [uid]: true } } });
     location.hash = next ? `#/c/${cid}/u/${next.id}` : `#/c/${cid}`;
@@ -328,14 +335,14 @@ async function viewAdmin(){
   const rows = alumnos.flatMap(a => Object.entries(a.cursos || {}).map(([cid, insc]) => {
     const p = progreso[a.id]?.[cid] || {}, total = unidadesPorCurso[cid] || 0, vistas = Object.keys(p.vistas || {}).length;
     const ents = Object.entries(p.entregas || {}).map(([u, e]) => `<a href="${esc(e.link)}" target="_blank" rel="noopener">${esc(u)}</a>`).join('<br>') || '—';
-    return `<tr data-e="${esc(a.id)}" data-c="${esc(cid)}"><td><b>${esc(a.nombre || '')}</b><br><span class="note">${esc(a.id)}</span></td><td>${esc(cname(cid))}</td>
-      <td>${total ? Math.round(vistas*100/total) : 0}%</td><td>${ents}</td>
-      <td><input class="in asis" type="number" min="0" max="4" value="${insc.asistencias || 0}" style="width:64px"></td>
-      <td><input type="checkbox" class="cert" ${insc.cert?'checked':''}></td><td style="white-space:nowrap"><button class="pill sm save">Guardar</button> <a class="pill light sm" href="${esc(welcomeLink({ ...a, email:a.id }, cursos.find(c=>c.id===cid) || BASE[cid]))}" target="_blank" rel="noopener" title="Enviar bienvenida por WhatsApp">Bienvenida</a></td></tr>`;
+    return `<tr data-e="${esc(a.id)}" data-c="${esc(cid)}"><td class="who"><b>${esc(a.nombre || '')}</b><br><span class="note">${esc(a.id)}</span></td><td data-l="Curso">${esc(cname(cid))}</td>
+      <td data-l="Visto">${total ? Math.round(vistas*100/total) : 0}%</td><td data-l="Entregas">${ents}</td>
+      <td data-l="Asistencias"><input class="in asis" type="number" min="0" max="4" value="${insc.asistencias || 0}" style="width:64px"></td>
+      <td data-l="Certificado"><input type="checkbox" class="cert" ${insc.cert?'checked':''}></td><td class="acts" style="white-space:nowrap"><button class="pill sm save">Guardar</button> <a class="pill light sm" href="${esc(welcomeLink({ ...a, email:a.id }, cursos.find(c=>c.id===cid) || BASE[cid]))}" target="_blank" rel="noopener" title="Enviar bienvenida por WhatsApp">Bienvenida</a></td></tr>`;
   })).join('') || `<tr><td colspan="7" class="empty">Todavía no habilitaste alumnos.</td></tr>`;
   const cursoForms = cursos.sort((a,b)=>(a.orden||9)-(b.orden||9)).map(c => `<div class="box" style="margin-bottom:14px" data-curso="${esc(c.id)}"><h3>${esc(c.titulo)} <small>${unidadesPorCurso[c.id] || 0} unidades publicadas</small></h3>
     <div class="scroll"><table class="atable"><thead><tr><th>Clase</th><th>Fecha y hora</th><th>Link de Meet</th><th>Link de la grabación</th></tr></thead><tbody>
-    ${(c.clases || []).map((k, i) => `<tr data-i="${i}"><td>${k.n} · ${esc(k.titulo)}</td><td><input class="in f" type="datetime-local" value="${esc(k.fecha)}"></td><td><input class="in m" placeholder="https://meet.google.com/…" value="${esc(k.meet)}"></td><td><input class="in g" placeholder="https://drive.google.com/…" value="${esc(k.grabacion)}"></td></tr>`).join('')}
+    ${(c.clases || []).map((k, i) => `<tr data-i="${i}"><td class="who"><b>${k.n} · ${esc(k.titulo)}</b></td><td data-l="Fecha y hora"><input class="in f" type="datetime-local" value="${esc(k.fecha)}"></td><td data-l="Link de Meet"><input class="in m" placeholder="https://meet.google.com/…" value="${esc(k.meet)}"></td><td data-l="Grabación"><input class="in g" placeholder="https://drive.google.com/…" value="${esc(k.grabacion)}"></td></tr>`).join('')}
     </tbody></table></div><div style="margin-top:12px"><button class="pill sm savec">Guardar clases</button></div></div>`).join('');
   const lw = S.lastWelcome;
   const welcomeBox = lw ? `<div class="welcome"><span><b>✓ ${esc(lw.a.email)} habilitado en ${esc(lw.curso?.titulo || '')}.</b> Mandale la bienvenida:</span><a class="pill wa sm" href="${esc(welcomeLink(lw.a, lw.curso))}" target="_blank" rel="noopener">Enviar bienvenida por WhatsApp</a></div>` : '';
@@ -347,7 +354,7 @@ async function viewAdmin(){
     <div class="box"><form class="form-row" id="add"><input class="in" name="nombre" placeholder="Nombre y apellido" title="Sale en el certificado" required><input class="in" name="email" type="email" placeholder="Gmail del alumno" required><input class="in" name="wa" type="tel" placeholder="WhatsApp"><select class="in" name="curso">${opts}</select><button class="pill">Habilitar</button></form>
       <p class="note">Habilitalo cuando confirme el pago. El nombre sale en el certificado y tiene que entrar con ese mismo Gmail.</p>${welcomeBox}</div>
     <h2>Alumnos</h2>
-    <div class="box scroll"><table class="atable"><thead><tr><th>Alumno</th><th>Curso</th><th>Visto</th><th>Entregas</th><th>Asistencias</th><th>Certificado</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="box scroll"><table class="atable alumnos"><thead><tr><th>Alumno</th><th>Curso</th><th>Visto</th><th>Entregas</th><th>Asistencias</th><th>Certificado</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
     <h2>Cursos y clases</h2>
     ${cursos.length ? cursoForms : `<div class="box"><p class="empty" style="margin-bottom:12px">Todavía no creaste los cursos.</p></div>`}
     <button class="pill light sm" id="seed">${cursos.length ? 'Restaurar cursos base (no borra contenido)' : 'Crear cursos base'}</button>

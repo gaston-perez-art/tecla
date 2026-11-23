@@ -52,7 +52,14 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.03em;line-h
 .top nav a{font-size:14px;color:var(--ink2);padding:7px 12px;border-radius:10px}
 .top nav a.on{background:var(--bg2);color:var(--ink);font-weight:500}
 .top .me{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink2)}
-.av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;overflow:hidden}
+.top nav a{white-space:nowrap}
+.top .me{position:relative}
+.av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;overflow:hidden;border:0;padding:0;flex-shrink:0}
+.menu{position:absolute;right:0;top:44px;min-width:220px;max-width:calc(100vw - 32px);background:#fff;border-radius:16px;padding:16px;box-shadow:0 0 0 1px var(--line2),0 20px 40px -16px rgba(20,30,60,.3);display:flex;flex-direction:column;gap:2px;z-index:30}
+.menu[hidden]{display:none}
+.menu b{color:var(--ink);font-weight:600;font-size:15px}
+.menu span{font-size:13px;color:var(--ink2);overflow-wrap:anywhere;margin-bottom:12px}
+.side-toggle{display:none}
 .av img{width:100%;height:100%;object-fit:cover}
 .demo-tag{font-size:12px;font-weight:600;background:#fff4d6;color:#8e6a1f;padding:3px 10px;border-radius:980px}
 
@@ -217,8 +224,102 @@ select.in{flex:0 0 auto;-webkit-appearance:none;appearance:none;padding-right:42
   .hello{font-size:34px}
   .top{padding:0 16px;gap:10px}
   .top nav{margin-left:0}
-  .top .me span{display:none}
+  .top .me .mail{display:none}
   .page{padding:26px 16px 60px}
+}
+
+/* ===== MOBILE (celular) ===== */
+@media(max-width:640px){
+  html{-webkit-text-size-adjust:100%}
+  body{overflow-x:hidden}
+  /* barra: logo, pestañas y avatar; "Salir" vive en el menú del avatar */
+  .top{height:54px;gap:8px;padding:0 12px 0 14px;padding-top:env(safe-area-inset-top)}
+  .top .brand{gap:7px}
+  .top .brand .mk{width:26px;height:26px}
+  .top .brand i,.top .demo-tag,.top .out{display:none}
+  .top nav{gap:2px;margin-left:auto}
+  .top nav a{font-size:14px;padding:7px 10px}
+  .top .me{margin-left:6px}
+  .page{padding:20px 16px calc(64px + env(safe-area-inset-bottom))}
+  .hello{font-size:30px;margin-bottom:20px}
+  .back{margin-bottom:8px}
+
+  /* tarjetas más compactas */
+  .box{padding:20px 18px;border-radius:20px}
+  .box h3{font-size:18px}
+  .grid-c{grid-template-columns:1fr;gap:12px}
+  .ccard h2{font-size:23px}
+  .ccard .row{flex-wrap:wrap}
+  .ccard .row .pill{flex:1 1 auto}
+  .dash,.col{gap:12px}
+  .stat{padding:14px}
+  .stat b{font-size:28px}
+
+  /* próxima clase: fecha + título, y el botón abajo a todo el ancho */
+  .next{flex-wrap:wrap;gap:14px}
+  .next .date{width:56px;height:56px;border-radius:14px}
+  .next .date b{font-size:22px}
+  .next .info{flex:1 1 0;min-width:0}
+  .next .go{flex:1 1 100%;text-align:center}
+  .next .pill.go{padding:13px 20px}
+
+  /* lector: el índice se pliega y el texto ocupa toda la pantalla */
+  .reader{gap:0}
+  .side-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;background:var(--card);border:0;border-radius:14px;box-shadow:0 0 0 1px var(--line2);padding:13px 16px;font-size:15px;font-weight:500;color:var(--ink);margin-bottom:12px}
+  .side-toggle small{margin-left:auto;font-size:13px;color:var(--ink3);font-weight:500}
+  .side-toggle::after{content:"";width:8px;height:8px;border-right:1.8px solid var(--ink3);border-bottom:1.8px solid var(--ink3);transform:rotate(45deg) translateY(-3px);transition:transform .25s var(--ease)}
+  .side-toggle[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-1px)}
+  .side{display:none;margin-bottom:12px;padding:12px}
+  .side.open{display:block}
+  .doc{background:none;box-shadow:none;border-radius:0;padding:6px 2px 0}
+  .doc .kick{letter-spacing:.02em;text-transform:none;font-size:12.5px}
+  .md{overflow-wrap:anywhere}
+  .md h1{font-size:28px;margin-bottom:16px}
+  .md h2{font-size:21px;margin-top:28px;padding-top:20px}
+  .md h3{font-size:17.5px}
+  .md p,.md li{font-size:16px}
+  .md .prompt{padding:44px 16px 16px;margin-left:-2px;margin-right:-2px}
+  .md .prompt pre{font-size:13.5px}
+  .md .tbl{margin-left:-2px;margin-right:-2px}
+  .md table{font-size:14px;min-width:420px}
+  .md blockquote{padding:12px 16px}
+  .entrega{padding:18px}
+  .entrega form{flex-direction:column}
+  .foot-nav{flex-direction:column-reverse;align-items:stretch}
+  .foot-nav .pill{width:100%;padding:14px 20px}
+  .foot-nav > span:empty{display:none}
+
+  /* inputs a 16px: así iOS no hace zoom al tocarlos */
+  .in,select.in,.gbtn{font-size:16px}
+
+  /* certificado y botones */
+  .cert-actions{flex-direction:column;align-items:stretch}
+  .cert-frame{border-radius:10px}
+
+  /* admin: cada fila de tabla pasa a ser una tarjetita */
+  .admin h2{font-size:23px;margin:28px 0 12px}
+  .box h3 small{white-space:nowrap}
+  .atable td .in.asis{max-width:90px}
+  .form-row{flex-direction:column;align-items:stretch}
+  .form-row .in,.form-row select.in{flex:0 0 auto;width:100%}
+  .form-row[id="up"] .in{flex-basis:auto !important}
+  .welcome{flex-direction:column;align-items:flex-start}
+  .box.scroll{padding:6px 18px}
+  .atable,.atable tbody,.atable tr,.atable td{display:block;width:100%}
+  .atable thead{display:none}
+  .atable tr{padding:14px 0;border-bottom:1px solid var(--line2)}
+  .atable tr:last-child{border-bottom:0}
+  .atable td{border:0;padding:5px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .atable td.who{display:block;padding-bottom:8px}
+  .atable td[data-l]::before{content:attr(data-l);font-size:13px;color:var(--ink3);flex-shrink:0}
+  .atable td.acts{justify-content:flex-start;gap:8px;padding-top:10px}
+  .atable td .in.f,.atable td .in.m,.atable td .in.g{flex:1;min-width:0;max-width:62%}
+  .scroll{overflow:visible}
+
+  .notice{margin:8vh auto;padding:0 6px}
+  .notice h1{font-size:28px}
+  .login-l h1{font-size:36px}
+  .toast{bottom:calc(20px + env(safe-area-inset-bottom));max-width:calc(100vw - 32px);text-align:center}
 }
 @media print{
   body *{visibility:hidden}

@@ -247,8 +247,8 @@
 
   /* CURSOS: tres tarjetas iguales, filas alineadas con subgrid */
   .cursos-sec{padding:110px 0}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(6,auto);gap:0 20px;margin-top:56px}
-  .card{display:grid;grid-template-rows:subgrid;grid-row:span 6;background:var(--card);border-radius:28px;padding:32px 30px 30px;box-shadow:0 0 0 1px var(--line2),0 24px 48px -32px rgba(20,30,60,.22);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(7,auto);gap:0 20px;margin-top:56px}
+  .card{display:grid;grid-template-rows:subgrid;grid-row:span 7;background:var(--card);border-radius:28px;padding:32px 30px 30px;box-shadow:0 0 0 1px var(--line2),0 24px 48px -32px rgba(20,30,60,.22);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
   .card:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--line2),0 40px 70px -36px rgba(20,30,60,.35)}
   .c-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
   .c-top .lv{color:var(--gold)}
@@ -369,7 +369,86 @@
   .check{width:56px;height:56px;border-radius:50%;background:#30d158;margin:0 auto 18px;position:relative}
   .check::after{content:"";position:absolute;left:21px;top:13px;width:11px;height:22px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
 
+  /* PRECIO DE LANZAMIENTO */
+  .promo-tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#8e6a1f;background:#f6ecd3;padding:4px 10px;border-radius:980px;margin-bottom:12px}
+  .promo-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .price .was{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;color:var(--ink3);letter-spacing:0;margin-right:10px;vertical-align:middle;text-decoration-thickness:1.5px}
+  .buy:not(.on) .promo-tag,.buy:not(.on) .was{display:none}
+
+  /* FECHAS: una fila por cohorte. El calendario gira y muestra los 4 días de clase */
+  .fechas{margin-top:20px}
+  .fechas > small{display:block;font-size:13px;font-weight:600;color:var(--ink3);margin-bottom:8px}
+  .coh{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:var(--bg2);border:0;border-radius:18px;padding:10px;cursor:pointer;transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+  .coh + .coh{margin-top:8px}
+  .coh-row{display:flex;align-items:center;gap:14px}
+  .cal{display:block;width:54px;height:58px;flex:none;perspective:400px}
+  .cal-in{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+  .cal-f,.cal-b{position:absolute;inset:0;border-radius:13px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;overflow:hidden}
+  .cal-f{background:#fff;box-shadow:0 0 0 1px var(--line2),0 4px 10px -6px rgba(20,30,60,.25)}
+  .cal-f small{width:100%;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#fff;background:#16171b;padding:5px 0 4px;position:absolute;top:0}
+  .cal-f b{font-family:var(--display);font-weight:600;font-size:25px;letter-spacing:-.03em;margin-top:14px}
+  .cal-b{transform:rotateY(180deg);background:radial-gradient(90% 90% at 0% 100%,#ff6a1a 0%,rgba(154,45,10,.6) 50%,transparent 80%),#16171b;color:#fff;gap:3px}
+  .cal-b small{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+  .cal-b b{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:-.01em;text-align:center;line-height:1.2;padding:0 5px;word-spacing:-1px}
+  .coh-tx{min-width:0;flex:1}
+  .coh-tx b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+  .coh-tx span{display:block;font-size:13.5px;color:var(--ink2);line-height:1.35;margin-top:2px}
+  .coh-days{display:flex;flex-wrap:wrap;gap:6px;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s,margin .5s var(--ease)}
+  .coh-days i{font-style:normal;font-size:12.5px;font-weight:500;background:#fff;border-radius:980px;padding:5px 10px;box-shadow:0 0 0 1px var(--line2);transform:translateY(6px) scale(.92);opacity:0;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+  .coh-days i b{font-weight:600}
+  .coh:hover,.coh.open,.coh:focus-visible{background:#fff;box-shadow:0 0 0 1px var(--line2),0 18px 36px -22px rgba(20,30,60,.35);outline:none}
+  .coh:hover .cal-in,.coh.open .cal-in,.coh:focus-visible .cal-in{transform:rotateY(180deg)}
+  .coh:hover .coh-days,.coh.open .coh-days,.coh:focus-visible .coh-days{max-height:140px;opacity:1;margin-top:10px}
+  .coh:hover .coh-days i,.coh.open .coh-days i,.coh:focus-visible .coh-days i{transform:none;opacity:1}
+  .coh-days i:nth-child(2){transition-delay:.05s}.coh-days i:nth-child(3){transition-delay:.1s}.coh-days i:nth-child(4){transition-delay:.15s}.coh-days i:nth-child(n+5){transition-delay:.2s}
+  .coh-more{margin-top:10px;font-size:14px}
+  .fechas .more-list{display:none}
+  .fechas.all .more-list{display:block}
+  .fechas.all .coh-more{display:none}
+  .f-none{font-size:14px;color:var(--ink3);background:var(--bg2);border-radius:18px;padding:14px 16px}
+
+  /* BARRA FIJA DE INSCRIPCIÓN + BOTTOM SHEET */
+  .sbar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;width:min(640px,calc(100% - 24px));transform:translate(-50%,140%);transition:transform .55s var(--ease);pointer-events:none}
+  .sbar.show{transform:translate(-50%,0);pointer-events:auto}
+  .sbar button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:12px 12px 12px 20px;border-radius:24px;color:#fff;position:relative;overflow:hidden;isolation:isolate;
+    background:radial-gradient(70% 140% at 0% 100%,rgba(255,106,26,.38),transparent 70%),rgba(22,23,27,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 24px 50px -18px rgba(0,0,0,.55)}
+  .sbar button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .sb-tx{flex:1;min-width:0;line-height:1.25}
+  .sb-k{display:block;font-size:12px;font-weight:600;color:#e2c27c;letter-spacing:.01em}
+  .sb-p{display:block;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.025em;margin:2px 0 1px}
+  .sb-p s{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:0;margin:0 4px}
+  .sb-s{display:block;font-size:12.5px;color:rgba(255,255,255,.66)}
+  .sb-s .hot{color:#ff9a5c;font-weight:600}
+  .sb-cta{flex:none;background:#fff;color:var(--ink);font-size:15px;font-weight:600;padding:12px 18px;border-radius:980px}
+  .sheet-bg{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+  .sheet{position:fixed;left:50%;bottom:0;z-index:71;width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--bg);border-radius:28px 28px 0 0;padding:10px 20px calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,105%);transition:transform .5s cubic-bezier(.22,1,.36,1);box-shadow:0 -20px 60px -20px rgba(0,0,0,.35);overscroll-behavior:contain}
+  .sheet.open{transform:translate(-50%,0)}
+  .sheet.open ~ .sheet-bg,.sheet-bg.open{opacity:1;pointer-events:auto}
+  .sh-grab{width:40px;height:5px;border-radius:5px;background:var(--line);margin:0 auto 16px}
+  .sh-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .sh-head h3{font-size:26px}
+  .sh-head p{font-size:14px;color:var(--ink2);margin-top:4px}
+  .sh-x{flex:none;width:32px;height:32px;border-radius:50%;border:0;background:var(--bg2);color:var(--ink2);font-size:18px;cursor:pointer}
+  .sh-c{background:#fff;border-radius:22px;padding:16px;box-shadow:0 0 0 1px var(--line2)}
+  .sh-c + .sh-c{margin-top:10px}
+  .sh-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .sh-top small{font-size:12.5px;font-weight:600;color:var(--gold)}
+  .sh-c h4{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.02em;margin:2px 0 10px}
+  .sh-c .fechas{margin-top:0}
+  .sh-buy{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+  .sh-buy .p{font-family:var(--display);font-weight:600;font-size:26px;letter-spacing:-.03em;line-height:1}
+  .sh-buy .p s{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--ink3);letter-spacing:0;display:block;margin-bottom:3px}
+  .sh-buy .p small{display:block;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:0;margin-top:4px}
+  .sh-buy .pill{padding:12px 20px;font-size:15px}
+  .sh-g{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink2);margin-top:16px;line-height:1.45}
+  .sh-g svg{width:18px;height:18px;flex:none;color:var(--ok, #30a14e);margin-top:1px}
+  .sh-wa{text-align:center;margin-top:12px}
+  .sh-wa .more{font-size:15px}
+  body.sheet-open{overflow:hidden}
+  footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+
   @media (prefers-reduced-motion: reduce){
+    .cal-in,.coh-days,.coh-days i,.sbar,.sheet{transition:none}
     .rv{opacity:1;transform:none;transition:none}
     .mq-track{animation:none}
     .float,.badge .dot{animation:none}
@@ -397,6 +476,7 @@
     .nav-links .aula-btn{font-size:0;padding:7px;gap:0}
     .nav-links .aula-btn svg{width:16px;height:16px}
     .hero{padding-top:56px}
+    .badge{font-size:13px;padding:6px 13px;gap:7px;max-width:100%;text-align:left}
     .device-wrap{margin-top:52px;padding:0 12px}
     .device{padding:7px 7px 9px;border-radius:14px 14px 4px 4px}
     .base{height:10px}
@@ -445,7 +525,16 @@
     .dots i.on{width:18px;background:var(--ink)}
   }
   .dots{display:none}
-  @media(max-width:700px){ .dots{display:flex} }
+  @media(max-width:700px){
+    .dots{display:flex}
+    .sbar{width:calc(100% - 20px);bottom:calc(10px + env(safe-area-inset-bottom))}
+    .sbar button{padding:10px 10px 10px 16px;gap:10px;border-radius:22px}
+    .sb-p{font-size:18px}
+    .sb-cta{padding:11px 15px;font-size:14px}
+    .sheet{padding-left:16px;padding-right:16px}
+    .cal{width:50px;height:54px}
+    .cal-f b{font-size:23px}
+  }
 </style>
 </head>
 <body>
@@ -472,7 +561,7 @@
 <header class="hero">
   <div class="halo"></div>
   <div class="wrap">
-    <span class="badge rv"><span class="dot"></span>Primera cohorte · arranca el 1 de diciembre</span>
+    <span class="badge rv"><span class="dot"></span><span>Primera cohorte · arranca el 1 de diciembre<span class="js-cupos-badge"></span></span></span>
     <h1 class="h-xl rv d1"><span>No hacés ejercicios.</span><span class="grad">Resolvés algo de tu vida con IA.</span></h1>
     <p class="sub rv d2" style="margin:0 auto">Traé algo que te cuesta. En 4 clases en vivo lo trabajamos sobre tu caso real y te vas con la IA resolviéndolo.</p>
     <div class="ctas rv d3">
@@ -549,7 +638,8 @@
         <h3>Fundamentos de IA</h3>
         <p class="desc">Para quien nunca usó IA, o la probó y no le encontró la vuelta.</p>
         <p class="get"><small>Salís con</small>Tu caso resuelto con IA y tu kit para seguir usándola.</p>
-        <div class="buy"><p class="price">$30.000</p><p class="when">o hasta 3 cuotas con Mercado Pago<br>4 clases · 1, 3, 10 y 15/12 · 19&nbsp;h</p></div>
+        <div class="fechas" data-curso="fundamentos-de-ia"></div>
+        <div class="buy" data-lista="30000"><p class="promo-tag">Lanzamiento −20% · hasta el 28/11</p><p class="price"><s class="was">$30.000</s><span class="now">$30.000</span></p><p class="when">o hasta 3 cuotas con Mercado Pago</p></div>
         <div class="acts"><a href="#" class="pill js-wa" data-curso="Fundamentos de IA">Inscribirme</a><button class="more js-prog" data-prog="fundamentos-de-ia" data-curso="Fundamentos de IA">Ver el programa</button></div>
       </article>
       <article class="card rv d1">
@@ -557,7 +647,8 @@
         <h3>Tu web con IA</h3>
         <p class="desc">Para que tu negocio exista en internet, sin agencia y sin saber programar.</p>
         <p class="get"><small>Salís con</small>La web de tu negocio, publicada y con su link.</p>
-        <div class="buy"><p class="price">$60.000</p><p class="when">o hasta 3 cuotas con Mercado Pago<br>4 clases · 1, 3, 10 y 15/12 · 20:30&nbsp;h</p></div>
+        <div class="fechas" data-curso="tu-web-con-ia"></div>
+        <div class="buy" data-lista="60000"><p class="promo-tag">Lanzamiento −20% · hasta el 28/11</p><p class="price"><s class="was">$60.000</s><span class="now">$60.000</span></p><p class="when">o hasta 3 cuotas con Mercado Pago</p></div>
         <div class="acts"><a href="#" class="pill js-wa" data-curso="Tu web con IA">Inscribirme</a><button class="more js-prog" data-prog="tu-web-con-ia" data-curso="Tu web con IA">Ver el programa</button></div>
       </article>
       <article class="card soon rv d2">
@@ -565,7 +656,8 @@
         <h3>Vendé con IA</h3>
         <p class="desc">Para vender online y animarte a hacerlo solo, sobre tu negocio real.</p>
         <p class="get"><small>Salís con</small>Tu tienda cobrando y un asistente que atiende por vos.</p>
-        <div class="buy"><p class="price">$90.000</p><p class="when">o hasta 3 cuotas con Mercado Pago<br>Próxima cohorte en 2027</p></div>
+        <div class="fechas" data-curso="vende-con-ia"></div>
+        <div class="buy"><p class="price">$90.000</p><p class="when">o hasta 3 cuotas con Mercado Pago</p></div>
         <div class="acts"><a href="#" class="pill ghost js-wa" data-curso="Vendé con IA" data-aviso="1">Avisarme cuando abra</a><span class="more-ph"></span></div>
       </article>
     </div>
@@ -675,7 +767,7 @@
 <section class="final" id="inscripcion">
   <div class="glow"></div>
   <div class="wrap">
-    <p class="count rv" id="count">Faltan <b id="countN">9 días</b> para la primera clase</p>
+    <p class="count rv" id="count">Faltan <b id="countN">9 días</b> para la primera clase<span class="js-cupos-count"></span></p>
     <h2 class="h-xl rv d1">¿Qué vas a resolver?</h2>
     <p class="sub rv d2" style="margin:24px auto 0">Contanos tu caso y reservá tu lugar en la primera cohorte. Los cupos son chicos.</p>
     <div class="ctas rv d3"><a href="#" class="pill light js-wa" data-curso="">Quiero mi lugar</a></div>
@@ -689,6 +781,24 @@
     <span><a href="/soporte">Soporte técnico</a> · <a href="/docentes">Para docentes</a> · <a href="#" class="js-wa" data-curso="">WhatsApp 11 3922-9068</a> · <a href="/arrepentimiento/">Botón de arrepentimiento</a></span>
   </div>
 </footer>
+
+<!-- BARRA FIJA DE INSCRIPCIÓN -->
+<div class="sbar" id="sbar">
+  <button type="button" id="sbarBtn" aria-controls="sheet" aria-expanded="false">
+    <span class="sb-tx"><span class="sb-k" id="sbK"></span><span class="sb-p" id="sbP"></span><span class="sb-s" id="sbS"></span></span>
+    <span class="sb-cta">Inscribirme</span>
+  </button>
+</div>
+
+<!-- BOTTOM SHEET: elegí tu curso -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shT" aria-hidden="true">
+  <div class="sh-grab"></div>
+  <div class="sh-head"><div><h3 id="shT">Elegí tu curso.</h3><p id="shS"></p></div><button class="sh-x" id="shX" aria-label="Cerrar">×</button></div>
+  <div id="shList"></div>
+  <p class="sh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Si después de la primera clase sentís que no es para vos, te devolvemos el 100%.</span></p>
+  <p class="sh-wa"><a href="#" class="more js-wa" data-curso="">¿No sabés cuál elegir? Escribinos</a></p>
+</div>
+<div class="sheet-bg" id="sheetBg"></div>
 
 <!-- MODAL: descargar programa -->
 <div class="modal" id="progModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
@@ -725,12 +835,93 @@
   const INICIO = new Date('2026-12-01T19:00:00-03:00');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* === CURSOS, FECHAS Y PROMO ===
+     Para sumar una cohorte, agregá un objeto en "cohortes" con la fecha de cada clase (AAAA-MM-DD).
+     Las cohortes que ya empezaron se ocultan solas. La primera que queda es la "próxima fecha". */
+  const CURSOS = [
+    { id:'fundamentos-de-ia', nombre:'Fundamentos de IA', nivel:'Nivel 1 · Desde cero', lista:30000,
+      cohortes:[ { clases:['2026-12-01','2026-12-03','2026-12-10','2026-12-15'], hora:'19 a 20:30 h' } ] },
+    { id:'tu-web-con-ia', nombre:'Tu web con IA', nivel:'Nivel 2 · Emprendedores', lista:60000,
+      cohortes:[ { clases:['2026-12-01','2026-12-03','2026-12-10','2026-12-15'], hora:'20:30 a 22 h' } ] },
+    { id:'vende-con-ia', nombre:'Vendé con IA', nivel:'Nivel 3', lista:90000, pronto:'Próxima cohorte en 2027', cohortes:[] }
+  ];
+  /* Precio de lanzamiento: se apaga solo después de "hasta" */
+  const PROMO = { pct:20, hasta:new Date('2026-11-28T23:59:59-03:00'), texto:'Lanzamiento −20% · hasta el 28/11' };
+  /* Lugares que quedan (en total). Poné null para no mostrarlo. */
+  const CUPOS = 4;
+
+  const promoOn = Date.now() <= PROMO.hasta.getTime();
+  const ars = n => '$' + n.toLocaleString('es-AR');
+  const precio = c => promoOn ? Math.round(c.lista * (100 - PROMO.pct) / 100 / 100) * 100 : c.lista;
+  const DIAS_L = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'], DIAS_C = ['dom','lun','mar','mié','jue','vie','sáb'];
+  const MES_L = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'], MES_C = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  const dia = iso => new Date(iso + 'T12:00:00-03:00');
+  const proximas = c => c.cohortes.filter(k => dia(k.clases[0]).setHours(23,59) >= Date.now());
+  const diasSemana = k => [...new Set(k.clases.map(d => dia(d).getDay()))].sort((a,b)=>((a+6)%7)-((b+6)%7)).map(i => DIAS_C[i]).join(' y ');
+  const cupoTxt = () => CUPOS == null ? '' : CUPOS <= 0 ? 'Sin lugares' : CUPOS === 1 ? 'Último lugar' : `Últimos ${CUPOS} lugares`;
+
+  function cohHTML(k){
+    const d0 = dia(k.clases[0]), hoy = new Date().getFullYear();
+    const fecha = `${DIAS_L[d0.getDay()]} ${d0.getDate()} de ${MES_L[d0.getMonth()]}${d0.getFullYear() !== hoy ? ' de ' + d0.getFullYear() : ''}`;
+    const nums = k.clases.map(d => dia(d).getDate()).join(' · ');
+    const chips = k.clases.map((d,i) => { const x = dia(d); return `<i>${i+1}. <b>${DIAS_C[x.getDay()]} ${x.getDate()}/${x.getMonth()+1}</b></i>`; }).join('');
+    return `<button type="button" class="coh" aria-label="Arranca el ${fecha}. ${k.clases.length} clases, ${diasSemana(k)}, ${k.hora}">
+      <span class="coh-row"><span class="cal" aria-hidden="true"><span class="cal-in"><span class="cal-f"><small>${MES_C[d0.getMonth()]}</small><b>${d0.getDate()}</b></span><span class="cal-b"><small>Clases</small><b>${nums}</b></span></span></span>
+      <span class="coh-tx"><b>Arranca el ${fecha}</b><span>${diasSemana(k).replace(/^./, m=>m.toUpperCase())} · ${k.hora}</span></span></span>
+      <span class="coh-days" aria-hidden="true">${chips}</span></button>`;
+  }
+  function fechasHTML(c){
+    const ks = proximas(c);
+    if (!ks.length) return `<small>Próximas fechas</small><p class="f-none">${c.pronto || 'Próxima cohorte a confirmar'}</p>`;
+    const extra = ks.slice(1);
+    return `<small>${ks.length > 1 ? 'Próximas fechas' : 'Próxima fecha'}</small>${cohHTML(ks[0])}`
+      + (extra.length ? `<div class="more-list">${extra.map(cohHTML).join('')}</div><button type="button" class="more coh-more">Ver ${extra.length} ${extra.length > 1 ? 'fechas más' : 'fecha más'}</button>` : '');
+  }
+
+  /* tarjetas: precio y fechas */
+  document.querySelectorAll('.buy[data-lista]').forEach(b => {
+    const c = CURSOS.find(x => x.lista == b.dataset.lista);
+    b.classList.toggle('on', promoOn);
+    b.querySelector('.now').textContent = ars(precio(c));
+    b.querySelector('.promo-tag').textContent = PROMO.texto;
+  });
+  document.querySelectorAll('.card .fechas').forEach(f => { f.innerHTML = fechasHTML(CURSOS.find(c => c.id === f.dataset.curso)); });
+
+  /* bottom sheet: un renglón por curso con fecha abierta */
+  const abiertos = CURSOS.filter(c => proximas(c).length);
+  document.getElementById('shList').innerHTML = abiertos.map(c => `<div class="sh-c">
+      <div class="sh-top"><small>${c.nivel}</small></div><h4>${c.nombre}</h4>
+      <div class="fechas">${cohHTML(proximas(c)[0])}</div>
+      <div class="sh-buy"><p class="p">${promoOn ? `<s>${ars(c.lista)}</s>` : ''}${ars(precio(c))}<small>o hasta 3 cuotas</small></p><a href="#" class="pill js-wa" data-curso="${c.nombre}">Inscribirme</a></div></div>`).join('');
+  const minimo = abiertos.length ? abiertos.reduce((a,b) => precio(a) <= precio(b) ? a : b) : null;
+  const k0 = abiertos.length ? abiertos.map(c => proximas(c)[0]).sort((a,b) => dia(a.clases[0]) - dia(b.clases[0]))[0] : null;
+  const arranca = k0 ? `arranca el ${dia(k0.clases[0]).getDate()}/${dia(k0.clases[0]).getMonth()+1}` : '';
+  document.getElementById('shS').textContent = [promoOn ? PROMO.texto : '', cupoTxt()].filter(Boolean).join(' · ');
+  if (minimo){
+    document.getElementById('sbK').textContent = promoOn ? PROMO.texto : 'Primera cohorte';
+    document.getElementById('sbP').innerHTML = `Desde${promoOn ? ` <s>${ars(minimo.lista)}</s>` : ' '}${ars(precio(minimo))}`;
+    document.getElementById('sbS').innerHTML = [cupoTxt() ? `<span class="hot">${cupoTxt()}</span>` : '', arranca].filter(Boolean).join(' · ');
+  }
+  /* cupos en el hero y en el cierre */
+  if (cupoTxt()){
+    document.querySelectorAll('.js-cupos-badge').forEach(e => e.textContent = ' · ' + cupoTxt().toLowerCase());
+    document.querySelectorAll('.js-cupos-count').forEach(e => e.innerHTML = ` · <b>${cupoTxt().toLowerCase()}</b>`);
+  }
+
+  /* fechas: en celular se abren con un toque; "ver más fechas" */
+  document.addEventListener('click', e => {
+    const k = e.target.closest('.coh'); if (k) { k.classList.toggle('open'); try { gtag('event','fecha_ver'); } catch(_){} }
+    const m = e.target.closest('.coh-more'); if (m) m.closest('.fechas').classList.add('all');
+  });
+
   /* links de WhatsApp */
   function waLink(curso, aviso, alumni){
     let msg;
+    const c = CURSOS.find(x => x.nombre === curso), k = c && proximas(c)[0];
+    const cuando = k ? ` que arranca el ${dia(k.clases[0]).getDate()}/${dia(k.clases[0]).getMonth()+1}` : '';
     if (aviso) msg = `Hola! Quiero que me avisen cuando abra el curso "${curso}" de Tecla.`;
     else if (alumni) msg = "Hola! Ya hice un curso de Tecla y quiero mi precio preferencial para el siguiente nivel. El curso que hice fue: ";
-    else if (curso) msg = `Hola! Quiero inscribirme al curso "${curso}" de Tecla que arranca el 1/12. Lo que me gustaría resolver con IA es: `;
+    else if (curso) msg = `Hola! Quiero inscribirme al curso "${curso}" de Tecla${cuando}${promoOn && c ? ` con el precio de lanzamiento (${ars(precio(c))})` : ''}. Lo que me gustaría resolver con IA es: `;
     else msg = "Hola! Quiero info sobre los cursos de IA de Tecla. Lo que me gustaría resolver es: ";
     return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   }
@@ -748,6 +939,42 @@
   /* nav con borde al scrollear */
   const nav = document.getElementById('top');
   addEventListener('scroll', ()=>nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+  /* barra fija: aparece después del hero y se esconde donde ya hay botones de inscripción */
+  (function(){
+    const bar = document.getElementById('sbar'), btn = document.getElementById('sbarBtn');
+    const sh = document.getElementById('sheet'), bg = document.getElementById('sheetBg');
+    if (!abiertos.length){ bar.remove(); return; }
+    const vis = new Map();
+    const heroCtas = document.querySelector('.hero .ctas');
+    const hide = [document.getElementById('cursos'), document.getElementById('inscripcion'), document.querySelector('footer')];
+    const upd = () => {
+      const pastHero = heroCtas.getBoundingClientRect().bottom < 0;
+      const covered = [...vis.values()].some(Boolean);
+      bar.classList.toggle('show', pastHero && !covered && !sh.classList.contains('open'));
+    };
+    const io2 = new IntersectionObserver(es => { es.forEach(e => vis.set(e.target, e.isIntersecting)); upd(); }, {threshold:.15});
+    hide.forEach(el => el && io2.observe(el));
+    addEventListener('scroll', upd, {passive:true}); upd();
+    const open = () => {
+      sh.classList.add('open'); bg.classList.add('open'); sh.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true');
+      document.body.classList.add('sheet-open'); upd(); setTimeout(()=>document.getElementById('shX').focus(), 300);
+      try { gtag('event','sheet_abrir'); } catch(e){}
+    };
+    const close = () => {
+      sh.classList.remove('open'); bg.classList.remove('open'); sh.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false');
+      document.body.classList.remove('sheet-open'); upd();
+    };
+    btn.onclick = open; bg.onclick = close; document.getElementById('shX').onclick = close;
+    addEventListener('keydown', e => { if (e.key === 'Escape' && sh.classList.contains('open')) close(); });
+    /* arrastrar hacia abajo para cerrar */
+    let y0 = null;
+    sh.addEventListener('touchstart', e => { y0 = sh.scrollTop <= 0 ? e.touches[0].clientY : null; }, {passive:true});
+    sh.addEventListener('touchmove', e => { if (y0 == null) return; const dy = e.touches[0].clientY - y0; if (dy > 0){ sh.style.transition = 'none'; sh.style.transform = `translate(-50%,${dy}px)`; } }, {passive:true});
+    sh.addEventListener('touchend', e => { if (y0 == null) return; const dy = e.changedTouches[0].clientY - y0; sh.style.transition = ''; sh.style.transform = ''; y0 = null; if (dy > 90) close(); });
+    /* el link "Inscribirme" del menú también abre el sheet */
+    document.querySelectorAll('.nav-links .pill').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(); }));
+  })();
 
 
 
