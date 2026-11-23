@@ -335,7 +335,7 @@ footer{padding:34px 0;font-size:12px;color:var(--ink3);background:var(--bg2)}
 .promo-tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#8e6a1f;background:#f6ecd3;padding:4px 10px;border-radius:980px;margin-bottom:12px}
 .promo-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .price .was{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;color:var(--ink3);letter-spacing:0;margin-right:10px;vertical-align:middle;text-decoration-thickness:1.5px}
-.buy:not(.on) .promo-tag,.buy:not(.on) .was{display:none}
+
 
 /* FECHAS: una fila por cohorte. El calendario gira y muestra los 4 días de clase */
 .fechas{margin-top:20px}
@@ -673,7 +673,6 @@ body.menu-lock{overflow:hidden}
 .buy .price{font-family:var(--display);font-weight:600;font-size:38px;letter-spacing:-.035em;line-height:1}
 .buy .when{font-size:14px;color:var(--ink3);line-height:1.45;margin-top:8px}
 .cp-buy-m{display:none}
-.cp-buy-m .buy{background:#fff;border-radius:22px;padding:20px;box-shadow:0 0 0 1px var(--line2);margin-top:0}
 @media(max-width:980px){
   .cp{grid-template-columns:1fr;gap:0}
   .cp-side{display:none}
@@ -721,3 +720,55 @@ footer{background:#000;color:#86868b;border-top:1px solid rgba(255,255,255,.08)}
 }
 /* con el menú abierto, la barra de inscripción se esconde */
 body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
+
+/* ===== Jerarquía y pixel perfect (23/11) ===== */
+/* precio: el nuevo manda, el anterior tachado al lado; la promo es una línea, no una pastilla */
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price .was{margin:0;font-size:16px}
+.when .promo-note{display:block;color:#8e6a1f;font-weight:500;margin-bottom:2px}
+/* portada: el título vive acá (uno solo por tarjeta) */
+.cover .cv-t{font-family:var(--display);font-weight:600;font-size:clamp(30px,3.2vw,40px);letter-spacing:-.035em;line-height:1;max-width:92%;color:#fff}
+.cc-b{padding:20px 24px 24px}
+.cc .d{margin:0}
+.cc dl{margin-top:16px}
+.cc .buy{padding-top:18px}
+.cc-go{display:inline-flex;justify-content:flex-start;align-self:flex-start;margin-top:16px}
+/* página de curso */
+.back-l{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2);margin-bottom:26px}
+.back-l::before{content:"‹";font-size:18px;line-height:1;margin-top:-2px}
+.back-l:hover{color:var(--ink)}
+.cp h2{margin-bottom:26px}
+.sec-lead{font-size:18px;color:var(--ink2);line-height:1.5;max-width:640px;margin:-12px 0 24px}
+.teach{margin-top:28px}
+.buybox > .pill{width:100%}
+.buybox dl{margin:18px 0 20px}
+.buybox .bb-g{margin-top:14px}
+.cp-buy-m .buybox{position:static;box-shadow:0 0 0 1px var(--line2)}
+.dl-prog{margin-top:20px}
+.final-p{margin-top:14px}
+.cl .pr b{letter-spacing:.04em}
+/* fechas: los chips no se cortan (el anillo de 1px necesita aire dentro del contenedor que se pliega) */
+.coh-days{padding:2px 1px;margin-left:-1px;margin-right:-1px}
+.coh.open .coh-days,.coh:focus-visible .coh-days{margin-top:12px}
+@media (hover:hover) and (pointer:fine){ .coh:hover .coh-days{margin-top:12px} }
+.dates .coh-act small{white-space:nowrap}
+/* sheet */
+.sh-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.sh-top h4{margin:0}
+.sh-top .more{font-size:14px}
+.sh-buy .p{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sh-buy .p s{display:inline;margin:0;order:2}
+.sh-buy .p small{flex-basis:100%;margin-top:2px}
+/* barra fija: dos líneas, nada más */
+.sb-p{margin:0 0 2px}
+.sb-p s{margin-left:6px}
+@media(max-width:640px){
+  .back-l{margin-bottom:18px}
+  .cp h2{margin-bottom:20px}
+  .sec-lead{font-size:16.5px;margin:-8px 0 20px}
+  .cp-main > section.cp-buy-m{padding-top:22px}
+  .buybox{padding:20px;border-radius:22px}
+  .buybox .price{font-size:38px}
+}
+.sb-s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sh-buy .p small{order:3}

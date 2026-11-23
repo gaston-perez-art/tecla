@@ -110,6 +110,8 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const promoOn = Date.now() <= PROMO.hasta.getTime();
+/* día de fin de la promo en hora argentina (dd/m) */
+const promoDia = (d => `${d.getUTCDate()}/${d.getUTCMonth()+1}`)(new Date(PROMO.hasta.getTime() - 3*3600000));
 const ars = n => '$' + n.toLocaleString('es-AR');
 const precio = c => promoOn ? Math.round(c.lista * (100 - PROMO.pct) / 100 / 100) * 100 : c.lista;
 const cuota = c => ars(Math.round(precio(c) / 3 / 100) * 100);
@@ -126,20 +128,21 @@ const PAGE = document.body.dataset.curso ? CURSOS.find(c => c.slug === document.
 const abiertos = (PAGE ? [PAGE] : CURSOS).filter(c => proximas(c).length);
 
 /* === Piezas === */
-function priceHTML(c, cls = ''){
+function priceHTML(c, note = false){
   const on = promoOn && !c.pronto;
-  return `<div class="buy ${on ? 'on' : ''} ${cls}">${on ? `<p class="promo-tag">${PROMO.texto}</p>` : ''}
-    <p class="price">${on ? `<s class="was">${ars(c.lista)}</s>` : ''}<span class="now">${ars(c.pronto ? c.lista : precio(c))}</span></p>
-    <p class="when">o 3 cuotas de ${cuota(c)} con Mercado Pago</p></div>`;
+  return `<div class="buy">
+    <p class="price"><span class="now">${ars(c.pronto ? c.lista : precio(c))}</span>${on ? `<s class="was">${ars(c.lista)}</s>` : ''}</p>
+    <p class="when">${on && note ? `<span class="promo-note">Precio de lanzamiento hasta el ${promoDia}.</span> ` : ''}O 3 cuotas de ${cuota(c)} con Mercado Pago.</p></div>`;
 }
-function cover(c, extra = ''){
-  return `<div class="cover t-${c.tono} ${c.pronto ? 'soon' : ''} ${extra}"><div class="cv-top"><span>Nivel ${c.nivel} · ${esc(c.perfil)}</span>${c.pronto ? LOGO : '<span class="live">En vivo</span>'}</div><b>${esc(c.nombre)}</b></div>`;
+function cover(c){
+  return `<div class="cover t-${c.tono} ${c.pronto ? 'soon' : ''}"><div class="cv-top"><span>Nivel ${c.nivel} · ${esc(c.perfil)}</span>${c.pronto ? LOGO : '<span class="live">En vivo</span>'}</div><h3 class="cv-t">${esc(c.nombre)}</h3></div>`;
 }
 function cohHTML(k, opts = {}){
   const d0 = dia(k.clases[0]), hoy = new Date().getFullYear();
   const fecha = `${DIAS_L[d0.getDay()]} ${d0.getDate()} de ${MES_L[d0.getMonth()]}${d0.getFullYear() !== hoy ? ' de ' + d0.getFullYear() : ''}`;
-  const chips = k.clases.map((d,i) => { const x = dia(d); return `<i>${i+1}. <b>${DIAS_C[x.getDay()]} ${x.getDate()}/${x.getMonth()+1}</b></i>`; }).join('');
-  const act = opts.curso ? `<span class="coh-act">${cupoTxt() ? `<small>${cupoTxt()}</small>` : ''}<a href="#" class="pill js-wa" data-curso="${esc(opts.curso.nombre)}" data-fecha="${k.clases[0]}">Reservar mi lugar</a></span>` : '';
+  const chips = k.clases.map((d,i) => { const x = dia(d); return `<i>Clase ${i+1} · <b>${DIAS_C[x.getDay()]} ${x.getDate()}/${x.getMonth()+1}</b></i>`; }).join('');
+  /* en la página del curso: con una sola fecha, la acción está en la caja de precio; con varias, cada fila tiene la suya */
+  const act = opts.curso ? `<span class="coh-act">${cupoTxt() ? `<small>${cupoTxt()}</small>` : ''}${opts.multi ? `<a href="#" class="pill js-wa" data-curso="${esc(opts.curso.nombre)}" data-fecha="${k.clases[0]}">Elegir esta fecha</a>` : ''}</span>` : '';
   const Tag = opts.curso ? 'div' : 'button';
   return `<${Tag} ${Tag === 'button' ? 'type="button"' : 'tabindex="0"'} class="coh" aria-label="Arranca el ${fecha}. ${k.clases.length} clases, ${diasSemana(k)}, ${k.hora}">
     <span class="coh-row"><span class="cal" aria-hidden="true"><span class="cal-in"><span class="cal-f"><small>${MES_C[d0.getMonth()]}</small><b>${d0.getDate()}</b></span><span class="cal-b"><b>${k.clases.length}</b><small>clases</small></span></span></span>
@@ -189,7 +192,7 @@ function renderFooter(){
 function renderChrome(){
   document.body.insertAdjacentHTML('beforeend', `
   <div class="sbar" id="sbar"><button type="button" id="sbarBtn" aria-controls="sheet" aria-expanded="false">
-    <span class="sb-tx"><span class="sb-k" id="sbK"></span><span class="sb-p" id="sbP"></span><span class="sb-s" id="sbS"></span></span><span class="sb-cta">Inscribirme</span></button></div>
+    <span class="sb-tx"><span class="sb-p" id="sbP"></span><span class="sb-s" id="sbS"></span></span><span class="sb-cta">Inscribirme</span></button></div>
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shT" aria-hidden="true">
     <div class="sh-grab"></div>
     <div class="sh-head"><div><h3 id="shT">${PAGE ? esc(PAGE.nombre) + '.' : 'Elegí tu curso.'}</h3><p id="shS"></p></div><button class="sh-x" id="shX" aria-label="Cerrar">×</button></div>
@@ -209,16 +212,14 @@ function renderChrome(){
   </div></div>`);
 
   $('#shList').innerHTML = abiertos.map(c => `<div class="sh-c">
-      <div class="sh-top"><small>Nivel ${c.nivel} · ${esc(c.perfil)}</small>${PAGE ? '' : `<a class="more" href="/cursos/${c.slug}/" style="font-size:13.5px">Ver curso</a>`}</div><h4>${esc(c.nombre)}</h4>
+      ${PAGE ? '' : `<div class="sh-top"><h4>${esc(c.nombre)}</h4><a class="more" href="/cursos/${c.slug}/">Ver curso</a></div>`}
       <div class="fechas">${proximas(c).map(k => cohHTML(k)).join('')}</div>
-      <div class="sh-buy"><p class="p">${promoOn ? `<s>${ars(c.lista)}</s>` : ''}${ars(precio(c))}<small>o 3 cuotas de ${cuota(c)}</small></p><a href="#" class="pill js-wa" data-curso="${esc(c.nombre)}">Inscribirme</a></div></div>`).join('');
-  $('#shS').textContent = [promoOn ? PROMO.texto : '', cupoTxt()].filter(Boolean).join(' · ');
+      <div class="sh-buy"><p class="p">${ars(precio(c))}${promoOn ? `<s>${ars(c.lista)}</s>` : ''}<small>O 3 cuotas de ${cuota(c)}</small></p><a href="#" class="pill js-wa" data-curso="${esc(c.nombre)}">Inscribirme</a></div></div>`).join('');
+  $('#shS').textContent = cupoTxt();
   if (abiertos.length){
     const minimo = abiertos.reduce((a,b) => precio(a) <= precio(b) ? a : b);
-    const k0 = abiertos.map(c => proximas(c)[0]).sort((a,b) => dia(a.clases[0]) - dia(b.clases[0]))[0];
-    $('#sbK').textContent = promoOn ? PROMO.texto : (PAGE ? PAGE.nombre : 'Primera cohorte');
-    $('#sbP').innerHTML = `${PAGE ? '' : 'Desde'}${promoOn ? ` <s>${ars(minimo.lista)}</s>` : ' '}${ars(precio(minimo))}`;
-    $('#sbS').innerHTML = [cupoTxt() ? `<span class="hot">${cupoTxt()}</span>` : '', `arranca el ${ddmm(k0.clases[0])}`].filter(Boolean).join(' · ');
+    $('#sbP').innerHTML = `${PAGE ? '' : 'Desde '}${ars(precio(minimo))}${promoOn ? ` <s>${ars(minimo.lista)}</s>` : ''}`;
+    $('#sbS').innerHTML = [promoOn ? `−${PROMO.pct}% hasta el ${promoDia}` : '', CUPOS != null ? `<span class="hot">${CUPOS > 0 ? 'Quedan ' + CUPOS : 'Sin lugares'}</span>` : ''].filter(Boolean).join(' · ');
   }
 }
 
@@ -228,48 +229,53 @@ function renderCatalog(){
   g.innerHTML = CURSOS.map(c => {
     const k = proximas(c)[0];
     return `<a class="cc rv ${c.pronto ? 'soon' : ''}" href="/cursos/${c.slug}/">${cover(c)}
-      <div class="cc-b"><h3>${esc(c.nombre)}</h3><p class="d">${esc(c.para)}</p>
-        <dl><dt>Duración</dt><dd>${c.duracion}</dd><dt>${k ? 'Arranca' : 'Próxima fecha'}</dt><dd>${k ? `${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])} · ${k.hora.split(' ')[0]} h` : esc(c.pronto || 'A confirmar')}</dd><dt>Salís con</dt><dd>${esc(c.salis.replace(/\.$/,''))}</dd></dl>
+      <div class="cc-b"><p class="d">${esc(c.para)}</p>
+        <dl><dt>${k ? 'Arranca' : 'Fechas'}</dt><dd>${k ? `${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}` : esc(c.pronto || 'A confirmar')}</dd>${k ? `<dt>Horario</dt><dd>${diasSemana(k)} · ${k.hora}</dd>` : ''}<dt>Salís con</dt><dd>${esc(c.salis.replace(/\.$/,''))}</dd></dl>
         ${priceHTML(c)}
-        <div class="cc-go"><span class="more">${c.pronto ? 'Conocé el curso' : 'Ver curso'}</span>${c.pronto ? '' : '<span class="pill">Inscribirme</span>'}</div></div></a>`;
+        <span class="more cc-go">${c.pronto ? 'Conocé el curso' : 'Ver el curso'}</span></div></a>`;
   }).join('');
 }
 
 /* === Página de curso === */
+function buyboxHTML(c, ks){
+  const k = ks[0], multi = ks.length > 1;
+  const dl = k ? `<dl><dt>Arranca</dt><dd>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}${multi ? ' (y más fechas)' : ''}</dd><dt>Horario</dt><dd>${diasSemana(k)} · ${k.hora}</dd><dt>Cursada</dt><dd>4 clases de 90 min, en vivo</dd><dt>Necesitás</dt><dd>${esc(c.requiere)}</dd></dl>`
+               : `<dl><dt>Fechas</dt><dd>${esc(c.pronto || 'A confirmar')}</dd><dt>Cursada</dt><dd>4 clases de 90 min, en vivo</dd></dl>`;
+  const cta = !k ? `<button class="pill js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme cuando abra</button>`
+            : multi ? `<a href="#fechas" class="pill">Elegir fecha</a>`
+            : `<a href="#" class="pill js-wa" data-curso="${esc(c.nombre)}">Inscribirme por WhatsApp</a>`;
+  return `<div class="buybox">${priceHTML(c, true)}${dl}${cta}${k ? `<p class="bb-g">${SHIELD}<span>Si después de la primera clase no es para vos, te devolvemos el 100%.</span></p>` : ''}</div>`;
+}
 function renderCurso(){
   const m = $('#curso'); if (!m || !PAGE) return;
   const c = PAGE, ks = proximas(c), k = ks[0];
   const faq = c.faq.concat(FAQ_GENERAL);
   const clases = c.clases.map((cl, i) => `<div class="cl" data-n="${i+1}"><details ${i === 0 ? 'open' : ''}><summary><span><small>Clase ${i+1}${k ? ` · ${DIAS_C[dia(k.clases[i]).getDay()]} ${ddmm(k.clases[i])}` : ''}</small>${esc(cl.t)}</span></summary>
       <p class="obj">${esc(cl.obj)}</p><ul>${cl.temas.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
-      <div class="pr"><div><b>En clase</b>${esc(cl.practica)}</div>${cl.tarea ? `<div><b>Para la próxima</b>${esc(cl.tarea)}</div>` : ''}</div></details></div>`).join('');
-  const dl = `<dl><dt>Duración</dt><dd>${c.duracion}</dd><dt>Clases en vivo</dt><dd>90 min por Meet</dd>${k ? `<dt>Horario</dt><dd>${diasSemana(k)} · ${k.hora}</dd><dt>Arranca</dt><dd>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}</dd>` : ''}<dt>Nivel</dt><dd>${c.nivel} · ${esc(c.perfil)}</dd><dt>Necesitás</dt><dd>${esc(c.requiere)}</dd></dl>`;
-  const cta = c.pronto
-    ? `<a href="#" class="pill js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme cuando abra</a>`
-    : `<a href="#" class="pill js-inscribir">Inscribirme</a><a class="more" href="#fechas">Ver fechas</a>`;
+      <div class="pr"><div><b>En clase</b>${esc(cl.practica)}</div>${cl.tarea ? `<div><b>Antes de la clase ${i+2}</b>${esc(cl.tarea)}</div>` : ''}</div></details></div>`).join('');
   m.innerHTML = `<div class="wrap"><div class="cp">
    <div class="cp-main">
-    <section>
-      <nav class="crumbs" aria-label="Ruta"><a href="/">Cursos</a><span>Nivel ${c.nivel}</span><span>${esc(c.nombre)}</span></nav>
+    <section class="cp-hero">
+      <a class="back-l" href="/#cursos">Todos los cursos</a>
       <span class="eyebrow">Nivel ${c.nivel} · ${esc(c.perfil)}</span>
       <h1>${esc(c.nombre)}</h1>
-      <p class="lead">${esc(c.bajada)} ${esc(c.paraLargo)}</p>
-      <div class="ctas">${cta}${c.clases.length ? `<button class="more js-prog" data-prog="${c.slug}" data-curso="${esc(c.nombre)}">Descargar programa</button>` : ''}</div>
-      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div><small>Tu profe, en vivo</small><b>Gastón Pérez</b><span>Construyó productos en <img src="/logos/mercadolibre.svg" alt="Mercado Libre"></span></div><a class="more" href="/#profe">Conocelo</a></div>
+      <p class="lead">${esc(c.bajada)}</p>
+      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div><small>Tu profe, en vivo</small><b>Gastón Pérez</b><span>Construyó productos en <img src="/logos/mercadolibre.svg" alt="Mercado Libre"></span></div></div>
     </section>
-    <section class="cp-buy-m">${priceHTML(c)}</section>
-    <section><span class="eyebrow">Al terminar</span><h2>Vas a poder…</h2>
+    <section class="cp-buy-m">${buyboxHTML(c, ks)}</section>
+    <section><h2>Al terminar, vas a poder</h2>
       <div class="outs">${c.podras.map((p,i) => `<div><b>0${i+1}</b><p>${esc(p)}</p></div>`).join('')}</div>
       <div class="result"><div><small>Salís con</small><p>${esc(c.resultado)}</p></div></div></section>
-    <section><span class="eyebrow">Traé tu caso</span><h2>Es para vos si…</h2>
-      <div class="bento">${c.casos.map((x,i) => `<article class="tile ${i === 0 ? 'dark' : ''}"><span class="who">${esc(x.who)}</span><q>${esc(x.q)}</q><p class="res">${esc(x.res)}</p></article>`).join('')}</div></section>
-    ${c.clases.length ? `<section id="programa"><span class="eyebrow">El programa</span><h2>Clase por clase.</h2><div class="path">${clases}</div>
-      <div class="final-p"><i></i><div><small>Última clase · Muestra de resultados</small><p>${esc(c.final)}</p></div></div>
-      <p style="margin-top:18px"><button class="more js-prog" data-prog="${c.slug}" data-curso="${esc(c.nombre)}">Descargar el programa en PDF</button></p></section>` : ''}
-    <section id="fechas"><span class="eyebrow">Fechas</span><h2>Próximas fechas.</h2>
-      <div class="dates">${ks.length ? ks.map(x => cohHTML(x, {curso:c})).join('') : `<p class="f-none">${esc(c.pronto || 'Próxima cohorte a confirmar')}. <button class="more js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme</button></p>`}</div></section>
-    <section><span class="eyebrow">Qué necesitás</span><h2>Para cursar.</h2><ul class="need">${c.necesitas.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>
-    <section id="cursada"><span class="eyebrow">La cursada</span><h2>Terminás con algo hecho.</h2>
+    <section><h2>Es para vos si…</h2>
+      <p class="sec-lead">${esc(c.paraLargo)}</p>
+      <div class="bento">${c.casos.map(x => `<article class="tile"><span class="who">${esc(x.who)}</span><q>${esc(x.q)}</q><p class="res">${esc(x.res)}</p></article>`).join('')}</div></section>
+    ${c.clases.length ? `<section id="programa"><h2>El programa, clase por clase</h2><div class="path">${clases}</div>
+      <div class="final-p"><i></i><div><small>Clase 4 · Muestra de resultados</small><p>${esc(c.final)}</p></div></div>
+      <p class="dl-prog"><button class="more js-prog" data-prog="${c.slug}" data-curso="${esc(c.nombre)}">Descargar el programa en PDF</button></p></section>` : ''}
+    <section id="fechas"><h2>Próximas fechas</h2>
+      <div class="dates">${ks.length ? ks.map(x => cohHTML(x, {curso:c, multi: ks.length > 1})).join('') : `<p class="f-none">${esc(c.pronto || 'Próxima cohorte a confirmar')}. <button class="more js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme</button></p>`}</div></section>
+    <section><h2>Qué necesitás</h2><ul class="need">${c.necesitas.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>
+    <section id="cursada"><h2>Cómo es la cursada</h2>
       <div class="feats">
         <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><h3>En vivo, de verdad</h3><p>4 clases de 90 minutos por Google Meet, con tiempo para tus preguntas.</p></div>
         <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><h3>Nunca te trabás</h3><p>Grupo de WhatsApp con tu profe durante todo el curso.</p></div>
@@ -284,17 +290,14 @@ function renderCurso(){
         <p class="tc-date">${k ? `${dia(k.clases.at(-1)).getDate()} de ${MES_L[dia(k.clases.at(-1)).getMonth()]} de ${dia(k.clases.at(-1)).getFullYear()}` : ''}</p>
         <div class="tc-foot"><div class="tc-left"><b>Cohorte ${k ? MES_L[dia(k.clases[0]).getMonth()].replace(/^./, s=>s.toUpperCase()) + ' ' + dia(k.clases[0]).getFullYear() : ''}</b>somostecla.com</div><div class="tc-sign"><span class="tc-sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div>
       </div></div></div>
-      <p class="fine">Asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última. Certificado de finalización emitido por Tecla, no es un título oficial.</p></section>
-    <section id="preguntas"><span class="eyebrow">Preguntas</span><h2>Lo que nos preguntan.</h2>
+      <p class="fine">Para recibirlo: asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última. Es un certificado de finalización de Tecla, no un título oficial.</p></section>
+    <section id="preguntas"><h2>Preguntas frecuentes</h2>
       <div class="faq">${faq.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${a}</p></details>`).join('')}</div></section>
    </div>
-   <aside class="cp-side"><div class="buybox">${priceHTML(c)}${dl}
-     <div class="bb-acts">${c.pronto ? `<a href="#" class="pill js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme cuando abra</a>` : `<a href="#" class="pill js-wa" data-curso="${esc(c.nombre)}">Inscribirme por WhatsApp</a><a class="more" href="#fechas">Ver fechas</a>`}</div>
-     <p class="bb-g">${SHIELD}<span>Si después de la primera clase no es para vos, te devolvemos el 100%.</span></p>
-     <div class="bb-cert"><span class="mini-cert"></span><div><b>Certificado incluido</b>al terminar el curso</div></div></div></aside>
+   <aside class="cp-side">${buyboxHTML(c, ks)}</aside>
   </div></div>
   <section class="final cp-end" id="inscripcion"><div class="glow"></div><div class="wrap">
-    <p class="count">${k ? `Arranca el <b>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}</b>${cupoTxt() ? ` · <b>${cupoTxt().toLowerCase()}</b>` : ''}` : esc(c.pronto || '')}</p>
+    ${k ? `<p class="count">Arranca el <b>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}</b>${cupoTxt() ? ` · <b>${cupoTxt().toLowerCase()}</b>` : ''}</p>` : ''}
     <h2 class="h-xl">${c.pronto ? 'Te avisamos.' : '¿Qué vas a resolver?'}</h2>
     <p class="sub" style="margin:24px auto 0">${c.pronto ? 'Dejanos tus datos y te escribimos cuando abramos fechas.' : 'Contanos tu caso y reservá tu lugar. Los grupos son chicos.'}</p>
     <div class="ctas">${c.pronto ? `<button class="pill light js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme cuando abra</button>` : `<a href="#" class="pill light js-wa" data-curso="${esc(c.nombre)}">Quiero mi lugar</a>`}</div>
@@ -394,11 +397,11 @@ $$('.tray').forEach(track => {
 (() => {
   const bar = $('#sbar'), btn = $('#sbarBtn'), sh = $('#sheet'), bg = $('#sheetBg');
   if (!abiertos.length){ bar.remove(); $$('.js-inscribir').forEach(a => { a.href = '#'; a.classList.add('js-prog'); a.dataset.mode = 'aviso'; a.dataset.curso = PAGE ? PAGE.nombre : 'Próxima cohorte'; }); return; }
-  const trigger = $('.hero .ctas') || $('.cp .ctas');
-  const hide = [$('#cursos'), $('#fechas'), $('#inscripcion'), $('#foot')];
+  const trigger = PAGE ? $('.cp-buy-m .buybox') : $('.hero .ctas');
+  const hide = PAGE ? [$('#inscripcion'), $('#foot')] : [$('#cursos'), $('#inscripcion'), $('#foot')];
   const desk = matchMedia('(min-width: 981px)');
   const upd = () => {
-    const past = trigger ? trigger.getBoundingClientRect().bottom < 0 : scrollY > 400;
+    const past = trigger && trigger.offsetParent ? trigger.getBoundingClientRect().bottom < 60 : scrollY > 400;
     const vh = innerHeight, covered = hide.some(el => { if (!el) return false; const r = el.getBoundingClientRect(); return r.top < vh - 90 && r.bottom > vh * .35; });
     bar.classList.toggle('show', past && !covered && !sh.classList.contains('open') && !(PAGE && desk.matches));
   };
