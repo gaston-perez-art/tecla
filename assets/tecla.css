@@ -719,3 +719,5 @@ footer{background:#000;color:#86868b;border-top:1px solid rgba(255,255,255,.08)}
   .show-h{margin-top:88px}
   #cursada .device-wrap,#cursada .cert-stage{margin-top:30px}
 }
+/* con el menú abierto, la barra de inscripción se esconde */
+body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
