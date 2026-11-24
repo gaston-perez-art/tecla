@@ -932,7 +932,8 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 .bb-cert p{font-size:12.5px;color:var(--ink3);line-height:1.4;margin-top:3px}
 .bb-cert > div:last-child{flex:1;min-width:0}
 /* si la ventana es muy baja, la columna deja de ser fija antes que cortarse */
-@media(max-height:700px){ .cp-side-in{position:static} }
+/* ventana baja: la caja sigue fija; se oculta solo el certificado para que nada se corte */
+@media(max-height:760px){ .cp-side .bb-cert{display:none} }
 .t-short{display:none}
 .t-exp small{white-space:nowrap}
 .teach .t-exp .t-logos{flex-wrap:nowrap}
@@ -944,3 +945,13 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 .teach .t-exp small span{display:inline;font-size:inherit;color:inherit}
 .teach .t-exp small .t-short{display:none}
 @media(max-width:640px){ .teach .t-exp small .t-long{display:none} .teach .t-exp small .t-short{display:inline} }
+
+/* portadas como sistema: el título se ajusta al ancho de la tarjeta, igual en las tres y siempre en una línea */
+.cover{container-type:inline-size}
+.cover .cv-t{font-size:min(44px,11cqi);white-space:nowrap;max-width:none}
+/* foco: solo visible con teclado */
+.cc:focus{outline:none}
+.cc:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+/* el halo no puede ensanchar la página: se recorta a lo ancho, no a lo alto */
+.hero-s{overflow-x:clip;overflow-y:visible}
+#cursada{overflow-x:clip}

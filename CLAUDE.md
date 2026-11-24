@@ -45,6 +45,8 @@ design-system.md  → guía de marca completa
 ## Cómo trabajar
 - Antes de editar, mirá cómo está resuelto algo parecido en `index.html` (hay patrones establecidos: reveal on scroll, marquee, cards con hover, etc.).
 - Después de cambios, verificá que el HTML quede balanceado y probá abriendo `index.html` en el navegador.
+- **Antes de publicar, siempre:** `python3 -I _preview/qa.py`. Mide en 8 anchos (320 a 1440) y 4 altos (600 a 900): portadas consistentes y sin cortes, sin desborde horizontal, columna de precio fija y entera, nada recortado por su contenedor. Si dice FALLA, no se publica. Si aparece un tipo de error nuevo, se agrega un chequeo al script en vez de confiar en mirarlo.
+- Revisar componentes hermanos como sistema (las tres tarjetas, las cuatro clases): misma altura de título, misma cantidad de líneas, mismo ritmo. Una captura donde "se ve bien lo que cambié" no alcanza.
 - Para publicar: `git add . && git commit -m "..." && git push`.
 
 ## Pendientes / cuidado
