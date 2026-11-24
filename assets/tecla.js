@@ -281,9 +281,8 @@ function buyboxHTML(c, ks){
     </div></div>`;
 }
 function certCardHTML(c){
-  return `<div class="bb-cert"><div class="bb-cert-h"><b>Certificado al finalizar</b><span>Incluido</span></div>
-    <div class="bb-cert-p"><div class="cert-frame mini">${certDocHTML(c, proximas(c)[0])}</div></div>
-    <p>Asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última.</p></div>`;
+  return `<div class="bb-cert"><div class="cert-frame mini">${certDocHTML(c, proximas(c)[0])}</div>
+    <div><b>Certificado al finalizar <span>Incluido</span></b><p>Asistí a 3 de las 4 clases y mostrá tu caso resuelto.</p></div></div>`;
 }
 function certDocHTML(c, k){
   return `<div class="tc">
@@ -318,7 +317,7 @@ function renderCurso(){
       <span class="eyebrow">Nivel ${c.nivel} · ${esc(c.perfil)}</span>
       <h1>${esc(c.nombre)}</h1>
       <p class="lead">${esc(c.bajada)}</p>
-      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div><small>Tu profe, en vivo</small><b>Gastón Pérez</b><span>Construyó productos en</span><span class="t-logos"><img class="tl-ml" src="/logos/mercadolibre.svg" alt="Mercado Libre"><img class="tl-rp" src="/logos/rappi.svg" alt="Rappi"><img class="tl-bb" src="/logos/bigbox.svg" alt="Bigbox"></span></div></div>
+      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div class="t-who"><small>Tu profe, en vivo</small><b>Gastón Pérez</b></div><div class="t-exp"><small><span class="t-long">Construyó productos</span><span class="t-short">Productos</span> en</small><span class="t-logos"><img class="tl-ml" src="/logos/mercadolibre.svg" alt="Mercado Libre"><img class="tl-rp" src="/logos/rappi.svg" alt="Rappi"><img class="tl-bb" src="/logos/bigbox.svg" alt="Bigbox"></span></div></div>
     </section>
     <section class="cp-buy-m">${buyboxHTML(c, ks)}</section>
     <section><h2>Al terminar, vas a poder</h2>

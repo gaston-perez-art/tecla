@@ -892,3 +892,55 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 .tl-ml{height:22px !important}.tl-rp{height:19px !important}.tl-bb{height:34px !important;margin-left:-2px}
 .cl-bb{height:32px}
 @media(max-width:640px){ .cl-bb{height:28px} }
+
+/* ===== Ajustes 23/11 (profe, desfile, columna) ===== */
+/* tarjeta del profe: quién a la izquierda, trayectoria a la derecha; misma altura que antes */
+.teach{display:flex;align-items:center;gap:14px;padding:14px 18px}
+.teach img.ph{width:52px;height:52px}
+.t-who{flex:1;min-width:0}
+.t-who b{font-size:17px}
+.t-exp{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+.t-exp small{font-size:12px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink3)}
+.teach .t-exp .t-logos{display:flex;align-items:center;gap:14px;margin:0}
+.tl-ml{height:20px !important}.tl-rp{height:16px !important}.tl-bb{height:28px !important;margin:0 -2px 0 -2px}
+@media(max-width:640px){
+  .teach{flex-wrap:wrap;row-gap:10px}
+  .t-exp{flex-basis:100%;flex-direction:row;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--line2)}
+  .tl-ml{height:18px !important}.tl-rp{height:14px !important}.tl-bb{height:25px !important}
+}
+/* desfile: el anillo de 1px de cada tarjeta necesita aire dentro del contenedor recortado */
+.cz-row{padding:2px 0}
+.cz-wall{gap:12px}
+
+/* columna de precio compacta: caja + certificado entran enteros en pantalla */
+.cp-side-in{top:72px;gap:12px}
+.bb-band{padding:9px 18px;font-size:12.5px}
+.bb-body{padding:14px 18px 16px}
+.bb-price{padding:12px 14px;border-radius:16px}
+.bb-off{margin-bottom:4px}
+.bb-now{font-size:34px}
+.bb-cuo{font-size:13px;margin-top:6px}
+.buybox dl.bb-rows{margin:8px 0 14px}
+.bb-rows div{padding:8px 2px;font-size:14px}
+.buybox .pill{padding:12px 20px;font-size:16px}
+.buybox .bb-g{margin-top:10px;font-size:12.5px}
+.bb-cert{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:18px}
+.bb-cert .cert-frame.mini{width:96px;flex:none;border-radius:6px;box-shadow:0 8px 18px -10px rgba(10,20,45,.5)}
+.bb-cert .cert-frame.mini .tc{border-radius:6px}
+.bb-cert b{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:600}
+.bb-cert b span{color:var(--gold);font-size:13px}
+.bb-cert p{font-size:12.5px;color:var(--ink3);line-height:1.4;margin-top:3px}
+.bb-cert > div:last-child{flex:1;min-width:0}
+/* si la ventana es muy baja, la columna deja de ser fija antes que cortarse */
+@media(max-height:700px){ .cp-side-in{position:static} }
+.t-short{display:none}
+.t-exp small{white-space:nowrap}
+.teach .t-exp .t-logos{flex-wrap:nowrap}
+@media(max-width:640px){
+  .t-long{display:none}.t-short{display:inline}
+  .teach .t-exp .t-logos{gap:12px}
+  .tl-ml{height:17px !important}.tl-rp{height:13px !important}.tl-bb{height:23px !important}
+}
+.teach .t-exp small span{display:inline;font-size:inherit;color:inherit}
+.teach .t-exp small .t-short{display:none}
+@media(max-width:640px){ .teach .t-exp small .t-long{display:none} .teach .t-exp small .t-short{display:inline} }
