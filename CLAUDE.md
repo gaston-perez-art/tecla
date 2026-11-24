@@ -56,7 +56,7 @@ design-system.md  → guía de marca completa
 - **Datos y comportamiento compartidos:** `assets/tecla.js` (cursos, fechas, promo, cupos, FAQ, menú, barra fija, bottom sheet, modal) y `assets/tecla.css` (todos los estilos). Al cambiarlos, subir `?v=` en los `<link>`/`<script>` de `index.html` y de cada `cursos/<slug>/index.html`.
 - **Home (`/`)** = catálogo: hero corto con Gastón, grilla de cursos (`[data-catalogo]`), cursada con el aula y el certificado, cómo te anotás, profe, FAQ general y cierre.
 - **Página de curso (`/cursos/<slug>/`)**: shell con el `<head>` propio (título, descripción, OG, JSON-LD) y `<body data-curso="slug">`; el contenido lo arma `tecla.js` desde `CURSOS`. Desktop: columna de precio fija a la derecha. Mobile: barra fija abajo con el sheet de ese curso.
-- **Curso nuevo:** agregarlo en `CURSOS` (texto, clases, casos, FAQ, tono de portada: brasa | petroleo | dorado), copiar una carpeta de `cursos/` cambiando slug y textos del head, y sumarlo al `sitemap.xml`.
+- **Curso nuevo:** agregarlo en `CURSOS` (texto, clases, `casos` + `mas` para el desfile infinito de "Es para vos si…", FAQ, tono de portada: brasa | petroleo | dorado), copiar una carpeta de `cursos/` cambiando slug y textos del head, y sumarlo al `sitemap.xml`.
 - **Cohorte nueva:** agregar un objeto en `cohortes` con la fecha de cada clase. Las que ya arrancaron se ocultan solas.
 - **`PROMO`:** % y fecha límite del precio de lanzamiento; pasada la fecha vuelve solo al precio de lista.
 - **`CUPOS`:** lugares que quedan (en total), solo números reales; `null` lo oculta.

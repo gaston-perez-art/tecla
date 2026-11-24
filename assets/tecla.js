@@ -26,6 +26,16 @@ const CURSOS = [
            {who:'Empleado administrativo', q:'Me paso el día escribiendo mails y armando informes.', res:'Redactás mails y resúmenes en minutos, y vos solo revisás y mandás.'},
            {who:'Profesional independiente', q:'Tengo que leer contratos y normativas larguísimas.', res:'NotebookLM te los resume, te marca lo importante y te responde dudas.'},
            {who:'Docente', q:'Armar clases y evaluaciones me come el fin de semana.', res:'Planificaciones, consignas y rúbricas en minutos, con tu criterio.'} ],
+   mas:[ {who:'Contador', q:'Le explico lo mismo a cada cliente.', res:'Explicaciones claras de impuestos y vencimientos, listas para mandar.'},
+         {who:'Kinesióloga', q:'Quiero darles rutinas a mis pacientes.', res:'Rutinas personalizadas y fáciles de seguir, en minutos.'},
+         {who:'Vendedor', q:'No sé cómo responderle a un cliente enojado.', res:'Respuestas firmes y amables, en tu tono.'},
+         {who:'Jubilada', q:'No entiendo lo que me piden los trámites.', res:'Te explica cada trámite paso a paso, sin vueltas.'},
+         {who:'Recursos humanos', q:'Leo cien currículums por búsqueda.', res:'Resumís y comparás perfiles en minutos.'},
+         {who:'Abogada', q:'Redactar un escrito me lleva toda la tarde.', res:'Borradores en minutos; vos ponés el criterio.'},
+         {who:'Inmobiliaria', q:'Describir cada propiedad me aburre.', res:'Descripciones que venden, listas para publicar.'},
+         {who:'Comerciante', q:'Necesito un cartel y no tengo diseñador.', res:'Imágenes y textos para tu vidriera y tus redes.'},
+         {who:'Estudiante', q:'Tengo un final y mil apuntes sueltos.', res:'NotebookLM te arma un resumen y te toma preguntas.'},
+         {who:'Mamá de tres', q:'Organizar la semana de la familia es un caos.', res:'Menús, compras y horarios resueltos en una charla.'} ],
    necesitas:['Una computadora con internet (se puede seguir desde el celular, pero con compu se aprovecha más).','Una cuenta de Gmail.','Nada más: usamos las versiones gratuitas de ChatGPT y NotebookLM.'],
    clases:[
     {t:'Qué es la IA y cómo pensar con ella', obj:'Perderle el miedo y entender qué hay detrás de la IA, con ejemplos de la vida real.',
@@ -59,6 +69,14 @@ const CURSOS = [
    podras:['Saber qué tiene que tener una página para que te traiga clientes.','Construir una web hablándole a la IA en castellano, sin escribir código.','Adaptarla a tu marca y hacer que se vea bien en el celular.','Publicarla en internet y hacerle cambios cuando quieras, sin depender de nadie.'],
    casos:[ {who:'Profesional', q:'Mis clientes me buscan en Google y no me encuentran.', res:'Tu web publicada, con un botón para que te escriban por WhatsApp.'},
            {who:'Emprendedora', q:'Vendo solo por Instagram y no parece un negocio serio.', res:'Tu web con catálogo e historia, y un link para la bio.'} ],
+   mas:[ {who:'Psicóloga', q:'Mis pacientes nuevos me piden una web.', res:'Tu enfoque, tus horarios y un botón para escribirte.'},
+         {who:'Fotógrafo', q:'Mi portfolio está perdido en Instagram.', res:'Tu portfolio en una web propia, rápida y prolija.'},
+         {who:'Plomero', q:'Me buscan en Google de urgencia y no aparezco.', res:'Tu zona, tus servicios y tu teléfono a un toque.'},
+         {who:'Pastelera', q:'Mando el catálogo en PDF por WhatsApp.', res:'Tu catálogo online con fotos y precios.'},
+         {who:'Profe particular', q:'Quiero conseguir alumnos nuevos.', res:'Tus materias, tus precios y cómo reservar.'},
+         {who:'Arquitecta', q:'No tengo dónde mostrar mis obras.', res:'Tus proyectos con fotos grandes y tu historia.'},
+         {who:'Entrenador', q:'Mis alumnos me preguntan siempre lo mismo.', res:'Planes, precios y preguntas frecuentes en tu web.'},
+         {who:'Restaurante', q:'La carta en PDF se ve mal en el celular.', res:'Tu carta online, linda en cualquier pantalla.'} ],
    necesitas:['Una computadora (Windows o Mac). Este curso no se puede hacer desde el celular.','Una cuenta de Gmail.','Una suscripción de Claude (plan Pro, alrededor de USD 20 por mes) durante el curso. La paga cada alumno; te explicamos cómo contratarla y cómo darla de baja al terminar.','Cuentas gratuitas de GitHub y Vercel. Las creamos juntos en la primera clase.','Fotos, logo y datos de tu negocio. Si no los tenés, te ayudamos a armarlos.'],
    clases:[
     {t:'Qué tiene una web que vende', obj:'Definir qué va a decir tu web y dejar todo listo para construirla.',
@@ -82,7 +100,7 @@ const CURSOS = [
         ['¿Puedo usar un dominio propio (.com.ar)?','Sí. En la última clase te mostramos cómo conectarlo. Comprar el dominio es opcional y lo pagás aparte.'],
         ['¿Me conviene hacer antes Fundamentos?','Si nunca usaste IA, sí. Si ya la usás seguido y lo que querés es tu web, podés venir directo.']] },
 
- { slug:'vende-con-ia', nombre:'Vendé con IA', nivel:3, perfil:'Próximamente', tono:'dorado', lista:90000, pronto:'Próxima cohorte en 2027',
+ { slug:'vende-con-ia', nombre:'Vendé con IA', nivel:3, perfil:'Negocios', tono:'dorado', lista:90000, pronto:'Próxima cohorte en 2027',
    bajada:'Vendé online y animate a hacerlo solo, sobre tu negocio real.',
    para:'Para vender online y animarte a hacerlo solo, sobre tu negocio real.',
    paraLargo:'Para quien ya tiene un negocio (o su web) y quiere vender online y atender consultas sin estar pegado al celular.',
@@ -92,6 +110,12 @@ const CURSOS = [
    podras:['Armar una tienda que cobra sola con Mercado Pago.','Tener un asistente con IA que conteste las preguntas de siempre.','Que tus clientes reserven y paguen turnos sin que coordines a mano.','Medir qué se vende y qué no.'],
    casos:[ {who:'Comerciante', q:'Respondo lo mismo treinta veces por día.', res:'Un asistente con IA contesta las consultas de siempre y te pasa las ventas.'},
            {who:'Profesional con turnos', q:'Paso el día coordinando turnos y cobrando.', res:'Tus clientes reservan y pagan solos con Mercado Pago.'} ],
+   mas:[ {who:'Tienda de ropa', q:'Vendo por mensaje privado y pierdo ventas.', res:'Una tienda que muestra talles, stock y cobra sola.'},
+         {who:'Peluquería', q:'Los turnos se me cruzan todo el tiempo.', res:'Agenda online con seña por Mercado Pago.'},
+         {who:'Rotisería', q:'Los pedidos por WhatsApp me desbordan.', res:'Pedidos ordenados y pagados antes de cocinar.'},
+         {who:'Artesana', q:'Nunca sé cuánto stock me queda.', res:'Tu tienda te avisa qué se vende y qué reponer.'},
+         {who:'Profe de yoga', q:'Cobrar las clases es un lío.', res:'Tus alumnos reservan y pagan solos.'},
+         {who:'Consultorio', q:'Los pacientes se olvidan de los turnos.', res:'Recordatorios automáticos que llegan solos.'} ],
    necesitas:['Una computadora.','Tu negocio real (y si ya tenés tu web, mejor).'], clases:[], final:'', faq:[] }
 ];
 
@@ -135,7 +159,7 @@ function priceHTML(c, note = false){
     <p class="when">${on && note ? `<span class="promo-note">Precio de lanzamiento hasta el ${promoDia}.</span> ` : ''}O 3 cuotas de ${cuota(c)} con Mercado Pago.</p></div>`;
 }
 function cover(c){
-  return `<div class="cover t-${c.tono} ${c.pronto ? 'soon' : ''}"><div class="cv-top"><span>Nivel ${c.nivel} · ${esc(c.perfil)}</span>${c.pronto ? LOGO : '<span class="live">En vivo</span>'}</div><h3 class="cv-t">${esc(c.nombre)}</h3></div>`;
+  return `<div class="cover t-${c.tono} ${c.pronto ? 'soon' : ''}">${c.pronto ? '<span class="cv-chip">Próximamente</span>' : '<span class="live cv-chip">En vivo</span>'}<span class="cv-lv">Nivel ${c.nivel} · ${esc(c.perfil)}</span><h3 class="cv-t">${esc(c.nombre)}</h3></div>`;
 }
 function cohHTML(k, opts = {}){
   const d0 = dia(k.clases[0]), hoy = new Date().getFullYear();
@@ -146,9 +170,11 @@ function cohHTML(k, opts = {}){
   const Tag = opts.curso ? 'div' : 'button';
   return `<${Tag} ${Tag === 'button' ? 'type="button"' : 'tabindex="0"'} class="coh" aria-label="Arranca el ${fecha}. ${k.clases.length} clases, ${diasSemana(k)}, ${k.hora}">
     <span class="coh-row"><span class="cal" aria-hidden="true"><span class="cal-in"><span class="cal-f"><small>${MES_C[d0.getMonth()]}</small><b>${d0.getDate()}</b></span><span class="cal-b"><b>${k.clases.length}</b><small>clases</small></span></span></span>
-    <span class="coh-tx"><b>Arranca el ${fecha}</b><span>${diasSemana(k).replace(/^./, m=>m.toUpperCase())} · ${k.hora}</span></span>${act}</span>
+    <span class="coh-tx"><b>${opts.curso ? I_CAL : ''}Arranca el ${fecha}</b><span>${opts.curso ? I_CLOCK : ''}${diasSemana(k).replace(/^./, m=>m.toUpperCase())} · ${k.hora}</span></span>${act}</span>
     <span class="coh-days" aria-hidden="true">${chips}</span></${Tag}>`;
 }
+const I_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>';
+const I_CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 const SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>';
 const ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
 
@@ -159,7 +185,7 @@ function renderNav(){
   n.innerHTML = `<div class="wrap nav">
     <a class="brand" href="/" aria-label="Tecla, inicio"><img class="mk" src="/logo/tecla-mark.svg" alt=""><span class="wm">tecla<b>.</b></span><i>cursos</i></a>
     <div class="nav-links">
-      <a href="/#cursos">Cursos</a><a href="/#cursada">Cursada</a><a href="/#profe">Tu profe</a><a href="${home ? '#preguntas' : '#preguntas'}">Preguntas</a>
+      <a href="/#cursada">Cursada</a><a href="/#profe">Tu profe</a><a href="${home ? '#preguntas' : '#preguntas'}">Preguntas</a>
       <a href="/servicios/">Soporte y docentes</a>
       <a href="/aula/" class="aula-btn">${ICON_USER}Ingresar al aula</a>
       <a href="#" class="pill js-inscribir">Inscribirme</a>
@@ -238,21 +264,53 @@ function renderCatalog(){
 
 /* === Página de curso === */
 function buyboxHTML(c, ks){
-  const k = ks[0], multi = ks.length > 1;
-  const dl = k ? `<dl><dt>Arranca</dt><dd>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}${multi ? ' (y más fechas)' : ''}</dd><dt>Horario</dt><dd>${diasSemana(k)} · ${k.hora}</dd><dt>Cursada</dt><dd>4 clases de 90 min, en vivo</dd><dt>Necesitás</dt><dd>${esc(c.requiere)}</dd></dl>`
-               : `<dl><dt>Fechas</dt><dd>${esc(c.pronto || 'A confirmar')}</dd><dt>Cursada</dt><dd>4 clases de 90 min, en vivo</dd></dl>`;
+  const k = ks[0], multi = ks.length > 1, on = promoOn && !c.pronto;
+  const rows = (k ? [['Arranca', `${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}${multi ? ' y más fechas' : ''}`], ['Horario', `${diasSemana(k)} · ${k.hora}`]] : [['Fechas', c.pronto || 'A confirmar']])
+    .concat([['Cursada', '4 clases de 90 min, en vivo'], ['Necesitás', c.requiere]]);
   const cta = !k ? `<button class="pill js-prog" data-mode="aviso" data-curso="${esc(c.nombre)}">Avisarme cuando abra</button>`
             : multi ? `<a href="#fechas" class="pill">Elegir fecha</a>`
             : `<a href="#" class="pill js-wa" data-curso="${esc(c.nombre)}">Inscribirme por WhatsApp</a>`;
-  return `<div class="buybox">${priceHTML(c, true)}${dl}${cta}${k ? `<p class="bb-g">${SHIELD}<span>Si después de la primera clase no es para vos, te devolvemos el 100%.</span></p>` : ''}</div>`;
+  return `<div class="buybox">
+    ${on ? `<div class="bb-band"><span>Precio de lanzamiento</span><span>Termina en <b class="js-cd"></b></span></div>` : ''}
+    <div class="bb-body">
+      <div class="bb-price">${on ? `<p class="bb-off"><span>−${PROMO.pct}%</span><s>${ars(c.lista)}</s></p>` : ''}
+        <p class="bb-now">${ars(c.pronto ? c.lista : precio(c))}</p><p class="bb-cuo">O 3 cuotas de ${cuota(c)} con Mercado Pago</p></div>
+      <dl class="bb-rows">${rows.map(([a,b]) => `<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
+      ${cta}
+      ${k ? `<p class="bb-g">${SHIELD}<span>Si después de la primera clase no es para vos, te devolvemos el 100%.</span></p>` : ''}
+    </div></div>`;
+}
+function certCardHTML(c){
+  return `<div class="bb-cert"><div class="bb-cert-h"><b>Certificado al finalizar</b><span>Incluido</span></div>
+    <div class="bb-cert-p"><div class="cert-frame mini">${certDocHTML(c, proximas(c)[0])}</div></div>
+    <p>Asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última.</p></div>`;
+}
+function certDocHTML(c, k){
+  return `<div class="tc">
+        <div class="tc-bg"><span></span><span></span><span></span></div><div class="tc-grain"></div>
+        <div class="tc-brand"><img src="/logo/tecla-mark.svg" alt=""><span>tecla<b>.</b></span></div>
+        <p class="tc-kind">Certificado de finalización</p><p class="tc-course">${esc(c.nombre)}</p><p class="tc-name">Tu nombre acá</p>
+        <p class="tc-text">Completó con éxito su curso en Tecla, con <b>4 clases en vivo</b> y <b>${c.horas} horas</b> de formación, y presentó su caso real resuelto con inteligencia artificial.</p>
+        <p class="tc-date">${k ? `${dia(k.clases.at(-1)).getDate()} de ${MES_L[dia(k.clases.at(-1)).getMonth()]} de ${dia(k.clases.at(-1)).getFullYear()}` : ''}</p>
+        <div class="tc-foot"><div class="tc-left"><b>Cohorte ${k ? MES_L[dia(k.clases[0]).getMonth()].replace(/^./, s=>s.toUpperCase()) + ' ' + dia(k.clases[0]).getFullYear() : ''}</b>somostecla.com</div><div class="tc-sign"><span class="tc-sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div>
+      </div>`;
+}
+/* casos: un desfile infinito en dos filas que van en sentidos opuestos (se frena al pasar el mouse) */
+function casosHTML(c){
+  const all = c.casos.concat(c.mas || []);
+  const half = Math.ceil(all.length / 2), rows = [all.slice(0, half), all.slice(half)];
+  const card = x => `<article class="cz"><span class="who">${esc(x.who)}</span><q>${esc(x.q)}</q><p class="res">${esc(x.res)}</p></article>`;
+  return `<div class="cz-wall" aria-label="Casos de personas que hacen el curso">${rows.map((r, i) =>
+    `<div class="cz-row ${i ? 'rev' : ''}" style="--dur:${r.length * 7}s"><div class="cz-track">${r.map(card).join('')}${r.map(card).join('').replace(/<article/g, '<article aria-hidden="true"')}</div></div>`).join('')}</div>`;
 }
 function renderCurso(){
   const m = $('#curso'); if (!m || !PAGE) return;
   const c = PAGE, ks = proximas(c), k = ks[0];
   const faq = c.faq.concat(FAQ_GENERAL);
-  const clases = c.clases.map((cl, i) => `<div class="cl" data-n="${i+1}"><details ${i === 0 ? 'open' : ''}><summary><span><small>Clase ${i+1}${k ? ` · ${DIAS_C[dia(k.clases[i]).getDay()]} ${ddmm(k.clases[i])}` : ''}</small>${esc(cl.t)}</span></summary>
-      <p class="obj">${esc(cl.obj)}</p><ul>${cl.temas.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
-      <div class="pr"><div><b>En clase</b>${esc(cl.practica)}</div>${cl.tarea ? `<div><b>Antes de la clase ${i+2}</b>${esc(cl.tarea)}</div>` : ''}</div></details></div>`).join('');
+  const clases = c.clases.map((cl, i) => `<div class="ai ${i === 0 ? 'open' : ''}">
+      <button class="ai-h" type="button" aria-expanded="${i === 0}"><span class="ai-n">0${i+1}</span><span class="ai-t"><small>Clase ${i+1}${k ? ` · ${DIAS_C[dia(k.clases[i]).getDay()]} ${ddmm(k.clases[i])}` : ''}</small><b>${esc(cl.t)}</b></span><span class="ai-ch" aria-hidden="true"></span></button>
+      <div class="ai-p"><div><div class="ai-in"><p class="ai-o">${esc(cl.obj)}</p><ul class="ai-l">${cl.temas.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+      <div class="ai-pr"><div><b>En clase</b><p>${esc(cl.practica)}</p></div>${cl.tarea ? `<div><b>Antes de la clase ${i+2}</b><p>${esc(cl.tarea)}</p></div>` : ''}</div></div></div></div></div>`).join('');
   m.innerHTML = `<div class="wrap"><div class="cp">
    <div class="cp-main">
     <section class="cp-hero">
@@ -260,7 +318,7 @@ function renderCurso(){
       <span class="eyebrow">Nivel ${c.nivel} · ${esc(c.perfil)}</span>
       <h1>${esc(c.nombre)}</h1>
       <p class="lead">${esc(c.bajada)}</p>
-      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div><small>Tu profe, en vivo</small><b>Gastón Pérez</b><span>Construyó productos en <img src="/logos/mercadolibre.svg" alt="Mercado Libre"></span></div></div>
+      <div class="teach"><img class="ph" src="/fotos/gaston.jpg" alt=""><div><small>Tu profe, en vivo</small><b>Gastón Pérez</b><span>Construyó productos en</span><span class="t-logos"><img class="tl-ml" src="/logos/mercadolibre.svg" alt="Mercado Libre"><img class="tl-rp" src="/logos/rappi.svg" alt="Rappi"><img class="tl-bb" src="/logos/bigbox.svg" alt="Bigbox"></span></div></div>
     </section>
     <section class="cp-buy-m">${buyboxHTML(c, ks)}</section>
     <section><h2>Al terminar, vas a poder</h2>
@@ -268,8 +326,8 @@ function renderCurso(){
       <div class="result"><div><small>Salís con</small><p>${esc(c.resultado)}</p></div></div></section>
     <section><h2>Es para vos si…</h2>
       <p class="sec-lead">${esc(c.paraLargo)}</p>
-      <div class="bento">${c.casos.map(x => `<article class="tile"><span class="who">${esc(x.who)}</span><q>${esc(x.q)}</q><p class="res">${esc(x.res)}</p></article>`).join('')}</div></section>
-    ${c.clases.length ? `<section id="programa"><h2>El programa, clase por clase</h2><div class="path">${clases}</div>
+      ${casosHTML(c)}</section>
+    ${c.clases.length ? `<section id="programa"><h2>El programa, clase por clase</h2><div class="acc">${clases}</div>
       <div class="final-p"><i></i><div><small>Clase 4 · Muestra de resultados</small><p>${esc(c.final)}</p></div></div>
       <p class="dl-prog"><button class="more js-prog" data-prog="${c.slug}" data-curso="${esc(c.nombre)}">Descargar el programa en PDF</button></p></section>` : ''}
     <section id="fechas"><h2>Próximas fechas</h2>
@@ -282,19 +340,12 @@ function renderCurso(){
         <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><h3>Todo queda grabado</h3><p>Si faltás a una clase, te pasamos la grabación.</p></div>
         <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg><h3>Certificado</h3><p>Con tu nombre, el curso y las ${c.horas} horas. Para tu CV y tu LinkedIn.</p></div>
       </div>
-      <div class="cert-stage"><div class="cert-frame" id="certFrame"><div class="tc" id="certDoc">
-        <div class="tc-bg"><span></span><span></span><span></span></div><div class="tc-grain"></div>
-        <div class="tc-brand"><img src="/logo/tecla-mark.svg" alt=""><span>tecla<b>.</b></span></div>
-        <p class="tc-kind">Certificado de finalización</p><p class="tc-course">${esc(c.nombre)}</p><p class="tc-name">Tu nombre acá</p>
-        <p class="tc-text">Completó con éxito su curso en Tecla, con <b>4 clases en vivo</b> y <b>${c.horas} horas</b> de formación, y presentó su caso real resuelto con inteligencia artificial.</p>
-        <p class="tc-date">${k ? `${dia(k.clases.at(-1)).getDate()} de ${MES_L[dia(k.clases.at(-1)).getMonth()]} de ${dia(k.clases.at(-1)).getFullYear()}` : ''}</p>
-        <div class="tc-foot"><div class="tc-left"><b>Cohorte ${k ? MES_L[dia(k.clases[0]).getMonth()].replace(/^./, s=>s.toUpperCase()) + ' ' + dia(k.clases[0]).getFullYear() : ''}</b>somostecla.com</div><div class="tc-sign"><span class="tc-sig">Gastón Pérez</span><b>Gastón Pérez</b><small>Profesor titular</small></div></div>
-      </div></div></div>
-      <p class="fine">Para recibirlo: asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última. Es un certificado de finalización de Tecla, no un título oficial.</p></section>
+      <div class="cert-stage cp-cert"><div class="cert-frame" id="certFrame">${certDocHTML(c, k)}</div></div>
+      <p class="fine cp-cert">Para recibirlo: asistí en vivo a 3 de las 4 clases y mostrá tu caso resuelto en la última. Es un certificado de finalización de Tecla, no un título oficial.</p></section>
     <section id="preguntas"><h2>Preguntas frecuentes</h2>
       <div class="faq">${faq.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${a}</p></details>`).join('')}</div></section>
    </div>
-   <aside class="cp-side">${buyboxHTML(c, ks)}</aside>
+   <aside class="cp-side"><div class="cp-side-in">${buyboxHTML(c, ks)}${certCardHTML(c)}</div></aside>
   </div></div>
   <section class="final cp-end" id="inscripcion"><div class="glow"></div><div class="wrap">
     ${k ? `<p class="count">Arranca el <b>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}</b>${cupoTxt() ? ` · <b>${cupoTxt().toLowerCase()}</b>` : ''}</p>` : ''}
@@ -341,6 +392,25 @@ document.addEventListener('click', e => {
   const k = e.target.closest('.coh'); if (k){ k.classList.toggle('open'); ev('fecha_ver'); }
 });
 
+/* programa: abre y cierra cada clase con animación */
+document.addEventListener('click', e => {
+  const h = e.target.closest('.ai-h'); if (!h) return;
+  const it = h.parentElement, o = !it.classList.contains('open');
+  it.classList.toggle('open', o); h.setAttribute('aria-expanded', String(o));
+});
+
+/* cuenta regresiva del precio de lanzamiento (solo en la caja de precio) */
+(() => {
+  const els = $$('.js-cd'); if (!els.length) return;
+  const tick = () => {
+    const ms = PROMO.hasta.getTime() - Date.now();
+    if (ms <= 0){ els.forEach(e => e.closest('.bb-band')?.remove()); return; }
+    const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4);
+    els.forEach(e => e.textContent = `${d ? d + 'd ' : ''}${h}h ${String(m).padStart(2,'0')}m`);
+  };
+  tick(); setInterval(tick, 30000);
+})();
+
 /* video del hero: quieto si la persona pidió menos movimiento */
 if (reduced) $$('.hero-video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
 
@@ -355,8 +425,9 @@ $$('.tray').forEach(track => {
 
 /* certificado: diseñado a 1000px y escalado al ancho real */
 (() => {
-  const f = $('#certFrame'), d = $('#certDoc'); if (!f) return;
-  const fit = () => d.style.transform = `scale(${f.clientWidth/1000})`; fit(); addEventListener('resize', fit);
+  const fit = () => $$('.cert-frame').forEach(fr => { const d = fr.querySelector('.tc'); if (d && fr.clientWidth) d.style.transform = `scale(${fr.clientWidth/1000})`; });
+  fit(); addEventListener('resize', fit); addEventListener('load', fit);
+  const f = $('#certFrame'); if (!f) return;
   /* hover: una luz cálida sigue al puntero y el certificado se acerca apenas hacia él (plano, sin 3D) */
   if (reduced || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   f.addEventListener('pointermove', e => {
