@@ -932,8 +932,7 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 .bb-cert p{font-size:12.5px;color:var(--ink3);line-height:1.4;margin-top:3px}
 .bb-cert > div:last-child{flex:1;min-width:0}
 /* si la ventana es muy baja, la columna deja de ser fija antes que cortarse */
-/* ventana baja: la caja sigue fija; se oculta solo el certificado para que nada se corte */
-@media(max-height:760px){ .cp-side .bb-cert{display:none} }
+
 .t-short{display:none}
 .t-exp small{white-space:nowrap}
 .teach .t-exp .t-logos{flex-wrap:nowrap}
@@ -982,3 +981,25 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 .nm .nc-tx b{font-size:16px}
 .nm .nc-tx small{font-size:13px}
 @media(max-width:860px){ .dd{display:none} }
+
+/* certificado como fila dentro de la caja de precio: se ve en cualquier alto de ventana */
+.buybox .bb-cert{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 0 0;border-top:1px solid var(--line2);border-radius:0;box-shadow:none;background:none}
+.buybox .bb-cert .cert-frame.mini{width:72px}
+.buybox .bb-cert b{font-size:13.5px}
+.buybox .bb-cert p{font-size:12px;margin-top:2px}
+/* en mobile el certificado grande ya está en el cuerpo: no se repite en la caja */
+.cp-buy-m .bb-cert{display:none}
+/* caja más compacta para que entre entera desde 560 px de alto */
+.cp-side-in{top:64px}
+.bb-band{padding:8px 16px}
+.bb-body{padding:12px 16px 14px}
+.bb-price{padding:10px 12px}
+.bb-now{font-size:32px}
+.bb-cuo{margin-top:4px}
+.buybox dl.bb-rows{margin:6px 0 12px}
+.bb-rows div{padding:7px 2px;font-size:13.5px}
+.buybox .pill{padding:11px 20px;font-size:15.5px}
+.buybox .bb-g{margin-top:8px}
+.buybox .bb-cert{margin-top:10px;padding-top:10px}
+.buybox .bb-cert .cert-frame.mini{width:64px}
+.buybox .bb-cert > div:last-child b{display:flex;justify-content:space-between;align-items:baseline;width:100%}

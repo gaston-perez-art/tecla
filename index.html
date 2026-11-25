@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap&text=Gast%C3%B3nP%C3%A9rez%20" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tecla.css?v=11">
+<link rel="stylesheet" href="/assets/tecla.css?v=12">
 </head>
 <body>
 
@@ -209,7 +209,7 @@
 
 <footer id="foot"></footer>
 
-<script src="/assets/tecla.js?v=8"></script>
+<script src="/assets/tecla.js?v=9"></script>
 <script>
   /* FAQ de la home: la general + cuál me conviene */
   document.getElementById('faqHome').innerHTML = [['¿Necesito saber algo de tecnología?','Para Fundamentos, nada: si usás WhatsApp, podés hacer el curso. Para Tu web con IA solo tenés que manejarte con una computadora. No hace falta saber programar, ese es justamente el punto.'],['¿Cuál me conviene: Fundamentos o Tu web con IA?','Depende de qué te querés llevar. Fundamentos es para aprender a usar la IA en tu día a día desde cero. Tu web con IA es para salir con algo concreto: la página de tu negocio publicada. Si ya usás la IA seguido y lo que querés es tu web, andá directo al Nivel 2. Si dudás, escribinos.']].concat(FAQ_GENERAL).map(([q,a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('');

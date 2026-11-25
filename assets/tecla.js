@@ -298,6 +298,7 @@ function buyboxHTML(c, ks){
       <dl class="bb-rows">${rows.map(([a,b]) => `<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
       ${cta}
       ${k ? `<p class="bb-g">${SHIELD}<span>Si después de la primera clase no es para vos, te devolvemos el 100%.</span></p>` : ''}
+      ${certCardHTML(c)}
     </div></div>`;
 }
 function certCardHTML(c){
@@ -364,7 +365,7 @@ function renderCurso(){
     <section id="preguntas"><h2>Preguntas frecuentes</h2>
       <div class="faq">${faq.map(([q,a]) => `<details><summary>${esc(q)}</summary><p>${a}</p></details>`).join('')}</div></section>
    </div>
-   <aside class="cp-side"><div class="cp-side-in">${buyboxHTML(c, ks)}${certCardHTML(c)}</div></aside>
+   <aside class="cp-side"><div class="cp-side-in">${buyboxHTML(c, ks)}</div></aside>
   </div></div>
   <section class="final cp-end" id="inscripcion"><div class="glow"></div><div class="wrap">
     ${k ? `<p class="count">Arranca el <b>${DIAS_L[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}</b>${cupoTxt() ? ` · <b>${cupoTxt().toLowerCase()}</b>` : ''}</p>` : ''}
