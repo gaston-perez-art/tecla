@@ -179,12 +179,21 @@ const SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
 
 /* === Nav con menú === */
+/* un renglón de curso para el header y el menú: color de su portada, nombre y cuándo arranca */
+function navCurso(c){
+  const k = proximas(c)[0];
+  const sub = k ? `Nivel ${c.nivel} · arranca ${DIAS_C[dia(k.clases[0]).getDay()]} ${ddmm(k.clases[0])}` : `Nivel ${c.nivel} · ${esc(c.pronto || 'próximamente')}`;
+  const on = PAGE && PAGE.slug === c.slug;
+  return `<a class="nc ${on ? 'on' : ''}" href="/cursos/${c.slug}/"${on ? ' aria-current="page"' : ''}><span class="nc-sw t-${c.tono}"><b>${c.nivel}</b></span><span class="nc-tx"><b>${esc(c.nombre)}</b><small>${sub}</small></span></a>`;
+}
 function renderNav(){
   const n = $('#top'); if (!n) return;
   const home = !PAGE;
   n.innerHTML = `<div class="wrap nav">
     <a class="brand" href="/" aria-label="Tecla, inicio"><img class="mk" src="/logo/tecla-mark.svg" alt=""><span class="wm">tecla<b>.</b></span><i>cursos</i></a>
     <div class="nav-links">
+      <div class="dd" id="dd"><button class="dd-b" id="ddB" type="button" aria-expanded="false" aria-controls="ddP">Cursos<i aria-hidden="true"></i></button>
+        <div class="dd-p" id="ddP"><div class="dd-in">${CURSOS.map(navCurso).join('')}<a class="dd-all" href="/#cursos">Ver todos los cursos</a></div></div></div>
       <a href="/#cursada">Cursada</a><a href="/#profe">Tu profe</a><a href="${home ? '#preguntas' : '#preguntas'}">Preguntas</a>
       <a href="/servicios/">Soporte y docentes</a>
       <a href="/aula/" class="aula-btn">${ICON_USER}Ingresar al aula</a>
@@ -192,7 +201,8 @@ function renderNav(){
       <button class="mbtn" id="mbtn" aria-label="Menú" aria-expanded="false" aria-controls="nmenu"><svg class="h" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div></div>
     <div class="nav-menu" id="nmenu"><div class="nm">
-      ${CURSOS.map(c => `<a class="l" href="/cursos/${c.slug}/">${esc(c.nombre)}</a>`).join('')}
+      <small class="nm-h">Cursos</small>
+      <div class="nm-c">${CURSOS.map(navCurso).join('')}</div>
       <a class="l" href="/#cursada">Cómo es la cursada</a><a class="l" href="/#profe">Tu profe</a><a class="l" href="${home ? '#preguntas' : '#preguntas'}">Preguntas</a>
       <a class="aula-l" href="/aula/">${ICON_USER}Ingresar al aula</a>
       <small>Más de Tecla</small>
@@ -204,6 +214,16 @@ function renderNav(){
   b.onclick = () => set(!n.classList.contains('menu-open'));
   $$('#nmenu a').forEach(a => a.addEventListener('click', () => set(false)));
   addEventListener('scroll', () => n.classList.toggle('scrolled', scrollY > 8), {passive:true});
+  /* desplegable de cursos: abre con hover (mouse) o clic/teclado; cierra al salir, con Escape o clic afuera */
+  const dd = $('#dd'), db = $('#ddB'); let t;
+  const ddSet = o => { dd.classList.toggle('open', o); db.setAttribute('aria-expanded', String(o)); };
+  db.onclick = e => { e.stopPropagation(); ddSet(!dd.classList.contains('open')); };
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches){
+    dd.addEventListener('mouseenter', () => { clearTimeout(t); ddSet(true); });
+    dd.addEventListener('mouseleave', () => { t = setTimeout(() => ddSet(false), 180); });
+  }
+  document.addEventListener('click', e => { if (!dd.contains(e.target)) ddSet(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && dd.classList.contains('open')){ ddSet(false); db.focus(); } });
 }
 
 function renderFooter(){

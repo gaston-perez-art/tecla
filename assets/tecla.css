@@ -955,3 +955,30 @@ body.menu-lock .sbar{transform:translate(-50%,140%);pointer-events:none}
 /* el halo no puede ensanchar la página: se recorta a lo ancho, no a lo alto */
 .hero-s{overflow-x:clip;overflow-y:visible}
 #cursada{overflow-x:clip}
+
+/* ===== Header: desplegable de cursos (se arma desde CURSOS) ===== */
+.dd{position:relative}
+.dd-b{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2);padding:6px 0}
+.dd-b:hover,.dd.open .dd-b{color:var(--ink)}
+.dd-b:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
+.dd-b i{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .25s var(--ease)}
+.dd.open .dd-b i{transform:rotate(-135deg) translate(-1px,-1px)}
+.dd-p{position:absolute;left:50%;top:100%;padding-top:14px;transform:translate(-50%,6px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s var(--ease);z-index:60}
+.dd.open .dd-p{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.dd-in{width:340px;background:#fff;border-radius:20px;padding:8px;box-shadow:0 0 0 1px var(--line2),0 24px 50px -20px rgba(20,30,60,.3)}
+.nc{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;transition:background .2s}
+.nc:hover,.nc.on{background:var(--bg2)}
+.nc-sw{position:relative;overflow:hidden;isolation:isolate;flex:none;width:40px;height:40px;border-radius:11px;background:#0e0f13;display:flex;align-items:center;justify-content:center}
+.nc-sw::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--cv)}
+.nc-sw b{font-family:var(--display);font-weight:600;font-size:17px;color:#fff;letter-spacing:-.02em}
+.nc-tx{min-width:0}
+.nc-tx b{display:block;font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.25}
+.nc-tx small{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px}
+.dd-all{display:block;margin:4px 6px 4px;padding:10px 4px 6px;border-top:1px solid var(--line2);font-size:13.5px;font-weight:500;color:var(--link)}
+.dd-all::after{content:" ›"}
+/* menú mobile: los cursos con el mismo renglón */
+.nm-h{display:block;margin:10px 2px 4px;font-size:13px;font-weight:600;color:var(--ink3)}
+.nm .nm-c{display:grid;gap:2px;margin:0 -10px 8px;padding-bottom:10px;border-bottom:1px solid var(--line2)}
+.nm .nc-tx b{font-size:16px}
+.nm .nc-tx small{font-size:13px}
+@media(max-width:860px){ .dd{display:none} }
